@@ -11,10 +11,8 @@ const SENSITIVITY = 0.003
 @onready var pivot: Node3D = $Pivot
 @onready var camera: Camera3D = $Pivot/Camera3D
 var gravity = 20
-
 const FOV = 90.0
 const FOV_MULTI = 1.25
-
 
 
 #Prevents Mouse from moving externally
