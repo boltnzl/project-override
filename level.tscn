@@ -1,8 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=27 format=3 uid="uid://bj387j66to5uj"]
 
+[ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_u52ul"]
+[ext_resource type="Script" uid="uid://iq1cd6tgq06h" path="res://health_stamina.gd" id="2_hounu"]
 [ext_resource type="Texture2D" uid="uid://c81s0fye1rsnl" path="res://UI/image.png" id="2_vonw3"]
 [ext_resource type="Texture2D" uid="uid://bw12d44gegwjk" path="res://UI/HP.png" id="3_oi3di"]
+[ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://enemy.tscn" id="5_f2txt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -51,25 +54,32 @@ bg_color = Color(0.894118, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2txt"]
 bg_color = Color(0.0117647, 0.588235, 0.94902, 1)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_n6hdu"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_km5ld"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2t4f"]
+
 [node name="Level" type="Node3D"]
+script = ExtResource("1_1ainy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0b4ue")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 5.26065, 0)
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 6.26065, 0)
 script = ExtResource("1_u52ul")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_f2txt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 visible = false
 shape = SubResource("ConcavePolygonShape3D_1ainy")
 
-[node name="Pivot" type="Node3D" parent="CharacterBody3D"]
+[node name="Pivot" type="Node3D" parent="Player"]
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Pivot"]
+[node name="Camera3D" type="Camera3D" parent="Player/Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00566483, 0, 0.00775456)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -117,8 +127,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0b4ue")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.74973, 0.353692, 0.559291, 0, -0.845178, 0.534485, -0.661744, 0.400719, 0.633655, 103.058, 66.3276, 82.56)
 shadow_enabled = true
+shadow_opacity = 0.5
 
 [node name="Health_Stamina" type="Node2D" parent="."]
+script = ExtResource("2_hounu")
 
 [node name="StaminaBar" type="ColorRect" parent="Health_Stamina"]
 offset_left = 60.0
@@ -173,3 +185,20 @@ offset_right = 110.0
 offset_bottom = 1028.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_oi3di")
+
+[node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("5_f2txt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(127.617, 0, 0, 0, 2.88219, 0, 0, 0, 125.708, 0, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_n6hdu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1.00681, 0, 0, 0, 1.00681, 0, 0, 0, 1.00681, 0, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_km5ld")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_i2t4f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]

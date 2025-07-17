@@ -13,7 +13,7 @@ const SENSITIVITY = 0.003
 var gravity = 20
 const FOV = 90.0
 const FOV_MULTI = 1.25
-
+var stamina_bar = 10.0
 
 #Prevents Mouse from moving externally
 func _ready():
@@ -35,10 +35,11 @@ func _physics_process(delta: float) -> void:
 
 
 # Handles Sprint 
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
-	else:
-		speed = WALK_SPEED
+#	if Input.is_action_pressed("sprint"):
+		if stamina_bar > 1.0:
+			speed = SPRINT_SPEED
+		else:
+			speed = WALK_SPEED
 
 
 	# Handle jump.
