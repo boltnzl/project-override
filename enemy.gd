@@ -1,23 +1,23 @@
 extends CharacterBody3D
 
+var player = null
 
-@onready var area = $NavigationRegion3D
-var speed = 10.0
-var gravity = 5
+const speed = 5.0
+@export var player_path : NodePath
+@onready var pathfinder = $NavigationAgent3D
+
+
+func _ready() -> void:
+	player = get_node(player_path)
 
 
 func _process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	else:
-		velocity.y -= 2
-	var position1 = area.get_next_path_position()
-	var position2 = global_transform.origin
-	var velocity2 = (position1 - position2).normalized() * speed
+	velocity = Vector3.ZERO
+	pathfinder.set_target_position(player.global_transform.origin)
+	var nextpathfinder = pathfinder.get_next_path_position()
+	velocity = (nextpathfinder - global_transform.origin).normalized() * speed
 	
-	velocity = velocity.move_toward(velocity2, 0.25)
+	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
+	
 	move_and_slide()
 	
-func target_position(target):
-	area.position2 = target
-  

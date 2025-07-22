@@ -2,19 +2,21 @@
 
 [ext_resource type="Script" uid="uid://byjlx8dqsxbjc" path="res://enemy.gd" id="1_7k104"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7xaro"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7k104"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7k104"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4gyqm"]
 
-[node name="Enemy" type="Node3D"]
-
-[node name="Body" type="CharacterBody3D" parent="."]
+[node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("1_7k104")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
-shape = SubResource("CapsuleShape3D_7xaro")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.997687, 0, 0, 0, 0.997687, 0, 0, 0, 0.997687, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_7k104")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
-mesh = SubResource("CapsuleMesh_7k104")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.997687, 0, 0, 0, 0.997687, 0, 0, 0, 0.997687, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_4gyqm")
 skeleton = NodePath("../CollisionShape3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
