@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=25 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://iq1cd6tgq06h" path="res://health_stamina.gd" id="2_hounu"]
 [ext_resource type="Texture2D" uid="uid://c81s0fye1rsnl" path="res://UI/image.png" id="2_vonw3"]
 [ext_resource type="Texture2D" uid="uid://bw12d44gegwjk" path="res://UI/HP.png" id="3_oi3di"]
+[ext_resource type="Script" uid="uid://vwgwh18ntd8e" path="res://Stamina.gd" id="4_n6hdu"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://enemy.tscn" id="5_f2txt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
@@ -151,6 +152,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_f2txt")
 max_value = 10.0
 value = 10.0
 show_percentage = false
+script = ExtResource("4_n6hdu")
 
 [node name="Stamina Symbol" type="TextureRect" parent="Health_Stamina"]
 offset_left = 11.0
@@ -183,4 +185,4 @@ mesh = SubResource("BoxMesh_km5ld")
 
 [node name="Enemy" parent="." instance=ExtResource("5_f2txt")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.09746, -6.84672)
-player_path = NodePath("../Player")
+playerlocation = NodePath("../Player")
