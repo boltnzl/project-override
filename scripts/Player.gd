@@ -13,11 +13,12 @@ const SENSITIVITY = 0.003
 var gravity = 20
 const FOV = 90.0
 const FOV_MULTI = 1.25
-var stamina_bar = 10.0
+@onready var stamina : ProgressBar = $"../Health_Stamina/Stamina Bar"
 
 #Prevents Mouse from moving externally
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	speed = WALK_SPEED
 
 
 #Handles Camera Movement 
@@ -35,7 +36,10 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
+		if stamina.value > 0:
+			speed = SPRINT_SPEED
+		else:
+			speed = WALK_SPEED
 	else:
 		speed = WALK_SPEED
 
