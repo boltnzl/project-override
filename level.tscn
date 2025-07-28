@@ -42,7 +42,7 @@ bg_color = Color(0.894118, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_vonw3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b4ue"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6hdu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2txt"]
 bg_color = Color(0.0117647, 0.588235, 0.94902, 1)
@@ -147,7 +147,7 @@ offset_top = 947.0
 offset_right = 476.0
 offset_bottom = 964.0
 theme = SubResource("Theme_vonw3")
-theme_override_styles/background = SubResource("StyleBoxFlat_0b4ue")
+theme_override_styles/background = SubResource("StyleBoxEmpty_n6hdu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_f2txt")
 max_value = 10.0
 value = 10.0

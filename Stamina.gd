@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint"):
 		if stamina.value > 0:
-			stamina.value -= 0.15 
+			stamina.value -= 0.075
 			can_regen = false
 			s_timer = 0
 	else: 
