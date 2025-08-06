@@ -8,12 +8,18 @@ const WALK_SPEED = 10.0
 const SPRINT_SPEED = 20.0
 const JUMP_VELOCITY = 10.0
 const SENSITIVITY = 0.003
-@onready var pivot: Node3D = $Pivot
-@onready var camera: Camera3D = $Pivot/Camera3D
 var gravity = 20
 const FOV = 90.0
 const FOV_MULTI = 1.25
+
+var bullet = load("res://bullet.tscn")
+var instance
+
+@onready var pivot: Node3D = $Pivot
+@onready var camera: Camera3D = $Pivot/Camera3D
 @onready var stamina : ProgressBar = $"../Health_Stamina/Stamina Bar"
+@onready var gun_animation = $Pivot/Camera3D/Pistol/AnimationPlayer
+@onready var gun_barrel = $Pivot/Camera3D/Pistol/RayCast3D
 
 #Prevents Mouse from moving externally
 func _ready():
@@ -66,7 +72,15 @@ func _physics_process(delta: float) -> void:
 
 	SFOV += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = _headbob(SFOV)
-
+	
+	if Input.is_action_pressed("shoot"):
+		if !gun_animation.is_playing():
+			gun_animation.play("shoot")
+			instance = bullet.instantiate()
+			instance.position = gun_barrel.global_position
+			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().add_child(instance)
+	
 	move_and_slide()
 
 func _headbob(time) -> Vector3:
