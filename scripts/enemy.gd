@@ -1,23 +1,56 @@
 extends CharacterBody3D
 
-var player = null
-
-const speed = 5.0
-@export var playerlocation : NodePath
-@onready var path_finder = $NavigationAgent3D
+var player: Player = null
+const SPEED = 10.0
+@export var playerlocation: NodePath
+@onready var pathfinder: NavigationAgent3D = $NavigationAgent3D
+@onready var progress: ProgressBar = $"../Health_Stamina/Health Bar"
+@export var maxhealth = 100
+@export var damage = 10                  
+@export var regenrate = 5.0         
+@export var regendelay = 10.0          
+var timelasthit = 0.0
+var incombat = false
 
 
 func _ready() -> void:
 	player = get_node(playerlocation)
+	progress.max_value = maxhealth
+	progress.value = maxhealth
 
 
 func _process(delta: float) -> void:
 	velocity = Vector3.ZERO
-	path_finder.set_target_position(player.global_transform.origin)
-	var nextpathfinder = path_finder.get_next_path_position()
-	velocity = (nextpathfinder - global_transform.origin).normalized() * speed
+	pathfinder.set_target_position(player.global_transform.origin)
+	var nextpos = pathfinder.get_next_path_position()
+	velocity = (nextpos - global_transform.origin).normalized() * SPEED
 	
 	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
-	
 	move_and_slide()
-	
+   
+	if not incombat:
+		timelasthit += delta
+		if timelasthit >= regendelay and progress.value < maxhealth:
+			progress.value = min(progress.value + regenrate * delta, maxhealth)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		progress.value -= damage
+		if progress.value <= 0:
+			progress.value = 0
+			kill_player()
+
+		if body.has_method("apply_knockback"):
+			body.apply_knockback(global_position)
+
+		incombat = true
+		timelasthit = 0.0
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		incombat = false
+
+func kill_player() -> void:
+	get_tree().paused = true
