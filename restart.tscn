@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb6h1bwar0xhp"]
+
+[ext_resource type="Script" uid="uid://ca65t7pw32hgi" path="res://scripts/restart.gd" id="1_y26ei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xapjj"]
+font_size = 200
+
+[node name="game over" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y26ei")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1921.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 349.0
+offset_right = 1539.0
+offset_bottom = 683.0
+text = "Game over"
+label_settings = SubResource("LabelSettings_xapjj")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 669.0
+offset_top = 675.0
+offset_right = 1202.0
+offset_bottom = 888.0
+theme_override_font_sizes/font_size = 150
+action_mode = 0
+text = "Restart"

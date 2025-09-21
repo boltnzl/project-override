@@ -1,4 +1,3 @@
-
 extends Node3D
 
 @onready var target = $Player
