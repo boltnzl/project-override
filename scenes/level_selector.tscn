@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://boqvb7ym75s52"]
+
+[ext_resource type="Script" uid="uid://ir64nnu8hdmu" path="res://scenes/level_selector.gd" id="1_aeu7d"]
+
+[node name="LevelSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aeu7d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 139.0
+offset_right = 1693.0
+offset_bottom = 835.0
+alignment = 1
+
+[node name="Level 1" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Level 2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Level 3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "3
+"
