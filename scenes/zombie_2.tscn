@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c51885jrok6wm"]
 
-[ext_resource type="PackedScene" uid="uid://dtm3ktq0kcsk7" path="res://art/zombie2.gltf" id="1_6t1k6"]
+[ext_resource type="PackedScene" uid="uid://dtm3ktq0kcsk7" path="res://art/zombie2.gltf" id="1_at2hf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6t1k6"]
 height = 1.2
@@ -36,7 +36,7 @@ size = Vector3(0.905762, 1.0907, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_70agw"]
 size = Vector3(0.233612, 0.691406, 0.223389)
 
-[node name="zombie2" instance=ExtResource("1_6t1k6")]
+[node name="zombie2" instance=ExtResource("1_at2hf")]
 
 [node name="Skeleton3D" parent="metarig" index="0"]
 bones/0/position = Vector3(0.0280735, 1.31623, -0.276936)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bb6h1bwar0xhp"]
 
-[ext_resource type="Script" uid="uid://ca65t7pw32hgi" path="res://scripts/restart.gd" id="1_y26ei"]
+[ext_resource type="Script" uid="uid://ca65t7pw32hgi" path="res://scripts/restart.gd" id="1_q5shd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xapjj"]
 font_size = 200
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_y26ei")
+script = ExtResource("1_q5shd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

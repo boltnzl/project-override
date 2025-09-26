@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cn6rt7044je0n"]
+[gd_scene load_steps=2 format=3 uid="uid://cn6rt7044je0n"]
+
+[ext_resource type="Texture2D" uid="uid://bsp554yr0t1v" path="res://art/447f8510-c7bf-4e8f-93dd-60cc3d9dcdcc.png" id="1_l6cm7"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+texture = ExtResource("1_l6cm7")
+expand_mode = 1
