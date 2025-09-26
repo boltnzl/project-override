@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b220vd20uu6p5"]
 
-[ext_resource type="Script" uid="uid://cadptp2sbq6od" path="res://bullet.gd" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://cadptp2sbq6od" path="res://scripts/bullet.gd" id="1_v7oki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtl8c"]
 albedo_color = Color(0.568627, 0, 0, 1)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://byjlx8dqsxbjc" path="res://scripts/enemy.gd" id="1_7k104"]
 [ext_resource type="PackedScene" uid="uid://dtm3ktq0kcsk7" path="res://art/zombie2.gltf" id="3_iifgy"]
-[ext_resource type="Script" uid="uid://x5exbme7g8mi" path="res://bodypart.gd" id="3_qi2p4"]
+[ext_resource type="Script" uid="uid://x5exbme7g8mi" path="res://scripts/bodypart.gd" id="3_qi2p4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7k104"]
 height = 4.0

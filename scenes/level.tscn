@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://iq1cd6tgq06h" path="res://scripts/health_stamina.gd" id="2_hounu"]
-[ext_resource type="Texture2D" uid="uid://c81s0fye1rsnl" path="res://UI/image.png" id="2_vonw3"]
-[ext_resource type="PackedScene" uid="uid://ceqyga5x7ar70" path="res://Pistol.tscn" id="3_km5ld"]
-[ext_resource type="Texture2D" uid="uid://bw12d44gegwjk" path="res://UI/HP.png" id="3_oi3di"]
+[ext_resource type="Texture2D" uid="uid://c81s0fye1rsnl" path="res://art/image.png" id="2_vonw3"]
+[ext_resource type="PackedScene" uid="uid://ceqyga5x7ar70" path="res://scenes/Pistol.tscn" id="3_km5ld"]
+[ext_resource type="Texture2D" uid="uid://bw12d44gegwjk" path="res://art/HP.png" id="3_oi3di"]
 [ext_resource type="Script" uid="uid://vwgwh18ntd8e" path="res://scripts/Stamina.gd" id="4_n6hdu"]
-[ext_resource type="Script" uid="uid://c1yrprmud2dkx" path="res://health_bar.gd" id="5_2orkt"]
-[ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://enemy.tscn" id="5_f2txt"]
-[ext_resource type="Script" uid="uid://bjl84wk6ao731" path="res://healthbar.gd" id="6_aicyk"]
+[ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="5_f2txt"]
+[ext_resource type="Script" uid="uid://bjl84wk6ao731" path="res://scripts/healthbar.gd" id="6_aicyk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -35,6 +34,10 @@ glow_enabled = true
 [sub_resource type="BoxMesh" id="BoxMesh_oi3di"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b4ue"]
+
+[sub_resource type="GDScript" id="GDScript_8c41q"]
+script/source = "extends ColorRect
+"
 
 [sub_resource type="Theme" id="Theme_u52ul"]
 
@@ -144,7 +147,7 @@ offset_top = 992.0
 offset_right = 485.0
 offset_bottom = 999.0
 color = Color(0.141176, 0.141176, 0.141176, 1)
-script = ExtResource("5_2orkt")
+script = SubResource("GDScript_8c41q")
 
 [node name="Health Bar" type="ProgressBar" parent="Health_Stamina"]
 offset_left = 70.0
