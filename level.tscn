@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=30 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_u52ul"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://c1yrprmud2dkx" path="res://health_bar.gd" id="5_2orkt"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://enemy.tscn" id="5_f2txt"]
 [ext_resource type="Script" uid="uid://bjl84wk6ao731" path="res://healthbar.gd" id="6_aicyk"]
-[ext_resource type="PackedScene" uid="uid://bw70odmskqhtr" path="res://art/zombie.blend" id="9_i2t4f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -206,12 +205,9 @@ shape = SubResource("BoxShape3D_n6hdu")
 material_override = SubResource("StandardMaterial3D_n6hdu")
 mesh = SubResource("BoxMesh_km5ld")
 
-[node name="Enemy" parent="." instance=ExtResource("5_f2txt")]
+[node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("5_f2txt")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.09746, -6.84672)
 playerlocation = NodePath("../Player")
-
-[node name="zombie" parent="." instance=ExtResource("9_i2t4f")]
-transform = Transform3D(1, 0, 0, 0, 0.868103, 0, 0, 0, 1, -4.30051, 5.39793, -37.5478)
 
 [connection signal="timeout" from="Health_Stamina/Timer" to="Enemy" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_entered"]
@@ -219,3 +215,4 @@ transform = Transform3D(1, 0, 0, 0, 0.868103, 0, 0, 0, 1, -4.30051, 5.39793, -37
 
 [editable path="Player/Pivot/Camera3D/Pistol"]
 [editable path="Enemy"]
+[editable path="Enemy/zombie2"]

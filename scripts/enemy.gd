@@ -11,6 +11,9 @@ const SPEED = 10.0
 @export var regendelay = 10.0          
 var timelasthit = 0.0
 var incombat = false
+var health = 10.0
+var damagehit = 1.0
+
 
 
 func _ready() -> void:
@@ -57,3 +60,12 @@ func kill_player() -> void:
 	get_tree().root.add_child(game_over_scene) 
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func hit() -> void:
+		health -= damagehit
+		progress.value = health
+		incombat = true
+		timelasthit = 0.0
+		if health <= 0:
+			queue_free()

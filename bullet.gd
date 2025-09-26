@@ -7,7 +7,6 @@ const SPEED = 100.0
 @onready var ray = $RayCast3D
 
 func _ready() -> void:
-	# Make sure particles are set to one_shot so they stop automatically
 	particles.one_shot = true
 	particles.emitting = false
 
@@ -19,6 +18,8 @@ func _physics_process(delta: float) -> void:
 	if ray.is_colliding():
 		mesh.visible = false
 		particles.emitting = true
-		# Wait for full lifetime before freeing
+		ray.enabled = false
+		if ray.get_collider().is_in_group("enemy"):
+			ray.get_collider().hit()
 		await get_tree().create_timer(particles.lifetime).timeout
 		queue_free()

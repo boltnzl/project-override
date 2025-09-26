@@ -1,11 +1,11 @@
 extends Control
 
-@onready var restart_button: Button = $Button
+@onready var restart: Button = $Button
 
 func _ready():
-	restart_button.pressed.connect(_on_restart_pressed)
+	restart.pressed.connect(restart_pressed)
 
-func _on_restart_pressed():
+func restart_pressed():
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	queue_free()
