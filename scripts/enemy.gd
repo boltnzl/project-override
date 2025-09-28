@@ -56,7 +56,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		incombat = false
 
 func kill_player() -> void:
-	var game_over_scene = load("res://restart.tscn").instantiate()
+	var game_over_scene = load("res://scenes/restart.tscn").instantiate()
 	get_tree().root.add_child(game_over_scene) 
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

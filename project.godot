@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Overridew"
-run/main_scene="uid://boqvb7ym75s52"
+run/main_scene="uid://cn6rt7044je0n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [display]

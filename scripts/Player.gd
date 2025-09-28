@@ -14,7 +14,7 @@ var gravity = 20
 const FOV = 90.0
 const FOV_MULTI = 1.25
 
-var bullet = load("res://bullet.tscn")
+var bullet = load("res://scenes/bullet.tscn")
 var instance
 
 @onready var pivot: Node3D = $Pivot

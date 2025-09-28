@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn6rt7044je0n"]
+[gd_scene load_steps=3 format=3 uid="uid://cn6rt7044je0n"]
 
+[ext_resource type="Script" uid="uid://cfntqpl2vwpqg" path="res://scenes/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://bsp554yr0t1v" path="res://art/447f8510-c7bf-4e8f-93dd-60cc3d9dcdcc.png" id="1_l6cm7"]
 
 [node name="MainMenu" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ekxnf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -17,3 +19,32 @@ offset_right = 1918.0
 offset_bottom = 1080.0
 texture = ExtResource("1_l6cm7")
 expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 456.0
+offset_right = 1972.0
+offset_bottom = 1538.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "PLAY"
+alignment = 0
+
+[node name="Settings" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "SETTINGS"
+alignment = 0
+
+[node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "QUIT"
+alignment = 0

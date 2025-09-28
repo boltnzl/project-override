@@ -57,6 +57,9 @@ bones/27/rotation = Quaternion(-1.0604e-07, 0.998523, -0.0543397, -1.86088e-06)
 [node name="Cube_004" parent="zombie2/metarig/Skeleton3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0247878, 0, 0.436335)
 
+[node name="AnimationPlayer" parent="zombie2" index="1"]
+autoplay = "_Action Stash]_001"
+
 [connection signal="body_part_hit" from="Area3D" to="." method="_on_area_3d_body_part_hit"]
 
 [editable path="zombie2"]
