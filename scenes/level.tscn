@@ -224,18 +224,9 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.09746, -6.84672)
 playerlocation = NodePath("../Player")
 
 [node name="Skeleton3D" parent="Enemy/zombie2/metarig" index="0"]
-bones/0/position = Vector3(0.0280735, 1.31623, -0.276936)
-bones/1/rotation = Quaternion(-0.0461669, 2.0729e-14, -1.10071e-08, 0.998934)
-bones/2/rotation = Quaternion(-0.053333, 7.02411e-15, -1.27156e-08, 0.998577)
 bones/3/rotation = Quaternion(-0.00422848, -1.19208e-07, -5.04074e-10, 0.999991)
-bones/4/rotation = Quaternion(0.0755224, 0.00446623, -0.0216835, 0.996898)
-bones/5/rotation = Quaternion(-0.0212615, -0.00273229, 0.0111505, 0.999708)
-bones/7/rotation = Quaternion(-0.586143, -0.421096, -0.459809, 0.517388)
 bones/8/rotation = Quaternion(-0.0781841, 0.723355, -0.23613, 0.644118)
-bones/9/rotation = Quaternion(0.00192979, -0.00399035, -0.0216599, 0.999756)
-bones/11/rotation = Quaternion(-0.586143, 0.421096, 0.459809, 0.517388)
 bones/12/rotation = Quaternion(-0.0781841, -0.723355, 0.23613, 0.644118)
-bones/13/rotation = Quaternion(0.00192979, 0.00399027, 0.0216601, 0.999756)
 bones/15/rotation = Quaternion(-5.41421e-08, 0.696936, 0.717133, -5.26172e-08)
 bones/16/rotation = Quaternion(-5.41421e-08, 0.696936, 0.717133, -5.26172e-08)
 bones/19/rotation = Quaternion(0.995903, -1.08568e-08, 1.18918e-07, 0.0904253)
@@ -244,7 +235,6 @@ bones/21/rotation = Quaternion(-0.667573, 1.33148e-06, -1.353e-06, 0.744544)
 bones/24/rotation = Quaternion(0.995903, -1.08568e-08, 1.18918e-07, 0.0904253)
 bones/25/rotation = Quaternion(0.000973395, -1.19392e-07, -2.1056e-10, 1)
 bones/26/rotation = Quaternion(-0.667573, -1.33149e-06, 1.353e-06, 0.744544)
-bones/27/rotation = Quaternion(-1.0604e-07, 0.998523, -0.0543397, -1.86088e-06)
 
 [node name="Map" type="Node3D" parent="."]
 
