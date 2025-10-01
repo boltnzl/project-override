@@ -1,14 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=28 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
-[ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_u52ul"]
-[ext_resource type="Script" uid="uid://iq1cd6tgq06h" path="res://scripts/health_stamina.gd" id="2_hounu"]
-[ext_resource type="Texture2D" uid="uid://c81s0fye1rsnl" path="res://art/image.png" id="2_vonw3"]
-[ext_resource type="PackedScene" uid="uid://ceqyga5x7ar70" path="res://scenes/Pistol.tscn" id="3_km5ld"]
-[ext_resource type="Texture2D" uid="uid://bw12d44gegwjk" path="res://art/HP.png" id="3_oi3di"]
-[ext_resource type="Script" uid="uid://vwgwh18ntd8e" path="res://scripts/Stamina.gd" id="4_n6hdu"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="5_f2txt"]
-[ext_resource type="Script" uid="uid://bjl84wk6ao731" path="res://scripts/healthbar.gd" id="6_aicyk"]
+[ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -23,35 +17,11 @@ sky = SubResource("Sky_oi3di")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_f2txt"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aicyk"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2orkt"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_vonw3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_oi3di"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b4ue"]
-
-[sub_resource type="GDScript" id="GDScript_8c41q"]
-script/source = "extends ColorRect
-"
-
-[sub_resource type="Theme" id="Theme_u52ul"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2orkt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oi3di"]
-bg_color = Color(0.894118, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_vonw3"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6hdu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2txt"]
-bg_color = Color(0.0117647, 0.588235, 0.94902, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ainy"]
 vertices = PackedVector3Array(-64.754, 0.487295, -63.729, -64.754, 0.487295, 63.771, 64.746, 0.487295, 63.771, 64.746, 0.487295, -63.729)
@@ -110,32 +80,6 @@ script = ExtResource("1_1ainy")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0b4ue")
 
-[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.04403, 0)
-script = ExtResource("1_u52ul")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("CapsuleMesh_f2txt")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_aicyk")
-
-[node name="Pivot" type="Node3D" parent="Player"]
-
-[node name="Camera3D" type="Camera3D" parent="Player/Pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00566483, 0, 0.00775456)
-
-[node name="Pistol" parent="Player/Pivot/Camera3D" instance=ExtResource("3_km5ld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81435, -1.05742, -2.48303)
-
-[node name="Area3D" type="Area3D" parent="Player"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Area3D"]
-visible = false
-shape = SubResource("CapsuleShape3D_2orkt")
-
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
 transform = Transform3D(9.11746, 0, 0, 0, -3.49683, 0, 0, 0, 9.52369, 0, 1.908, 16.75)
 
@@ -151,77 +95,13 @@ transform = Transform3D(0.74973, 0.353692, 0.559291, 0, -0.845178, 0.534485, -0.
 shadow_enabled = true
 shadow_opacity = 0.5
 
-[node name="Health_Stamina" type="Node2D" parent="."]
-script = ExtResource("2_hounu")
-
-[node name="StaminaBar" type="ColorRect" parent="Health_Stamina"]
-offset_left = 60.0
-offset_top = 952.0
-offset_right = 485.0
-offset_bottom = 959.0
-color = Color(0.141176, 0.141176, 0.141176, 1)
-
-[node name="HealthBar" type="ColorRect" parent="Health_Stamina"]
-offset_left = 60.0
-offset_top = 992.0
-offset_right = 485.0
-offset_bottom = 999.0
-color = Color(0.141176, 0.141176, 0.141176, 1)
-script = SubResource("GDScript_8c41q")
-
-[node name="Health Bar" type="ProgressBar" parent="Health_Stamina"]
-offset_left = 70.0
-offset_top = 987.0
-offset_right = 476.0
-offset_bottom = 1004.0
-theme = SubResource("Theme_u52ul")
-theme_override_styles/background = SubResource("StyleBoxEmpty_2orkt")
-theme_override_styles/fill = SubResource("StyleBoxFlat_oi3di")
-value = 100.0
-show_percentage = false
-script = ExtResource("6_aicyk")
-
-[node name="Stamina Bar" type="ProgressBar" parent="Health_Stamina"]
-offset_left = 70.0
-offset_top = 947.0
-offset_right = 476.0
-offset_bottom = 964.0
-theme = SubResource("Theme_vonw3")
-theme_override_styles/background = SubResource("StyleBoxEmpty_n6hdu")
-theme_override_styles/fill = SubResource("StyleBoxFlat_f2txt")
-max_value = 1000.0
-value = 1000.0
-show_percentage = false
-script = ExtResource("4_n6hdu")
-
-[node name="Stamina Symbol" type="TextureRect" parent="Health_Stamina"]
-offset_left = 11.0
-offset_top = 926.0
-offset_right = 143.0
-offset_bottom = 1058.0
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_vonw3")
-
-[node name="HP Text" type="TextureRect" parent="Health_Stamina"]
-offset_left = 23.0
-offset_top = 986.0
-offset_right = 110.0
-offset_bottom = 1028.0
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_oi3di")
-
-[node name="Timer" type="Timer" parent="Health_Stamina"]
-wait_time = 0.1
-one_shot = true
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 8.12844, 0, 0, 0, 1, 0, -3.8147e-06, 0)
 visible = false
 navigation_mesh = SubResource("NavigationMesh_1ainy")
 
 [node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("5_f2txt")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.09746, -6.84672)
-playerlocation = NodePath("../Player")
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.76773, -6.84672)
 
 [node name="Skeleton3D" parent="Enemy/zombie2/metarig" index="0"]
 bones/3/rotation = Quaternion(-0.00422848, -1.19208e-07, -5.04074e-10, 0.999991)
@@ -822,10 +702,10 @@ shape = SubResource("BoxShape3D_olg7q")
 transform = Transform3D(54.8643, 0, 0, 0, 1, 0, 0, 0, 43.3429, 0, 0, 2.31929)
 mesh = SubResource("BoxMesh_t1rx8")
 
-[connection signal="timeout" from="Health_Stamina/Timer" to="Enemy" method="_on_timer_timeout"]
+[node name="Player" parent="." instance=ExtResource("8_b121j")]
+
 [connection signal="body_entered" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_exited"]
 
-[editable path="Player/Pivot/Camera3D/Pistol"]
 [editable path="Enemy"]
 [editable path="Enemy/zombie2"]

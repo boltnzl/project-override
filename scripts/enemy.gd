@@ -23,13 +23,13 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	velocity = Vector3.ZERO
-	pathfinder.set_target_position(player.global_transform.origin)
-	var nextpos = pathfinder.get_next_path_position()
-	velocity = (nextpos - global_transform.origin).normalized() * SPEED
+	#velocity = Vector3.ZERO
+	#pathfinder.set_target_position(player.global_transform.origin)
+	#var nextpos = pathfinder.get_next_path_position()
+	#velocity = (nextpos - global_transform.origin).normalized() * SPEED
 	
-	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
-	move_and_slide()
+#	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
+#d	move_and_slide()
    
 	if not incombat:
 		timelasthit += delta

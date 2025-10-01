@@ -19,7 +19,7 @@ var instance
 
 @onready var pivot: Node3D = $Pivot
 @onready var camera: Camera3D = $Pivot/Camera3D
-@onready var stamina : ProgressBar = $"../Health_Stamina/Stamina Bar"
+@onready var stamina : ProgressBar = $"Health_Stamina/Stamina Bar"
 @onready var gun_animation = $Pivot/Camera3D/Pistol/AnimationPlayer
 @onready var gun_barrel = $Pivot/Camera3D/Pistol/RayCast3D
 

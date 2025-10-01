@@ -1,4 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://bdkprmaslovs6"]
+[gd_scene load_steps=31 format=3 uid="uid://bdkprmaslovs6"]
+
+[ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="1_3bmlt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y4x0y"]
 
@@ -849,3 +851,5 @@ mesh = SubResource("BoxMesh_vhnap")
 [node name="Ceilling" type="Node3D" parent="Map"]
 
 [node name="Other" type="Node3D" parent="Map"]
+
+[node name="Player" parent="." instance=ExtResource("1_3bmlt")]

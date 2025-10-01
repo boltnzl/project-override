@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqof0v4sx7egd"]
+
+[ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://ceqyga5x7ar70" path="res://scenes/Pistol.tscn" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://cgv35obebjrik" path="res://scenes/healthstamina.tscn" id="3_qhqgy"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dqkch"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qlg0r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tuyoq"]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.04403, 0)
+script = ExtResource("1_g2els")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_dqkch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qlg0r")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00566483, 0, 0.00775456)
+
+[node name="Pistol" parent="Pivot/Camera3D" instance=ExtResource("2_qhqgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81435, -1.05742, -2.48303)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+visible = false
+shape = SubResource("CapsuleShape3D_tuyoq")
+
+[node name="Health_Stamina" parent="." instance=ExtResource("3_qhqgy")]
+
+[editable path="Pivot/Camera3D/Pistol"]
+[editable path="Health_Stamina"]
