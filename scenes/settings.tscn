@@ -1,3 +1,30 @@
-[gd_scene format=3 uid="uid://c0dldxai32spa"]
+[gd_scene load_steps=3 format=3 uid="uid://c0dldxai32spa"]
 
-[node name="Settings" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://bsp554yr0t1v" path="res://art/447f8510-c7bf-4e8f-93dd-60cc3d9dcdcc.png" id="1_5p8wc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r6d6q"]
+font_size = 100
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -1.0
+offset_right = 1919.0
+offset_bottom = 1080.0
+texture = ExtResource("1_5p8wc")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 76.0
+offset_right = 364.0
+offset_bottom = 145.0
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_r6d6q")

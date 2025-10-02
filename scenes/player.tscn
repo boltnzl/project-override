@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqof0v4sx7egd"]
+[gd_scene load_steps=9 format=3 uid="uid://dqof0v4sx7egd"]
 
 [ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://ceqyga5x7ar70" path="res://scenes/Pistol.tscn" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://bppqp3g7v0p0j" path="res://scenes/pausemenu.tscn" id="2_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://cgv35obebjrik" path="res://scenes/healthstamina.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://758s2fow43j3" path="res://scenes/ammo_counter.tscn" id="4_dqkch"]
 
@@ -14,6 +15,8 @@
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.04403, 0)
 script = ExtResource("1_g2els")
+
+[node name="pausemenu" parent="." instance=ExtResource("2_qlg0r")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_dqkch")
