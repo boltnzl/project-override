@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://bdkprmaslovs6"]
+[gd_scene load_steps=33 format=3 uid="uid://bdkprmaslovs6"]
 
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="1_3bmlt"]
+[ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scenes/win_condition.gd" id="2_jm1iu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y4x0y"]
 
@@ -72,6 +73,9 @@ size = Vector3(55.1277, 1.24536, 47.9982)
 size = Vector3(50.11, 1.24536, 52.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vhnap"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ne2mo"]
+size = Vector3(15.0033, 17.3937, 18.714)
 
 [node name="Level 2" type="Node3D"]
 
@@ -853,3 +857,13 @@ mesh = SubResource("BoxMesh_vhnap")
 [node name="Other" type="Node3D" parent="Map"]
 
 [node name="Player" parent="." instance=ExtResource("1_3bmlt")]
+
+[node name="WinCondition" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62463, 0, 0)
+script = ExtResource("2_jm1iu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WinCondition"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1021, 8.19684, -4.70796)
+shape = SubResource("BoxShape3D_ne2mo")
+
+[connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=30 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
+[ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scenes/win_condition.gd" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="5_f2txt"]
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="8_b121j"]
 
@@ -73,6 +74,9 @@ size = Vector3(60.0336, 1.24536, 47.9982)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pqd0y"]
 size = Vector3(63.5252, 1.18848, 44.3533)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppgk2"]
+size = Vector3(15.0033, 17.3937, 18.714)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_1ainy")
@@ -704,8 +708,16 @@ mesh = SubResource("BoxMesh_t1rx8")
 
 [node name="Player" parent="." instance=ExtResource("8_b121j")]
 
+[node name="WinCondition" type="Area3D" parent="."]
+script = ExtResource("4_mx8sn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WinCondition"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1021, 8.19684, -4.70796)
+shape = SubResource("BoxShape3D_ppgk2")
+
 [connection signal="body_entered" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 
 [editable path="Enemy"]
 [editable path="Enemy/zombie2"]

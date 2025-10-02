@@ -14,6 +14,10 @@ config/name="Project Overridew"
 run/main_scene="uid://cn6rt7044je0n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[autoload]
+
+GameData="*res://scripts/GameData.gd"
+
 [display]
 
 window/size/viewport_width=1920

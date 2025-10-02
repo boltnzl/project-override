@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0dldxai32spa"]
 
-[ext_resource type="Texture2D" uid="uid://bsp554yr0t1v" path="res://art/447f8510-c7bf-4e8f-93dd-60cc3d9dcdcc.png" id="1_5p8wc"]
+[ext_resource type="Texture2D" uid="uid://cts2i0g6jky8f" path="res://art/image2.png" id="1_5p8wc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r6d6q"]
 font_size = 100
@@ -14,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = -1.0
 offset_right = 1919.0
 offset_bottom = 1080.0

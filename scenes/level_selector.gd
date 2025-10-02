@@ -1,9 +1,19 @@
 extends Control
 
 func _ready() -> void:
-	$"HBoxContainer/Level 1".pressed.connect(_on_level1_pressed)
-	$"HBoxContainer/Level 2".pressed.connect(_on_level2_pressed)
-	$"HBoxContainer/Level 3".pressed.connect(_on_level3_pressed)
+	$"HBoxContainer/Level1/Level 1".pressed.connect(_on_level1_pressed)
+
+	if GameData.unlockedlevel >= 2:
+		$"HBoxContainer/Level2/Level 2".disabled = false
+		$"HBoxContainer/Level2/Level 2".pressed.connect(_on_level2_pressed)
+	else:
+		$"HBoxContainer/Level2/Level 2".disabled = true
+
+	if GameData.unlockedlevel >= 3:
+		$"HBoxContainer/Level3/Level 3".disabled = false
+		$"HBoxContainer/Level3/Level 3".pressed.connect(_on_level3_pressed)
+	else:
+		$"HBoxContainer/Level3/Level 3".disabled = true
 
 
 func _on_level1_pressed() -> void:

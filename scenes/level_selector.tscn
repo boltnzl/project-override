@@ -1,6 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://boqvb7ym75s52"]
+[gd_scene load_steps=9 format=3 uid="uid://boqvb7ym75s52"]
 
 [ext_resource type="Script" uid="uid://ir64nnu8hdmu" path="res://scenes/level_selector.gd" id="1_aeu7d"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="2_gkmvm"]
+[ext_resource type="Texture2D" uid="uid://cts2i0g6jky8f" path="res://art/image2.png" id="2_tr5s6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr5s6"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqfkl"]
+bg_color = Color(0.230315, 0.230315, 0.230315, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj03c"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.52549)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56kad"]
+bg_color = Color(0.233925, 0.233925, 0.233925, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjtau"]
+bg_color = Color(0.235294, 0.235294, 0.235294, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="LevelSelector" type="Control"]
 layout_mode = 3
@@ -15,25 +54,119 @@ script = ExtResource("1_aeu7d")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.219501, 0.219501, 0.219501, 1)
+color = Color(0.0962048, 0.0962047, 0.0962047, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00104167
+anchor_right = 0.00104167
+offset_left = -2.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+texture = ExtResource("2_tr5s6")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 264.0
-offset_top = 139.0
-offset_right = 1693.0
-offset_bottom = 835.0
+offset_left = 844.0
+offset_top = 181.0
+offset_right = 2273.0
+offset_bottom = 877.0
+theme_override_constants/separation = 625
 alignment = 1
 
-[node name="Level 1" type="Button" parent="HBoxContainer"]
+[node name="Level1" type="Control" parent="HBoxContainer"]
 layout_mode = 2
+
+[node name="Level 1" type="Button" parent="HBoxContainer/Level1"]
+layout_mode = 2
+offset_left = -611.0
+offset_top = 103.0
+offset_right = -211.0
+offset_bottom = 503.0
+rotation = 0.785398
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr5s6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rqfkl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vj03c")
+text = "
+"
+
+[node name="Label" type="Label" parent="HBoxContainer/Level1"]
+layout_mode = 0
+offset_left = -676.0
+offset_top = 250.0
+offset_right = -554.0
+offset_bottom = 487.0
+theme_override_fonts/font = ExtResource("2_gkmvm")
+theme_override_font_sizes/font_size = 200
 text = "1"
 
-[node name="Level 2" type="Button" parent="HBoxContainer"]
+[node name="Level2" type="Control" parent="HBoxContainer"]
 layout_mode = 2
+
+[node name="Level 2" type="Button" parent="HBoxContainer/Level2"]
+layout_mode = 2
+offset_left = -611.0
+offset_top = 103.0
+offset_right = -211.0
+offset_bottom = 503.0
+rotation = 0.785398
+focus_mode = 0
+theme_override_styles/disabled = SubResource("StyleBoxFlat_56kad")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr5s6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rqfkl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vj03c")
+text = "
+"
+
+[node name="Label" type="Label" parent="HBoxContainer/Level2"]
+layout_mode = 0
+offset_left = -676.0
+offset_top = 250.0
+offset_right = -554.0
+offset_bottom = 487.0
+theme_override_fonts/font = ExtResource("2_gkmvm")
+theme_override_font_sizes/font_size = 200
 text = "2"
 
-[node name="Level 3" type="Button" parent="HBoxContainer"]
+[node name="Level3" type="Control" parent="HBoxContainer"]
 layout_mode = 2
-text = "3
+
+[node name="Level 3" type="Button" parent="HBoxContainer/Level3"]
+layout_mode = 2
+offset_left = -611.0
+offset_top = 103.0
+offset_right = -211.0
+offset_bottom = 503.0
+rotation = 0.785398
+focus_mode = 0
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hjtau")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr5s6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rqfkl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vj03c")
+text = "
 "
+
+[node name="Label" type="Label" parent="HBoxContainer/Level3"]
+layout_mode = 0
+offset_left = -676.0
+offset_top = 250.0
+offset_right = -554.0
+offset_bottom = 487.0
+theme_override_fonts/font = ExtResource("2_gkmvm")
+theme_override_font_sizes/font_size = 200
+text = "3"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 589.0
+offset_top = 19.0
+offset_right = 1354.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("2_gkmvm")
+theme_override_font_sizes/font_size = 200
+text = "LEVELS"
