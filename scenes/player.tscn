@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqof0v4sx7egd"]
+[gd_scene load_steps=8 format=3 uid="uid://dqof0v4sx7egd"]
 
 [ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://ceqyga5x7ar70" path="res://scenes/Pistol.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cgv35obebjrik" path="res://scenes/healthstamina.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://758s2fow43j3" path="res://scenes/ammo_counter.tscn" id="4_dqkch"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dqkch"]
 
@@ -38,5 +39,8 @@ shape = SubResource("CapsuleShape3D_tuyoq")
 
 [node name="Health_Stamina" parent="." instance=ExtResource("3_qhqgy")]
 
+[node name="AmmoCounter" parent="." instance=ExtResource("4_dqkch")]
+
 [editable path="Pivot/Camera3D/Pistol"]
 [editable path="Health_Stamina"]
+[editable path="AmmoCounter"]

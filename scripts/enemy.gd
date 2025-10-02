@@ -4,7 +4,7 @@ var player: Player = null
 const SPEED = 10.0
 @export var playerlocation: NodePath
 @onready var pathfinder: NavigationAgent3D = $NavigationAgent3D
-@onready var progress: ProgressBar = $"../Health_Stamina/Health Bar"
+@onready var progress: ProgressBar = $"../Player/Health_Stamina/Health Bar"
 @export var maxhealth = 100
 @export var damage = 10                  
 @export var regenrate = 5.0         
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	#velocity = (nextpos - global_transform.origin).normalized() * SPEED
 	
 #	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
-#d	move_and_slide()
+#	move_and_slide()
    
 	if not incombat:
 		timelasthit += delta

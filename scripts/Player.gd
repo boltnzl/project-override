@@ -22,12 +22,19 @@ var instance
 @onready var stamina : ProgressBar = $"Health_Stamina/Stamina Bar"
 @onready var gun_animation = $Pivot/Camera3D/Pistol/AnimationPlayer
 @onready var gun_barrel = $Pivot/Camera3D/Pistol/RayCast3D
+@export var max_mag = 25      
+@export var total_ammo = 100  
+var current_mag = max_mag     
+@onready var magazine_label = $AmmoCounter/Magazine
+@onready var ammo_label = $AmmoCounter/Ammo
+var reload_time = 2.0
+var is_reloading = false 
+
 
 var knockbackvelocity = Vector3.ZERO
 var knockbacktime = 0.0
 @export var knockbackforce = 30
 @export var knockbackdur = 0.2
-
 
 
 func _ready():
@@ -63,6 +70,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+	if Input.is_action_just_pressed("reload"):
+		_reload()
+
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -82,12 +92,7 @@ func _physics_process(delta: float) -> void:
 	camera.transform.origin = _headbob(SFOV)
 	
 	if Input.is_action_pressed("shoot"):
-		if !gun_animation.is_playing():
-			gun_animation.play("shoot")
-			instance = bullet.instantiate()
-			instance.position = gun_barrel.global_position
-			instance.transform.basis = gun_barrel.global_transform.basis
-			get_parent().add_child(instance)
+		_shoot()
 	
 	move_and_slide()
 
@@ -104,3 +109,48 @@ func apply_knockback(from_position: Vector3) -> void:
 	knockbackvelocity = dir * knockbackforce
 	knockbackvelocity.y = 5
 	knockbacktime = knockbackdur
+
+
+func _reload():
+	if is_reloading:
+		return
+	if current_mag == max_mag:
+		return
+	if total_ammo <= 0:
+		return 
+	
+	is_reloading = true
+	await get_tree().create_timer(reload_time).timeout
+	
+	var ammo_needed = max_mag - current_mag
+	if total_ammo > 0 and ammo_needed > 0:
+		var to_load = min(ammo_needed, total_ammo)
+		current_mag += to_load
+		total_ammo -= to_load
+		_update_ammo_ui()
+		 
+		is_reloading = false
+
+
+func _update_ammo_ui():
+	magazine_label.text = str(total_ammo)
+	ammo_label.text = str(current_mag)
+
+
+func _shoot():
+	if is_reloading:
+		return
+	if current_mag <= 0:
+		return
+	if current_mag <= 0 and total_ammo <= 0:
+		return
+	
+	if !gun_animation.is_playing():
+		gun_animation.play("shoot")
+		instance = bullet.instantiate()
+		instance.position = gun_barrel.global_position
+		instance.transform.basis = gun_barrel.global_transform.basis
+		get_parent().add_child(instance)
+		
+		current_mag -= 1
+		_update_ammo_ui()

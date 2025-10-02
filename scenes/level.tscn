@@ -709,3 +709,7 @@ mesh = SubResource("BoxMesh_t1rx8")
 
 [editable path="Enemy"]
 [editable path="Enemy/zombie2"]
+[editable path="Player"]
+[editable path="Player/Pivot/Camera3D/Pistol"]
+[editable path="Player/Health_Stamina"]
+[editable path="Player/AmmoCounter"]
