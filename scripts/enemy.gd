@@ -15,7 +15,6 @@ var health = 10.0
 var damagehit = 1.0
 
 
-
 func _ready() -> void:
 	player = get_node(playerlocation)
 	progress.max_value = maxhealth
@@ -23,13 +22,13 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	#velocity = Vector3.ZERO
-	#pathfinder.set_target_position(player.global_transform.origin)
-	#var nextpos = pathfinder.get_next_path_position()
-	#velocity = (nextpos - global_transform.origin).normalized() * SPEED
+	velocity = Vector3.ZERO
+	pathfinder.set_target_position(player.global_transform.origin)
+	var nextpos = pathfinder.get_next_path_position()
+	velocity = (nextpos - global_transform.origin).normalized() * SPEED
 	
-#	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
-#	move_and_slide()
+	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
+	move_and_slide()
    
 	if not incombat:
 		timelasthit += delta
@@ -68,4 +67,10 @@ func hit() -> void:
 		incombat = true
 		timelasthit = 0.0
 		if health <= 0:
+			give_player_ammo(10)
 			queue_free()
+
+
+func give_player_ammo(amount) -> void:
+	if player and player.has_method("add_ammo"):
+		player.add_ammo(amount)

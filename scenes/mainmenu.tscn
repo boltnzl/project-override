@@ -55,6 +55,7 @@ text = "QUIT"
 alignment = 0
 
 [node name="Project Override" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1007.0
 offset_top = 41.0
 offset_right = 1857.0

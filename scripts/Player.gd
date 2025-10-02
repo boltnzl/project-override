@@ -154,3 +154,7 @@ func _shoot():
 		
 		current_mag -= 1
 		_update_ammo_ui()
+
+
+func add_ammo(amount) -> void:
+	total_ammo += amount

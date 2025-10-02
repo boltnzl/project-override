@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=31 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scenes/win_condition.gd" id="4_mx8sn"]
@@ -60,6 +60,8 @@ size = Vector3(54.998, 1, 43.5295)
 [sub_resource type="BoxShape3D" id="BoxShape3D_olg7q"]
 size = Vector3(55.1277, 1.24536, 47.9982)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_mx8sn"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_82cfe"]
 size = Vector3(56.7879, 1.35498, 47.9982)
 
@@ -106,6 +108,7 @@ navigation_mesh = SubResource("NavigationMesh_1ainy")
 
 [node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("5_f2txt")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.76773, -6.84672)
+playerlocation = NodePath("../Player")
 
 [node name="Skeleton3D" parent="Enemy/zombie2/metarig" index="0"]
 bones/3/rotation = Quaternion(-0.00422848, -1.19208e-07, -5.04074e-10, 0.999991)
@@ -247,6 +250,10 @@ shape = SubResource("BoxShape3D_olg7q")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/StaticBody3D"]
 transform = Transform3D(54.8643, 0, 0, 0, 1, 0, 0, 0, 43.3429, 0, 0, 0)
 mesh = SubResource("BoxMesh_t1rx8")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map/StaticBody3D"]
+transform = Transform3D(-8.10491e-07, 0, -31.6528, 0, 1, 0, 18.5419, 0, -1.38359e-06, -237.686, 0, -153.037)
+navigation_mesh = SubResource("NavigationMesh_mx8sn")
 
 [node name="Walls" type="Node3D" parent="Map"]
 
