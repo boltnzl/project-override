@@ -158,3 +158,4 @@ func _shoot():
 
 func add_ammo(amount) -> void:
 	total_ammo += amount
+	_update_ammo_ui()

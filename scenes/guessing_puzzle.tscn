@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cgqir3tcfwjwa"]
+
+[node name="GuessingPuzzle" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
