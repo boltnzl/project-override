@@ -1,9 +1,65 @@
-[gd_scene format=3 uid="uid://bbuxphekpudlo"]
+[gd_scene load_steps=5 format=3 uid="uid://bbuxphekpudlo"]
 
-[node name="WinScreen" type="Control"]
+[ext_resource type="Script" uid="uid://cw3r2xvtaj8rj" path="res://scripts/win_screen.gd" id="1_2l6cc"]
+[ext_resource type="Theme" uid="uid://dlqr5bt5njsvo" path="res://themes/button.tres" id="2_e41g7"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="3_0lrm4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6s1kg"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.52549)
+
+[node name="Win Screen" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2l6cc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.0962048, 0.0962047, 0.0962047, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 494.0
+offset_right = 1457.0
+offset_bottom = 1249.0
+theme_override_constants/separation = 50
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_e41g7")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_6s1kg")
+text = "CONTINUE"
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_e41g7")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_6s1kg")
+text = "RESTART"
+
+[node name="Main Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_e41g7")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_6s1kg")
+text = "MAIN MENU"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 536.0
+offset_top = 46.0
+offset_right = 1457.0
+offset_bottom = 407.0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 150
+text = "LEVEL 
+COMPLETED"
+horizontal_alignment = 1

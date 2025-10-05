@@ -71,7 +71,7 @@ func hit() -> void:
 		timelasthit = 0.0
 		if health <= 0:
 			var pickup = AMMO_PICKUP_SCENE.instantiate()
-			pickup.global_position = global_position + Vector3(0, -0.5, 0)  # spawn slightly below
-			pickup.amount = randi_range(5, 15)
+			pickup.global_transform = global_transform
+			pickup.amount = randi_range(5, 15)   
 			get_parent().add_child(pickup)
 			queue_free()

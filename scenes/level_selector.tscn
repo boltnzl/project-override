@@ -1,8 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://boqvb7ym75s52"]
+[gd_scene load_steps=10 format=3 uid="uid://boqvb7ym75s52"]
 
-[ext_resource type="Script" uid="uid://ir64nnu8hdmu" path="res://scenes/level_selector.gd" id="1_aeu7d"]
+[ext_resource type="Script" uid="uid://ir64nnu8hdmu" path="res://scripts/level_selector.gd" id="1_aeu7d"]
 [ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="2_gkmvm"]
 [ext_resource type="Texture2D" uid="uid://cts2i0g6jky8f" path="res://art/image2.png" id="2_tr5s6"]
+
+[sub_resource type="Theme" id="Theme_tr5s6"]
+Button/colors/icon_hover_pressed_color = Color(0.231373, 0.231373, 0.231373, 1)
+Button/colors/icon_normal_color = Color(0.0705882, 0.0705882, 0.0705882, 0.52549)
+Button/fonts/font = ExtResource("2_gkmvm")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr5s6"]
 bg_color = Color(1, 1, 1, 1)
@@ -42,6 +47,7 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [node name="LevelSelector" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,6 +95,7 @@ offset_right = -211.0
 offset_bottom = 503.0
 rotation = 0.785398
 focus_mode = 0
+theme = SubResource("Theme_tr5s6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tr5s6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rqfkl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vj03c")
