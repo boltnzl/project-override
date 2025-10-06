@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://b176he2i061ai"]
+
+[ext_resource type="Script" uid="uid://bw4mkwvgbxmbf" path="res://scenes/computer_screen.gd" id="1_4c054"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="1_do807"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4c054"]
+font = ExtResource("1_do807")
+font_size = 50
+
+[node name="ComputerClue" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4c054")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 146.0
+offset_right = 1630.0
+offset_bottom = 877.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.143
+anchor_bottom = 0.271
+offset_left = 219.0
+offset_top = 124.0
+offset_right = 2204.81
+offset_bottom = 114.899
+text = "I am the wrong computer. 
+However, I can tell you that computer 3 
+is telling you the truth"
+label_settings = SubResource("LabelSettings_4c054")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 437.0
+offset_right = 703.0
+offset_bottom = 673.0
+text = "exit"

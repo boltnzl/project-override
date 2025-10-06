@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=39 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scripts/win_condition.gd" id="4_mx8sn"]
 [ext_resource type="Script" uid="uid://bdcm4lvlfvd1g" path="res://scenes/keypad_trigger.gd" id="4_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="5_f2txt"]
+[ext_resource type="Script" uid="uid://boylrxhnnkhws" path="res://scenes/computer_puzzle.gd" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
@@ -90,6 +91,15 @@ material = SubResource("StandardMaterial3D_2r41h")
 [sub_resource type="SphereShape3D" id="SphereShape3D_b121j"]
 radius = 2.11565
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2r41h"]
+material = SubResource("StandardMaterial3D_ppgk2")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_klq6b"]
+radius = 1.47185
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_1ainy")
 
@@ -97,7 +107,7 @@ script = ExtResource("1_1ainy")
 environment = SubResource("Environment_0b4ue")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(9.11746, 0, 0, 0, -3.49683, 0, 0, 0, 9.52369, 0, 1.908, 16.75)
+transform = Transform3D(9.11746, 0, 0, 0, -3.49683, 0, 0, 0, 9.52369, 15.0734, 1.908, 16.75)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
 shape = SubResource("BoxShape3D_vonw3")
@@ -746,7 +756,7 @@ mesh = SubResource("BoxMesh_t1rx8")
 script = ExtResource("4_mx8sn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WinCondition"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1021, 8.19684, -4.70796)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0865, 8.19684, -4.70796)
 shape = SubResource("BoxShape3D_ppgk2")
 
 [node name="KeypadTrigger" type="Node3D" parent="."]
@@ -762,6 +772,41 @@ mesh = SubResource("BoxMesh_klq6b")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeypadTrigger/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2408, 0, -5.20998)
 shape = SubResource("SphereShape3D_b121j")
+
+[node name="ComputerPuzzle" type="Node3D" parent="."]
+
+[node name="Computer1" type="MeshInstance3D" parent="ComputerPuzzle"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -22.0973, 2.7603, 14.2152)
+mesh = SubResource("BoxMesh_2r41h")
+script = ExtResource("6_2r41h")
+clue_text = "This is the computer. Computer 3 is lying"
+
+[node name="Area3D" type="Area3D" parent="ComputerPuzzle/Computer1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/Computer1/Area3D"]
+shape = SubResource("SphereShape3D_klq6b")
+
+[node name="Computer2" type="MeshInstance3D" parent="ComputerPuzzle"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -11.9549, 2.7603, 14.2152)
+mesh = SubResource("BoxMesh_2r41h")
+script = ExtResource("6_2r41h")
+clue_text = "It is this computer"
+
+[node name="Area3D" type="Area3D" parent="ComputerPuzzle/Computer2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/Computer2/Area3D"]
+shape = SubResource("SphereShape3D_klq6b")
+
+[node name="Computer3" type="MeshInstance3D" parent="ComputerPuzzle"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.3353, 2.7603, 14.2152)
+mesh = SubResource("BoxMesh_2r41h")
+script = ExtResource("6_2r41h")
+clue_text = "It is not this computer"
+
+[node name="Area3D" type="Area3D" parent="ComputerPuzzle/Computer3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/Computer3/Area3D"]
+shape = SubResource("SphereShape3D_klq6b")
 
 [connection signal="body_entered" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_exited"]
