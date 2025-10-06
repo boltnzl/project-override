@@ -38,5 +38,5 @@ func toggle_pause():
 
 
 func _input(event):
-	if event.is_action_pressed("escape"): 
+	if event.is_action_pressed("escape") and not GameData.puzzle_open:
 		toggle_pause()

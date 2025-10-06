@@ -2,8 +2,10 @@ extends Control
 
 @onready var restart: Button = $Button
 
+
 func _ready():
 	restart.pressed.connect(restart_pressed)
+
 
 func restart_pressed():
 	get_tree().paused = false

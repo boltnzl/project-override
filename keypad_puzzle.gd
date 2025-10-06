@@ -5,7 +5,7 @@ var passcode : String = "5219"
 var timer = Timer.new()
 @onready var label : RichTextLabel = $VBoxContainer/RichTextLabel
 @onready var square : Sprite2D = $Sprite2D
-
+@export var return_scene_path: String = "res://scenes/level.tscn"
 
 func _ready() -> void:
 	timer.autostart = false
@@ -14,10 +14,18 @@ func _ready() -> void:
 	add_child(timer)
 
 
+func _process(delta):
+	if Input.is_action_just_pressed("escape"):
+		GameData.puzzle_open = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+		_return_to_game()
+
+
 func _on_timer_Timeout():
 	square.modulate = Color (1,1,1)
 	typed_text = ""
 	label.text = typed_text
+
 
 func _on_1_pressed() -> void:
 	if typed_text.length() < 4:
@@ -95,3 +103,8 @@ func _on_enter_pressed() -> void:
 		typed_text = "Incorrect"
 		label.text = typed_text
 		timer.start(0.5)
+
+
+func _return_to_game():
+	get_tree().paused = false
+	queue_free()
