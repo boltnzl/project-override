@@ -1,0 +1,113 @@
+[gd_scene load_steps=3 format=3 uid="uid://iiodftto8kkr"]
+
+[ext_resource type="Script" uid="uid://bt6nyh7ynu8xt" path="res://keypad_puzzle.gd" id="1_0fd1j"]
+[ext_resource type="Theme" uid="uid://dlqr5bt5njsvo" path="res://themes/button.tres" id="2_qstvv"]
+
+[node name="Keypad Puzzle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fd1j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 5.0
+offset_right = 138.0
+offset_bottom = 115.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="1" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "1"
+
+[node name="2" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "2
+"
+
+[node name="3" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="4" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="5" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="6" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "6"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="7" type="Button" parent="VBoxContainer/HBoxContainer3/Control"]
+layout_mode = 2
+offset_left = 114.0
+offset_right = 132.0
+offset_bottom = 31.0
+theme = ExtResource("2_qstvv")
+text = "7"
+
+[node name="8" type="Button" parent="VBoxContainer/HBoxContainer3/Control"]
+layout_mode = 2
+offset_left = 19.0
+offset_right = 37.0
+offset_bottom = 31.0
+text = "8"
+
+[node name="9" type="Button" parent="VBoxContainer/HBoxContainer3/Control"]
+layout_mode = 2
+offset_left = 41.0
+offset_right = 59.0
+offset_bottom = 31.0
+text = "9"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="0" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0"
+
+[node name="CLEAR" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "C"
+
+[node name="ENTER" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "E"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/1" to="." method="_on_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/2" to="." method="_on_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/3" to="." method="_on_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/4" to="." method="_on_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/5" to="." method="_on_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/6" to="." method="_on_6_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Control/7" to="." method="_on_7_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Control/8" to="." method="_on_8_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Control/9" to="." method="_on_9_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/0" to="." method="_on_0_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/CLEAR" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/ENTER" to="." method="_on_enter_pressed"]
