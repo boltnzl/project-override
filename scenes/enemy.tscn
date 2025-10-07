@@ -8,13 +8,15 @@
 height = 4.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
+radius = 1.94373
+height = 5.52642
 
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("1_7k104")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.396663, 0, 0, 0, 0.381045, 0, 0, 0, 0.37612, 0, -0.251535, -0.0547006)
+transform = Transform3D(0.396663, 0, 0, 0, 0.381045, 0, 0, 0, 0.37612, 0, 1.75321, -0.0547006)
 visible = false
 shape = SubResource("CapsuleShape3D_7k104")
 
@@ -26,10 +28,14 @@ script = ExtResource("3_qi2p4")
 damage = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12206, 0)
 shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="zombie2" parent="." instance=ExtResource("3_iifgy")]
-transform = Transform3D(-0.25, 0, 2.18557e-08, 0, 0.25, 0, -2.18557e-08, 0, -0.25, -0.0296528, -0.977183, 0.0977325)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="metarig" parent="zombie2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="zombie2/metarig" index="0"]
 bones/0/position = Vector3(0.0280735, 1.31623, -0.276936)
@@ -53,9 +59,6 @@ bones/24/rotation = Quaternion(0.999999, 6.86381e-11, 1.19399e-07, -0.00137287)
 bones/25/rotation = Quaternion(0.000973392, -1.19392e-07, -2.10558e-10, 1)
 bones/26/rotation = Quaternion(-0.731898, -1.21859e-06, 1.48336e-06, 0.681414)
 bones/27/rotation = Quaternion(-1.0604e-07, 0.998523, -0.0543397, -1.86088e-06)
-
-[node name="Cube_004" parent="zombie2/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0247878, 0, 0.436335)
 
 [node name="AnimationPlayer" parent="zombie2" index="1"]
 autoplay = "_Action Stash]_001"
