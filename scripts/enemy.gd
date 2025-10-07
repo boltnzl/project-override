@@ -1,21 +1,16 @@
 extends CharacterBody3D
 
-var player: Player = null
 const SPEED = 10.0
-@export var playerlocation: NodePath
-@onready var pathfinder: NavigationAgent3D = $NavigationAgent3D
-@onready var progress: ProgressBar = $"../Player/Health_Stamina/Health Bar"
-@export var maxhealth = 100
-@export var damage = 10                  
-@export var regenrate = 5.0         
-@export var regendelay = 10.0          
+@export var maxhealth = 10.0
+@export var damage = 10.0
+var enemy_health = maxhealth
+var is_chasing = false
 var timelasthit = 0.0
 var incombat = false
-var health = 10.0
-var damagehit = 1.0
-
+var player: Node3D = null
 const AMMO_PICKUP_SCENE = preload("res://scenes/ammo_drop.tscn")
-
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var aggro_area: Area3D = $AggroArea
 
 
 func _ready() -> void:
@@ -24,54 +19,40 @@ func _ready() -> void:
 	progress.value = maxhealth
 
 
-func _process(delta: float) -> void:
-	velocity = Vector3.ZERO
-	pathfinder.set_target_position(player.global_transform.origin)
-	var nextpos = pathfinder.get_next_path_position()
-	velocity = (nextpos - global_transform.origin).normalized() * SPEED
-	
-	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
-	move_and_slide()
-   
-	if not incombat:
-		timelasthit += delta
-		if timelasthit >= regendelay and progress.value < maxhealth:
-			progress.value = min(progress.value + regenrate * delta, maxhealth)
+func hit(amount) -> void:
+	if enemy_health <= 0:
+		return  
+	enemy_health -= amount
+	if enemy_health <= 0:
+		var pickup = AMMO_PICKUP_SCENE.instantiate()
+		get_tree().current_scene.add_child(pickup)
+		pickup.global_position = global_position + Vector3(0, 0.5, 0)
+		pickup.amount = randi_range(5, 15)
+		queue_free()
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _drop_ammo() -> void:
+	var pickup = AMMO_PICKUP_SCENE.instantiate()
+	pickup.global_transform = global_transform
+	pickup.amount = randi_range(5, 15)
+	get_parent().add_child(pickup)
+
+
+func _on_chase_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		progress.value -= damage
-		if progress.value <= 0:
-			progress.value = 0
-			kill_player()
-
-		if body.has_method("apply_knockback"):
-			body.apply_knockback(global_position)
-
+		is_chasing = true
 		incombat = true
 		timelasthit = 0.0
 
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
+func _on_chase_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		is_chasing = false
 		incombat = false
 
-func kill_player() -> void:
-	var game_over_scene = load("res://scenes/restart.tscn").instantiate()
-	get_tree().root.add_child(game_over_scene) 
-	get_tree().paused = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-
-func hit() -> void:
-		health -= damagehit
-		progress.value = health
-		incombat = true
-		timelasthit = 0.0
-		if health <= 0:
-			var pickup = AMMO_PICKUP_SCENE.instantiate()
-			pickup.global_transform = global_transform
-			pickup.amount = randi_range(5, 15)   
-			get_parent().add_child(pickup)
-			queue_free()
+func _on_attack_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		body.take_damage(damage)
+		if body.has_method("apply_knockback"):
+			body.apply_knockback(global_position)

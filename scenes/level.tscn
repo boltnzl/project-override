@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=40 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scripts/win_condition.gd" id="4_mx8sn"]
 [ext_resource type="Script" uid="uid://bdcm4lvlfvd1g" path="res://scenes/keypad_trigger.gd" id="4_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="5_f2txt"]
 [ext_resource type="Script" uid="uid://boylrxhnnkhws" path="res://scenes/computer_puzzle.gd" id="6_2r41h"]
+[ext_resource type="Script" uid="uid://2xxllxnq2kx6" path="res://scenes/spawner.gd" id="6_klq6b"]
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
@@ -125,40 +126,6 @@ shadow_opacity = 0.5
 transform = Transform3D(1, 0, 0, 0, 8.12844, 0, 0, 0, 1, 0, -3.8147e-06, 0)
 visible = false
 navigation_mesh = SubResource("NavigationMesh_1ainy")
-
-[node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("5_f2txt")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.76773, -6.84672)
-playerlocation = NodePath("../Player")
-
-[node name="Skeleton3D" parent="Enemy/zombie2/metarig" index="0"]
-bones/3/rotation = Quaternion(-0.00422848, -1.19208e-07, -5.04074e-10, 0.999991)
-bones/8/rotation = Quaternion(-0.0781841, 0.723355, -0.23613, 0.644118)
-bones/12/rotation = Quaternion(-0.0781841, -0.723355, 0.23613, 0.644118)
-bones/15/rotation = Quaternion(-5.41421e-08, 0.696936, 0.717133, -5.26172e-08)
-bones/16/rotation = Quaternion(-5.41421e-08, 0.696936, 0.717133, -5.26172e-08)
-bones/19/rotation = Quaternion(0.995903, -1.08568e-08, 1.18918e-07, 0.0904253)
-bones/20/rotation = Quaternion(0.000973396, 1.19026e-07, 2.15157e-11, 1)
-bones/21/rotation = Quaternion(-0.667573, 1.33148e-06, -1.353e-06, 0.744544)
-bones/24/rotation = Quaternion(0.995903, -1.08568e-08, 1.18918e-07, 0.0904253)
-bones/25/rotation = Quaternion(0.000973395, -1.19392e-07, -2.1056e-10, 1)
-bones/26/rotation = Quaternion(-0.667573, -1.33149e-06, 1.353e-06, 0.744544)
-
-[node name="Enemy2" parent="." groups=["enemy"] instance=ExtResource("5_f2txt")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -10.785, 4.76773, -6.84672)
-playerlocation = NodePath("../Player")
-
-[node name="Skeleton3D" parent="Enemy2/zombie2/metarig" index="0"]
-bones/3/rotation = Quaternion(-0.00422848, -1.19208e-07, -5.04074e-10, 0.999991)
-bones/8/rotation = Quaternion(-0.0781841, 0.723355, -0.23613, 0.644118)
-bones/12/rotation = Quaternion(-0.0781841, -0.723355, 0.23613, 0.644118)
-bones/15/rotation = Quaternion(-5.41421e-08, 0.696936, 0.717133, -5.26172e-08)
-bones/16/rotation = Quaternion(-5.41421e-08, 0.696936, 0.717133, -5.26172e-08)
-bones/19/rotation = Quaternion(0.995903, -1.08568e-08, 1.18918e-07, 0.0904253)
-bones/20/rotation = Quaternion(0.000973396, 1.19026e-07, 2.15157e-11, 1)
-bones/21/rotation = Quaternion(-0.667573, 1.33148e-06, -1.353e-06, 0.744544)
-bones/24/rotation = Quaternion(0.995903, -1.08568e-08, 1.18918e-07, 0.0904253)
-bones/25/rotation = Quaternion(0.000973395, -1.19392e-07, -2.1056e-10, 1)
-bones/26/rotation = Quaternion(-0.667573, -1.33149e-06, 1.353e-06, 0.744544)
 
 [node name="Map" type="Node3D" parent="."]
 
@@ -808,18 +775,23 @@ clue_text = "It is not this computer"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/Computer3/Area3D"]
 shape = SubResource("SphereShape3D_klq6b")
 
-[connection signal="body_entered" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="Enemy2/Area3D" to="Enemy2" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Enemy2/Area3D" to="Enemy2" method="_on_area_3d_body_exited"]
+[node name="Spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.602, 0, 0)
+script = ExtResource("6_klq6b")
+enemy_scene = ExtResource("5_f2txt")
+
+[node name="Marker3D" type="Marker3D" parent="Spawner" groups=["SpawnPoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9637, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="Spawner" groups=["SpawnPoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.18314)
+
+[node name="Marker3D3" type="Marker3D" parent="Spawner" groups=["SpawnPoints"]]
+
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 [connection signal="body_entered" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_exited"]
 
-[editable path="Enemy"]
-[editable path="Enemy/zombie2"]
-[editable path="Enemy2"]
-[editable path="Enemy2/zombie2"]
 [editable path="Player"]
 [editable path="Player/Pivot/Camera3D/Pistol"]
 [editable path="Player/Health_Stamina"]

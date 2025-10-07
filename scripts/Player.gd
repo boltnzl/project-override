@@ -19,9 +19,12 @@ var instance
 @onready var pivot: Node3D = $Pivot
 @onready var camera: Camera3D = $Pivot/Camera3D
 @onready var stamina : ProgressBar = $"Health_Stamina/Stamina Bar"
+@export var max_health: float = 100
+var current_health: float
+@onready var health_bar = $"Health_Stamina/Health Bar"
 @onready var gun_animation = $Pivot/Camera3D/Pistol/AnimationPlayer
 @onready var gun_barrel = $Pivot/Camera3D/Pistol/RayCast3D
-@export var max_mag = 25      
+@export var max_mag = 25
 @export var total_ammo = 100  
 var current_mag = max_mag     
 @onready var magazine_label = $AmmoCounter/Magazine
@@ -29,6 +32,10 @@ var current_mag = max_mag
 var reload_time = 2.0
 var is_reloading = false 
 
+var incombat = false
+var timelasthit = 0.0
+@export var regendelay = 3.0      
+@export var regenrate = 10.0 
 
 var knockbackvelocity = Vector3.ZERO
 var knockbacktime = 0.0
@@ -36,12 +43,12 @@ var knockbacktime = 0.0
 @export var knockbackdur = 0.2
 
 
-@onready var pause_menu = $pausemenu
-
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed = walk_speed
+	current_health = max_health
+	health_bar.max_value = max_health
+	health_bar.value = current_health
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -72,8 +79,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("reload"):
 		_reload()
-
-
+	
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
@@ -86,13 +92,23 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0) 
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
-
-
 	sfov += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = _headbob(sfov)
 	
 	if Input.is_action_pressed("shoot"):
 		_shoot()
+	  
+	
+	if not incombat:
+		timelasthit += delta
+		if timelasthit >= regendelay and current_health < max_health:
+			current_health = min(current_health + regenrate * delta, max_health)
+			_update_health_bar()
+	else:
+		timelasthit += delta
+		if timelasthit >= regendelay:
+			incombat = false
+
 
 	move_and_slide()
 
@@ -118,17 +134,14 @@ func _reload():
 		return
 	if total_ammo <= 0:
 		return 
-	
 	is_reloading = true
 	await get_tree().create_timer(reload_time).timeout
-	
 	var ammo_needed = max_mag - current_mag
 	if total_ammo > 0 and ammo_needed > 0:
 		var to_load = min(ammo_needed, total_ammo)
 		current_mag += to_load
 		total_ammo -= to_load
 		_update_ammo_ui()
-		 
 		is_reloading = false
 
 
@@ -144,14 +157,12 @@ func _shoot():
 		return
 	if current_mag <= 0 and total_ammo <= 0:
 		return
-	
 	if !gun_animation.is_playing():
 		gun_animation.play("shoot")
 		instance = bullet.instantiate()
 		instance.position = gun_barrel.global_position
 		instance.transform.basis = gun_barrel.global_transform.basis
 		get_parent().add_child(instance)
-		
 		current_mag -= 1
 		_update_ammo_ui()
 
@@ -159,3 +170,25 @@ func _shoot():
 func add_ammo(amount) -> void:
 	total_ammo += amount
 	_update_ammo_ui()
+
+
+func take_damage(amount):
+	current_health -= amount
+	current_health = max(current_health, 0)
+	_update_health_bar()
+	incombat = true
+	timelasthit = 0.0
+	if current_health <= 0:
+		_death()
+
+
+func _update_health_bar():
+	if health_bar:
+		health_bar.value = current_health
+
+
+func _death():
+	var game_over_scene = load("res://scenes/restart.tscn").instantiate()
+	get_tree().root.add_child(game_over_scene)
+	get_tree().paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

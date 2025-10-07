@@ -2,8 +2,6 @@ extends ProgressBar
 
 @export var player: Player
 
-func _ready():
-	Player
-
-func update():
-	value = player.currentHealth  * 100 / player.maxHealth
+func _process(delta):
+	if player:
+		value = player.current_health * 100 / player.max_health

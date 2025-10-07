@@ -20,6 +20,6 @@ func _physics_process(delta: float) -> void:
 		particles.emitting = true
 		ray.enabled = false
 		if ray.get_collider().is_in_group("enemy"):
-			ray.get_collider().hit()
-		await get_tree().create_timer(particles.lifetime).timeout
+			ray.get_collider().hit(1.0)
+			await get_tree().create_timer(particles.lifetime).timeout
 		queue_free()

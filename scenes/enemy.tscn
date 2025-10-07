@@ -2,34 +2,19 @@
 
 [ext_resource type="Script" uid="uid://byjlx8dqsxbjc" path="res://scripts/enemy.gd" id="1_7k104"]
 [ext_resource type="PackedScene" uid="uid://dtm3ktq0kcsk7" path="res://art/zombie2.gltf" id="3_iifgy"]
-[ext_resource type="Script" uid="uid://x5exbme7g8mi" path="res://scripts/bodypart.gd" id="3_qi2p4"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7k104"]
-height = 4.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
 radius = 1.94373
 height = 5.52642
 
-[node name="Enemy" type="CharacterBody3D"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+[sub_resource type="SphereShape3D" id="SphereShape3D_md0e3"]
+radius = 50.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4ra3w"]
+radius = 6.09797
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_7k104")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.396663, 0, 0, 0, 0.381045, 0, 0, 0, 0.37612, 0, 1.75321, -0.0547006)
-visible = false
-shape = SubResource("CapsuleShape3D_7k104")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.256927, 0)
-script = ExtResource("3_qi2p4")
-damage = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12206, 0)
-shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="zombie2" parent="." instance=ExtResource("3_iifgy")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
@@ -38,31 +23,50 @@ transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="zombie2/metarig" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -2.26333, 0)
 bones/0/position = Vector3(0.0280735, 1.31623, -0.276936)
 bones/1/rotation = Quaternion(-0.0461669, 2.0729e-14, -1.10071e-08, 0.998934)
-bones/2/rotation = Quaternion(-0.053333, 7.02411e-15, -1.27156e-08, 0.998577)
-bones/3/rotation = Quaternion(0.0672802, 0.000510873, -0.000486953, 0.997734)
-bones/4/rotation = Quaternion(0.0755224, 0.00446623, -0.0216835, 0.996898)
-bones/5/rotation = Quaternion(-0.0212615, -0.00273229, 0.0111505, 0.999708)
-bones/7/rotation = Quaternion(-0.586143, -0.421096, -0.459809, 0.517388)
-bones/8/rotation = Quaternion(0.502286, 0.504721, -0.535993, 0.453516)
-bones/9/rotation = Quaternion(0.00192979, -0.00399035, -0.0216599, 0.999756)
-bones/11/rotation = Quaternion(-0.586143, 0.421096, 0.459809, 0.517388)
-bones/12/rotation = Quaternion(0.502286, -0.504721, 0.535992, 0.453516)
-bones/13/rotation = Quaternion(0.00192979, 0.00399027, 0.0216601, 0.999756)
-bones/15/rotation = Quaternion(-5.41626e-08, 0.696936, 0.717133, -5.26169e-08)
-bones/16/rotation = Quaternion(-5.41626e-08, 0.696936, 0.717133, -5.26169e-08)
-bones/19/rotation = Quaternion(0.982543, -2.22347e-08, 1.17332e-07, 0.186033)
-bones/20/rotation = Quaternion(0.000973396, 1.19026e-07, 2.15177e-11, 1)
-bones/21/rotation = Quaternion(-0.600077, 1.43055e-06, -1.21621e-06, 0.799942)
-bones/24/rotation = Quaternion(0.999999, 6.86381e-11, 1.19399e-07, -0.00137287)
-bones/25/rotation = Quaternion(0.000973392, -1.19392e-07, -2.10558e-10, 1)
-bones/26/rotation = Quaternion(-0.731898, -1.21859e-06, 1.48336e-06, 0.681414)
-bones/27/rotation = Quaternion(-1.0604e-07, 0.998523, -0.0543397, -1.86088e-06)
+bones/2/rotation = Quaternion(0.0328385, 0.0037567, -0.0209448, 0.999234)
+bones/3/rotation = Quaternion(0.271743, 0.0012753, 0.0012946, 0.962368)
+bones/4/rotation = Quaternion(0.0767631, 0.0104824, -0.00340353, 0.996989)
+bones/5/rotation = Quaternion(0.010069, 0.00409853, 0.0719147, 0.997352)
+bones/7/rotation = Quaternion(-0.639594, -0.37015, -0.49481, 0.457244)
+bones/8/rotation = Quaternion(-0.0295474, 0.536025, -0.655747, 0.530849)
+bones/9/rotation = Quaternion(0.00192979, -0.00399038, -0.0216599, 0.999756)
+bones/11/rotation = Quaternion(-0.5543, 0.44664, 0.406774, 0.572537)
+bones/12/rotation = Quaternion(0.00255207, -0.267516, 0.729674, 0.629289)
+bones/13/rotation = Quaternion(0.00192978, 0.00399027, 0.0216601, 0.999756)
+bones/15/rotation = Quaternion(-5.39845e-08, 0.696936, 0.717133, -5.31134e-08)
+bones/16/rotation = Quaternion(-5.39845e-08, 0.696936, 0.717133, -5.31134e-08)
+bones/19/rotation = Quaternion(0.980248, 0.0747921, -0.04531, -0.177389)
+bones/20/rotation = Quaternion(-0.183471, -0.0127139, 0.0912541, 0.978698)
+bones/21/rotation = Quaternion(-0.667573, 1.33e-06, -1.35535e-06, 0.744544)
+bones/24/rotation = Quaternion(0.963417, -0.0937992, 0.0387164, 0.248055)
+bones/25/rotation = Quaternion(0.150488, -0.0136727, -0.087054, 0.984677)
+bones/26/rotation = Quaternion(-0.667573, -1.33164e-06, 1.35274e-06, 0.744544)
+bones/27/rotation = Quaternion(-1.07053e-07, 0.998523, -0.0543397, -1.86116e-06)
 
 [node name="AnimationPlayer" parent="zombie2" index="1"]
 autoplay = "_Action Stash]_001"
 
-[connection signal="body_part_hit" from="Area3D" to="." method="_on_area_3d_body_part_hit"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.08462, 0)
+shape = SubResource("CapsuleShape3D_4gyqm")
+
+[node name="ChaseArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999905, -0.0137702, 0, 0.0137702, 0.999905, 0, 2.2975, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseArea"]
+shape = SubResource("SphereShape3D_md0e3")
+
+[node name="AttackArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43464, 0)
+shape = SubResource("SphereShape3D_4ra3w")
+
+[connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
+[connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 
 [editable path="zombie2"]
