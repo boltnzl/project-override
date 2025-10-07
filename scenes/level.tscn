@@ -407,7 +407,6 @@ mesh = SubResource("BoxMesh_t1rx8")
 
 [node name="StaticBody3D32" type="StaticBody3D" parent="Map/Walls"]
 transform = Transform3D(-6.15663e-08, -1, 0, -6.15663e-08, 0, 0.403369, -1.40847, 4.37114e-08, -1.76318e-08, -81.05, 7.294, -24.8874)
-visible = false
 physics_material_override = SubResource("PhysicsMaterial_8c41q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/StaticBody3D32"]
@@ -456,7 +455,6 @@ mesh = SubResource("BoxMesh_t1rx8")
 
 [node name="StaticBody3D14" type="StaticBody3D" parent="Map/Walls"]
 transform = Transform3D(-3.62265e-08, -1, 0, -3.62265e-08, 0, 0.403369, -0.828766, 4.37114e-08, -1.76318e-08, -26.9286, 7.29416, -0.088825)
-visible = false
 physics_material_override = SubResource("PhysicsMaterial_8c41q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/StaticBody3D14"]
@@ -755,9 +753,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2408, 0, -5.20998)
 shape = SubResource("SphereShape3D_b121j")
 
 [node name="ComputerPuzzle" type="Node3D" parent="."]
+transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 87.6009, 0, -83.6729)
 
 [node name="Computer1" type="MeshInstance3D" parent="ComputerPuzzle"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -22.0973, 2.7603, 14.2152)
+transform = Transform3D(0.982297, 0, -2.83462, 0, 3, 0, 2.83462, 0, 0.982297, -45.7813, 2.7603, -16.3409)
 mesh = SubResource("BoxMesh_2r41h")
 script = ExtResource("6_2r41h")
 clue_text = "This is the computer. Computer 3 is lying"
@@ -768,7 +767,7 @@ clue_text = "This is the computer. Computer 3 is lying"
 shape = SubResource("SphereShape3D_klq6b")
 
 [node name="Computer2" type="MeshInstance3D" parent="ComputerPuzzle"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -11.9549, 2.7603, 14.2152)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.81221, 2.7603, 35.952)
 mesh = SubResource("BoxMesh_2r41h")
 script = ExtResource("6_2r41h")
 clue_text = "It is this computer"
@@ -779,7 +778,7 @@ clue_text = "It is this computer"
 shape = SubResource("SphereShape3D_klq6b")
 
 [node name="Computer3" type="MeshInstance3D" parent="ComputerPuzzle"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.3353, 2.7603, 14.2152)
+transform = Transform3D(1.87548, 0, 2.34149, 0, 3, 0, -2.34149, 0, 1.87548, 43.2064, 2.7603, -7.83606)
 mesh = SubResource("BoxMesh_2r41h")
 script = ExtResource("6_2r41h")
 clue_text = "It is not this computer"

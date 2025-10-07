@@ -1,9 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0dldxai32spa"]
+[gd_scene load_steps=7 format=3 uid="uid://c0dldxai32spa"]
 
 [ext_resource type="Texture2D" uid="uid://cts2i0g6jky8f" path="res://art/image2.png" id="1_5p8wc"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="2_r6d6q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r6d6q"]
+font = ExtResource("2_r6d6q")
 font_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wm04"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4mfi"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es4n0"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.976471)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -14,18 +37,72 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.729412)
 layout_mode = 0
-offset_left = -1.0
-offset_right = 1919.0
+offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_5p8wc")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 134.0
-offset_top = 76.0
-offset_right = 364.0
-offset_bottom = 145.0
+offset_left = 44.0
+offset_top = 39.0
+offset_right = 543.0
+offset_bottom = 158.0
 text = "SETTINGS"
 label_settings = SubResource("LabelSettings_r6d6q")
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 291.0
+offset_top = 804.0
+offset_right = 754.0
+offset_bottom = 1032.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.137255, 0.137255, 0.137255, 1)
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_6wm04")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f4mfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_es4n0")
+text = "PLAY"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 176.0
+offset_right = 1613.0
+offset_bottom = 295.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.137255, 0.137255, 0.137255, 1)
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_6wm04")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f4mfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_es4n0")
+text = "VIDEO"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.137255, 0.137255, 0.137255, 1)
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_6wm04")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f4mfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_es4n0")
+text = "CONTROLS"
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.137255, 0.137255, 0.137255, 1)
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_6wm04")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f4mfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_es4n0")
+text = "SOUND"
