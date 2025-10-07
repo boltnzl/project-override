@@ -1,6 +1,5 @@
 extends Node3D
 
-
 @export var enemy_scene: PackedScene
 @export var spawn_points_group: String = "SpawnPoints"
 

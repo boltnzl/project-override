@@ -14,9 +14,29 @@ const AMMO_PICKUP_SCENE = preload("res://scenes/ammo_drop.tscn")
 
 
 func _ready() -> void:
-	player = get_node(playerlocation)
-	progress.max_value = maxhealth
-	progress.value = maxhealth
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		player = players[0]
+
+
+func _physics_process(delta: float) -> void:
+	if is_chasing and player:
+		var dir = player.global_transform.origin - global_transform.origin
+		dir.y = 0
+		if dir.length() > 0.1:
+			velocity = dir.normalized() * SPEED
+			look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
+			if anim and anim.current_animation != "Run":
+				anim.play("Run")
+		else:
+			velocity = Vector3.ZERO
+			if anim and anim.current_animation != "Idle":
+				anim.play("Idle")
+	else:
+		velocity = Vector3.ZERO
+		if anim and anim.current_animation != "Idle":
+			anim.play("Idle")
+	move_and_slide()
 
 
 func hit(amount) -> void:
