@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bw70odmskqhtr"
-valid=false
+path="res://.godot/imported/zombie.blend-9a332cdbc480f96fa78db2a0bb6a7c03.scn"
 
 [deps]
 
 source_file="res://art/zombie.blend"
+dest_files=["res://.godot/imported/zombie.blend-9a332cdbc480f96fa78db2a0bb6a7c03.scn"]
 
 [params]
 

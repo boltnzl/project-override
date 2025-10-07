@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cfntqpl2vwpqg" path="res://scripts/mainmenu.gd" id="1_natt5"]
 [ext_resource type="Texture2D" uid="uid://cts2i0g6jky8f" path="res://art/image2.png" id="2_natt5"]
-[ext_resource type="FontFile" uid="uid://dbst5yl8cqebu" path="res://fonts/Rubik-ExtraBold.ttf" id="3_r3g3c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_natt5"]
+font_size = 100
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -13,18 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_natt5")
-
-[node name="Project Override" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1007.0
-offset_top = 41.0
-offset_right = 1857.0
-offset_bottom = 356.0
-theme_override_fonts/font = ExtResource("3_r3g3c")
-theme_override_font_sizes/font_size = 125
-text = "PROJECT
-OVERRIDE"
-horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -66,3 +56,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "QUIT"
 alignment = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1382.0
+offset_top = 29.0
+offset_right = 1866.0
+offset_bottom = 306.0
+text = "PROJECT 
+OVERRIDE"
+label_settings = SubResource("LabelSettings_natt5")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,26 +1,26 @@
 extends Control
 
 func _ready() -> void:
-	$"HBoxContainer/Level1/Level 1".pressed.connect(_on_level1_pressed)
+	pass
 
 	if GameData.unlockedlevel >= 2:
 		$"HBoxContainer/Level2/Level 2".disabled = false
-		$"HBoxContainer/Level2/Level 2".pressed.connect(_on_level2_pressed)
 	else:
 		$"HBoxContainer/Level2/Level 2".disabled = true
 
 	if GameData.unlockedlevel >= 3:
 		$"HBoxContainer/Level3/Level 3".disabled = false
-		$"HBoxContainer/Level3/Level 3".pressed.connect(_on_level3_pressed)
 	else:
 		$"HBoxContainer/Level3/Level 3".disabled = true
 
 
-func _on_level1_pressed() -> void:
+func _on_level_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/level.tscn")
 
-func _on_level2_pressed() -> void:
+
+func _on_level_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/level_2.tscn")
 
-func _on_level3_pressed() -> void:
+
+func _on_level_3_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Level_3.tscn")
