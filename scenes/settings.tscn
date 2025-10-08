@@ -54,6 +54,7 @@ text = "SETTINGS"
 label_settings = SubResource("LabelSettings_r6d6q")
 
 [node name="Button2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 291.0
 offset_top = 804.0
 offset_right = 754.0

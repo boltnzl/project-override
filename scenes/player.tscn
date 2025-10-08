@@ -9,11 +9,12 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dqkch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qlg0r"]
+radius = 0.679296
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tuyoq"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.04403, 0)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 4.04403, 0)
 script = ExtResource("1_g2els")
 
 [node name="pausemenu" parent="." instance=ExtResource("2_qlg0r")]
