@@ -1,9 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn6rt7044je0n"]
+[gd_scene load_steps=9 format=3 uid="uid://cn6rt7044je0n"]
 
 [ext_resource type="Script" uid="uid://cfntqpl2vwpqg" path="res://scripts/mainmenu.gd" id="1_natt5"]
 [ext_resource type="Texture2D" uid="uid://cts2i0g6jky8f" path="res://art/image2.png" id="2_natt5"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="3_3vvtq"]
+[ext_resource type="Script" uid="uid://c7pfcdoo52ehb" path="res://scripts/menubutton.gd" id="4_s5g8n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yvfd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfy5j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85riq"]
+bg_color = Color(0.654902, 0.654902, 0.654902, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_natt5"]
+font = ExtResource("3_3vvtq")
 font_size = 100
 
 [node name="MainMenu" type="Control"]
@@ -31,42 +43,96 @@ metadata/_edit_use_anchors_ = true
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 53.0
-offset_top = 456.0
+offset_top = 522.0
 offset_right = 1972.0
-offset_bottom = 1538.0
+offset_bottom = 1604.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Play" type="Control" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Play"]
+position = Vector2(0, -78)
+scale = Vector2(2.5, 2.5)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 0, 50)
+
+[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer/Play"]
+offset_left = 15.0
+offset_top = -76.0
+offset_right = 567.0
+offset_bottom = 43.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+theme_override_fonts/font = ExtResource("3_3vvtq")
 theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_7yvfd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfy5j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_85riq")
 text = "PLAY"
 alignment = 0
+script = ExtResource("4_s5g8n")
 
-[node name="Settings" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Settings" type="Control" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 100
+
+[node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Settings"]
+position = Vector2(0, 16)
+scale = Vector2(1.736, 1.75)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
+
+[node name="Settings" type="Button" parent="HBoxContainer/VBoxContainer/Settings"]
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 449.0
+offset_bottom = 109.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+theme_override_fonts/font = ExtResource("3_3vvtq")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_7yvfd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfy5j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_85riq")
 text = "SETTINGS"
 alignment = 0
+script = ExtResource("4_s5g8n")
 
-[node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Quit" type="Control" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 100
+
+[node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Quit"]
+position = Vector2(0, 69)
+scale = Vector2(1.736, 1.75)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
+
+[node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer/Quit"]
+offset_left = 10.0
+offset_top = 59.0
+offset_right = 449.0
+offset_bottom = 159.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+theme_override_fonts/font = ExtResource("3_3vvtq")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxFlat_7yvfd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfy5j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_85riq")
 text = "QUIT"
 alignment = 0
+script = ExtResource("4_s5g8n")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1382.0
+offset_left = 1348.0
 offset_top = 29.0
-offset_right = 1866.0
+offset_right = 1856.0
 offset_bottom = 306.0
 text = "PROJECT 
 OVERRIDE"
 label_settings = SubResource("LabelSettings_natt5")
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Settings/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit/Quit" to="." method="_on_quit_pressed"]

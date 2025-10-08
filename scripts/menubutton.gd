@@ -1,16 +1,19 @@
 extends Control
 
 @onready var button = $"."
-@onready var bg = $"../Polygon2D"
-@onready var anim = $"../AnimationPlayer"
-
+@onready var background = $"../Polygon2D"
 
 func _ready():
+	background.modulate.a = 0.0 
 	button.mouse_entered.connect(_on_hover)
 	button.mouse_exited.connect(_on_exit)
 
 func _on_hover():
-	anim.play("fade_in")
+	var tween = create_tween()
+	tween.tween_property(background, "modulate:a", 1.0, 0.2)  
+	button.add_theme_color_override("font_color", Color.BLACK)
 
 func _on_exit():
-	anim.play_backwards("hover")
+	var tween = create_tween()
+	tween.tween_property(background, "modulate:a", 0.0, 0.2)
+	button.add_theme_color_override("font_color", Color.WHITE)
