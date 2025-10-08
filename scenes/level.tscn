@@ -191,12 +191,6 @@ metadata/_edit_use_anchors_ = true
 [node name="HP Text" parent="Player/Health_Stamina" index="5"]
 metadata/_edit_use_anchors_ = true
 
-[node name="Magazine" parent="Player/AmmoCounter" index="0"]
-metadata/_edit_use_anchors_ = true
-
-[node name="Ammo" parent="Player/AmmoCounter" index="1"]
-metadata/_edit_use_anchors_ = true
-
 [node name="ColorRect" parent="Player/AmmoCounter" index="2"]
 metadata/_edit_use_anchors_ = true
 

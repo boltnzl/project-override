@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bppqp3g7v0p0j"]
+[gd_scene load_steps=8 format=3 uid="uid://bppqp3g7v0p0j"]
 
 [ext_resource type="Script" uid="uid://bylope0nikrxr" path="res://scripts/pausemenu.gd" id="1_3otxd"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="2_r33we"]
+[ext_resource type="Script" uid="uid://c7pfcdoo52ehb" path="res://scripts/menubutton.gd" id="3_8ljkb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3otxd"]
-font_size = 160
+font = ExtResource("2_r33we")
+font_size = 200
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpyy4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eptsf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alvrn"]
+bg_color = Color(0.654902, 0.654902, 0.654902, 0)
 
 [node name="pausemenu" type="Control"]
 process_mode = 3
@@ -15,47 +27,110 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3otxd")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(-466, -9.53674e-07)
+scale = Vector2(5.823, 22)
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 0, 50)
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2(1920, 1100)
+rotation = 3.14159
+scale = Vector2(7, 22)
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.419608)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 0, 50)
+
+[node name="Label" type="Label" parent="."]
 process_mode = 3
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-process_mode = 3
-layout_mode = 0
-offset_left = 105.0
-offset_top = 270.0
-offset_right = 707.0
-offset_bottom = 805.0
-theme_override_constants/separation = 50
-
-[node name="Resume" type="Button" parent="Panel/VBoxContainer"]
-process_mode = 3
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "RESUME"
-
-[node name="Settings" type="Button" parent="Panel/VBoxContainer"]
-process_mode = 3
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "SETTINGS"
-
-[node name="Main Menu" type="Button" parent="Panel/VBoxContainer"]
-process_mode = 3
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "MAIN MENU"
-
-[node name="Label" type="Label" parent="Panel"]
-process_mode = 3
-layout_mode = 0
-offset_left = 1009.0
-offset_top = 316.0
-offset_right = 1627.0
-offset_bottom = 757.0
-text = "GAME 
+offset_left = 878.0
+offset_top = 253.0
+offset_right = 1692.0
+offset_bottom = 730.0
+text = "GAME
 PAUSED"
 label_settings = SubResource("LabelSettings_3otxd")
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 400.0
+offset_right = 95.0
+offset_bottom = 440.0
+
+[node name="Resume" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="VBoxContainer/Resume"]
+position = Vector2(-53, -92)
+scale = Vector2(2.99545, 2.5)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 0, 50)
+
+[node name="Resume" type="Button" parent="VBoxContainer/Resume"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 579.0
+offset_bottom = 29.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+theme_override_fonts/font = ExtResource("2_r33we")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_vpyy4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eptsf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_alvrn")
+text = "RESUME"
+script = ExtResource("3_8ljkb")
+
+[node name="Settings" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="VBoxContainer/Settings"]
+position = Vector2(-53, 43)
+scale = Vector2(1.97691, 1.75)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
+
+[node name="Settings" type="Button" parent="VBoxContainer/Settings"]
+layout_mode = 0
+offset_left = -53.0
+offset_top = 36.0
+offset_right = 382.0
+offset_bottom = 136.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+theme_override_fonts/font = ExtResource("2_r33we")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_vpyy4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eptsf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_alvrn")
+text = "SETTINGS"
+script = ExtResource("3_8ljkb")
+
+[node name="Main Menu" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="VBoxContainer/Main Menu"]
+position = Vector2(-53, 143)
+scale = Vector2(1.97691, 1.75)
+polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
+
+[node name="Main Menu" type="Button" parent="VBoxContainer/Main Menu"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = 136.0
+offset_right = 433.0
+offset_bottom = 236.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+theme_override_fonts/font = ExtResource("2_r33we")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_vpyy4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eptsf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_alvrn")
+text = "MAIN MENU"
+script = ExtResource("3_8ljkb")
+
+[connection signal="pressed" from="VBoxContainer/Resume/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Main Menu/Main Menu" to="." method="_on_main_menu_pressed"]

@@ -29,6 +29,7 @@ offset_bottom = 436.0
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Control"]
+layout_mode = 0
 offset_left = 53.0
 offset_top = 161.0
 offset_right = 690.0
@@ -40,6 +41,7 @@ label_settings = SubResource("LabelSettings_qldaq")
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Control2"]
+layout_mode = 0
 offset_left = 53.0
 offset_top = 248.0
 offset_right = 690.0
@@ -51,6 +53,7 @@ label_settings = SubResource("LabelSettings_qldaq")
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Control3"]
+layout_mode = 0
 offset_left = 53.0
 offset_top = 334.0
 offset_right = 690.0

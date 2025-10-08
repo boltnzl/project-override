@@ -55,11 +55,12 @@ theme_override_constants/separation = 50
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Play"]
-position = Vector2(0, -78)
-scale = Vector2(2.5, 2.5)
+position = Vector2(-53, -78)
+scale = Vector2(2.74091, 2.5)
 polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 0, 50)
 
 [node name="Play" type="Button" parent="HBoxContainer/VBoxContainer/Play"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = -76.0
 offset_right = 567.0
@@ -79,11 +80,12 @@ script = ExtResource("4_s5g8n")
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Settings"]
-position = Vector2(0, 16)
-scale = Vector2(1.736, 1.75)
+position = Vector2(-53, 16)
+scale = Vector2(1.97691, 1.75)
 polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
 
 [node name="Settings" type="Button" parent="HBoxContainer/VBoxContainer/Settings"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 9.0
 offset_right = 449.0
@@ -103,11 +105,12 @@ script = ExtResource("4_s5g8n")
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Quit"]
-position = Vector2(0, 69)
-scale = Vector2(1.736, 1.75)
+position = Vector2(-53, 69)
+scale = Vector2(1.97691, 1.75)
 polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
 
 [node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer/Quit"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 59.0
 offset_right = 449.0
