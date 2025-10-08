@@ -1,32 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://758s2fow43j3"]
+[gd_scene load_steps=5 format=3 uid="uid://758s2fow43j3"]
+
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="1_ortt2"]
+[ext_resource type="Texture2D" uid="uid://4mqtfjtml3p4" path="res://art/gunammoimage (2).png" id="2_7wx1c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_11dd7"]
 line_spacing = 0.0
-font_size = 50
+font = ExtResource("1_ortt2")
+font_size = 75
+font_color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ortt2"]
-font_size = 50
+font = ExtResource("1_ortt2")
+font_size = 75
+font_color = Color(0.147672, 0.147672, 0.147672, 1)
 
 [node name="AmmoCounter" type="Node2D"]
 
 [node name="Magazine" type="Label" parent="."]
-offset_left = 1787.0
-offset_top = 978.0
-offset_right = 1873.0
-offset_bottom = 1047.0
+offset_left = 1740.0
+offset_top = 952.0
+offset_right = 1879.0
+offset_bottom = 1042.0
 text = "100"
 label_settings = SubResource("LabelSettings_11dd7")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Ammo" type="Label" parent="."]
-offset_left = 1803.0
-offset_top = 920.0
-offset_right = 1917.0
-offset_bottom = 1057.0
+offset_left = 1756.0
+offset_top = 885.0
+offset_right = 1870.0
+offset_bottom = 1022.0
 text = "25"
 label_settings = SubResource("LabelSettings_ortt2")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 1784.0
-offset_top = 985.0
-offset_right = 1883.0
-offset_bottom = 989.0
+offset_left = 1740.0
+offset_top = 961.0
+offset_right = 1876.0
+offset_bottom = 965.0
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="Gunammoimage(2)" type="Sprite2D" parent="."]
+position = Vector2(1641, 961)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_7wx1c")
