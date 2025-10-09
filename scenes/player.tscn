@@ -33,12 +33,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00566483, 0, 0.00775456)
 [node name="Pistol" parent="Pivot/Camera3D" instance=ExtResource("2_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81435, -1.05742, -2.48303)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="AttackArea" type="Area3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
-visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-visible = false
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 shape = SubResource("CapsuleShape3D_tuyoq")
 
 [node name="Health_Stamina" parent="." instance=ExtResource("3_qhqgy")]

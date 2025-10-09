@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dtm3ktq0kcsk7" path="res://art/zombie2.gltf" id="3_iifgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
-radius = 1.94373
+radius = 1.98694
 height = 5.52642
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_md0e3"]
@@ -51,7 +51,7 @@ bones/27/rotation = Quaternion(-1.07053e-07, 0.998523, -0.0543397, -1.86116e-06)
 autoplay = "_Action Stash]_001"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.08462, 0)
+transform = Transform3D(1.6817, 0, 0, 0, 1.5, 0, 0, 0, 1.88455, 0, 2.08462, 0)
 shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="ChaseArea" type="Area3D" parent="."]
@@ -68,5 +68,6 @@ shape = SubResource("SphereShape3D_4ra3w")
 
 [connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
 [connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 
 [editable path="zombie2"]

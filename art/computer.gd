@@ -1,1 +1,1 @@
-wwwextends "res://scenes/computer_puzzle.gd"
+extends "res://scenes/computer_puzzle.gd"
