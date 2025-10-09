@@ -1,20 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm0g5mvsicmvs"]
+[gd_scene load_steps=10 format=3 uid="uid://dm0g5mvsicmvs"]
 
 [ext_resource type="Script" uid="uid://byjlx8dqsxbjc" path="res://scripts/enemy.gd" id="1_7k104"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="3_4ra3w"]
 [ext_resource type="PackedScene" uid="uid://dtm3ktq0kcsk7" path="res://art/zombie2.gltf" id="3_iifgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
-radius = 1.98694
+radius = 1.16776
 height = 5.52642
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uy6h"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4w8v"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwavj"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.976471)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_md0e3"]
-radius = 50.0
+radius = 30.6912
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ra3w"]
 radius = 6.09797
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("1_7k104")
 
 [node name="zombie2" parent="." instance=ExtResource("3_iifgy")]
@@ -53,6 +75,19 @@ autoplay = "_Action Stash]_001"
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.6817, 0, 0, 0, 1.5, 0, 0, 0, 1.88455, 0, 2.08462, 0)
 shape = SubResource("CapsuleShape3D_4gyqm")
+
+[node name="Video" type="Button" parent="CollisionShape3D2"]
+offset_left = -853.0
+offset_right = -372.0
+offset_bottom = 119.0
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.137255, 0.137255, 0.137255, 1)
+theme_override_fonts/font = ExtResource("3_4ra3w")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxFlat_5uy6h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c4w8v")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xwavj")
+text = "CONTROLS"
 
 [node name="ChaseArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999905, -0.0137702, 0, 0.0137702, 0.999905, 0, 2.2975, 0)

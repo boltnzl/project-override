@@ -1,14 +1,20 @@
 extends Control
 
-@onready var restart: Button = $Button
-
 
 func _ready():
-	restart.pressed.connect(restart_pressed)
+	pass
 
 
-func restart_pressed():
-	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	queue_free()
-	get_tree().change_scene_to_file("res://level.tscn")
+func _on_main_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")
+
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false        
+	$".".queue_free()  
+	if GameData.current_level == 1:
+		get_tree().change_scene_to_file("res://scenes/level.tscn")
+	elif GameData.current_level == 2:
+		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
+	elif GameData.current_level == 3:
+		get_tree().change_scene_to_file("res://scenes/level_3.tscn")
