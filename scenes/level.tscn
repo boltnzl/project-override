@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=64 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://b3vmknmyfpdj8" path="res://art/tilewalls1.png" id="3_8gofh"]
@@ -140,6 +140,9 @@ uv1_scale = Vector3(10, 12, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_5k0ak"]
 material = SubResource("StandardMaterial3D_cmcjb")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wu01b"]
+size = Vector3(3.9744, 4.59406, 0.466309)
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_1ainy")
 
@@ -217,8 +220,11 @@ shape = SubResource("SphereShape3D_b121j")
 transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 87.6009, 0, -83.6729)
 
 [node name="computer" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
-transform = Transform3D(-0.356402, 0, -1.45704, 0, 1.5, 0, 1.45704, 0, -0.356402, -48.2757, 4.78879, -15.8286)
+transform = Transform3D(-0.356402, 0, -1.45704, 0, 1.5, 0, 1.45704, 0, -0.356402, -48.4859, 4.78879, -16.0795)
 script = ExtResource("6_2r41h")
+target_door = NodePath("../../Map/Door1")
+clue_text = "Diddy"
+is_correct = true
 
 [node name="Area3D" type="Area3D" parent="ComputerPuzzle/computer"]
 
@@ -1233,6 +1239,7 @@ shape = SubResource("BoxShape3D_pqd0y")
 mesh = SubResource("BoxMesh_5k0ak")
 
 [node name="Door1" type="Node3D" parent="Map"]
+script = ExtResource("23_wu01b")
 
 [node name="StaticBody3D30" type="StaticBody3D" parent="Map/Door1"]
 transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
@@ -1272,6 +1279,7 @@ script = ExtResource("23_wu01b")
 
 [node name="Door2" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0, 6)
+script = ExtResource("23_wu01b")
 
 [node name="StaticBody3D30" type="StaticBody3D" parent="Map/Door2"]
 transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
@@ -1305,11 +1313,18 @@ shape = SubResource("BoxShape3D_gunhw")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door2/StaticBody3D31"]
 mesh = SubResource("BoxMesh_7agi7")
 
-[node name="dooropen2" parent="Map/Door2" instance=ExtResource("23_5k0ak")]
-transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-
 [node name="door" parent="Map/Door2" instance=ExtResource("22_pqd0y")]
 transform = Transform3D(-1.24255e-05, 1.49993e-05, 0.6, 0.000261077, 1.5, -5.99972e-06, -1.5, 0.000261077, -4.9702e-06, 11.5, 2.09245, -55)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Door2/door"]
+transform = Transform3D(1, 0.000174051, -5.49214e-06, -0.000174051, 1, 6.66731e-06, 2.06042e-05, -2.49952e-05, 1.66667, 0.0383034, -0.0500542, 0.757465)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door2/door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 3.6664e-12, 0, 1, -0.0432892, 1.03189, -0.595947)
+shape = SubResource("BoxShape3D_wu01b")
+
+[node name="dooropen2" parent="Map/Door2" instance=ExtResource("23_5k0ak")]
+transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
 
 [node name="Door3" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 16)
@@ -1351,6 +1366,12 @@ transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11
 
 [node name="door" parent="Map/Door3" instance=ExtResource("22_pqd0y")]
 transform = Transform3D(-1.24255e-05, 1.49993e-05, 0.6, 0.000261077, 1.5, -5.99972e-06, -1.5, 0.000261077, -4.9702e-06, 11.5, 2.09245, -55)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Door3/door"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door3/door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 3.6664e-12, 0, 1, -0.0432892, 1.03189, -0.595947)
+shape = SubResource("BoxShape3D_wu01b")
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -1415,6 +1436,8 @@ transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75,
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 [connection signal="body_entered" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="ComputerPuzzle/computer/Area3D" to="ComputerPuzzle/computer" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="ComputerPuzzle/computer/Area3D" to="ComputerPuzzle/computer" method="_on_area_3d_body_exited"]
 
 [editable path="Player"]
 [editable path="Player/Pivot/Camera3D/Pistol"]

@@ -1,19 +1,29 @@
 extends Node3D
 
-@onready var door_closed = $door
-@onready var door_open = $dooropen2
+@onready var door_closed_mesh = $"../Door2/door"
+@onready var door_closed_collision = $"../Door2/door/StaticBody3D/CollisionShape3D"
+@onready var door_open_mesh = $"../Door2/dooropen2"
+
 var is_open = false
 
 func _ready():
-	if door_open:
-		door_open.visible = false
-	if door_closed:
-		door_closed.visible = true
+	if door_closed_mesh:
+		door_closed_mesh.show()
+	if door_closed_collision:
+		door_closed_collision.visible = true 
+	if door_open_mesh:
+		door_open_mesh.hide()
+
 
 func open_door():
-	if not is_open:
-		is_open = true
-		if door_closed:
-			door_closed.visible = false
-		if door_open:
-			door_open.visible = true
+	if is_open:
+		return
+	is_open = true
+
+
+	if door_closed_mesh:
+		door_closed_mesh.hide()
+	if door_closed_collision:
+		door_closed_collision.queue_free()
+	if door_open_mesh:
+		door_open_mesh.show()
