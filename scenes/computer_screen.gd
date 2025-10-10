@@ -1,4 +1,5 @@
 extends Control
+
 @onready var clue_label = $Panel/Label
 @onready var computer_label = $Panel/Label2
 @onready var accept = $Accept
@@ -28,8 +29,10 @@ func _on_accept_pressed() -> void:
 			computer_node.door_node.call("open_door")
 		computer_node.interacted = true
 	else:
-		var restart_scene = preload("res://scenes/restart.tscn")
-		get_tree().change_scene_to(restart_scene)
+		var restart_scene = load("res://scenes/restart.tscn")
+		get_tree().change_scene_to_packed(restart_scene)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 
 func _on_return_pressed() -> void:

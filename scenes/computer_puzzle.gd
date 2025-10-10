@@ -33,11 +33,10 @@ func _open_computer_screen():
 	screen_scene.set_clue(clue_text, computer_name, is_correct, self)
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_detect_body_entered(body: Node3D) -> void:
 	if body.name == "Player" and not interacted:
 		player_close = true
 
-
-func _on_area_3d_body_exited(body: Node3D) -> void:
+func _on_detect_body_exited(body: Node3D) -> void:
 	if body.name == "Player":
 		player_close = false

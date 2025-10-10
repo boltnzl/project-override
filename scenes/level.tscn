@@ -21,9 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://dcwrg6mflc3ga" path="res://art/bookorangeglb.glb" id="17_pqd0y"]
 [ext_resource type="PackedScene" uid="uid://ct0q2lfichpsm" path="res://art/bookred.glb" id="18_5k0ak"]
 [ext_resource type="PackedScene" uid="uid://caons14tfrlr2" path="res://art/bookblue.glb" id="19_wu01b"]
-[ext_resource type="PackedScene" uid="uid://c81juvbsvv77e" path="res://art/door.glb" id="22_pqd0y"]
-[ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="23_5k0ak"]
-[ext_resource type="Script" uid="uid://8ld1k3dm3wkr" path="res://scenes/door.gd" id="23_wu01b"]
+[ext_resource type="PackedScene" uid="uid://biiantx5afanr" path="res://scenes/door.tscn" id="23_5k0ak"]
+[ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="24_3ies3"]
+[ext_resource type="Script" uid="uid://8ld1k3dm3wkr" path="res://scenes/door.gd" id="25_cmcjb"]
+[ext_resource type="Script" uid="uid://bkxc7ddmbtqsw" path="res://scenes/button_puzzle.gd" id="25_xy2fk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -37,12 +38,6 @@ background_mode = 2
 sky = SubResource("Sky_oi3di")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vonw3"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_oi3di"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b4ue"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ainy"]
 vertices = PackedVector3Array(-64.754, 0.487295, -63.729, -64.754, 0.487295, 63.771, 64.746, 0.487295, 63.771, 64.746, 0.487295, -63.729)
@@ -95,22 +90,6 @@ uv1_scale = Vector3(10, 5, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_8gofh"]
 material = SubResource("StandardMaterial3D_wu01b")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ies3"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy2fk"]
-albedo_texture = ExtResource("3_8gofh")
-uv1_scale = Vector3(1, 6.8, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_cmcjb"]
-material = SubResource("StandardMaterial3D_xy2fk")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_556r4"]
-albedo_texture = ExtResource("3_8gofh")
-uv1_scale = Vector3(3, 2, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7agi7"]
-material = SubResource("StandardMaterial3D_556r4")
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8gofh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6wmr"]
@@ -140,24 +119,36 @@ uv1_scale = Vector3(10, 12, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_5k0ak"]
 material = SubResource("StandardMaterial3D_cmcjb")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wu01b"]
-size = Vector3(3.9744, 4.59406, 0.466309)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7agi7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kih21"]
+material = SubResource("ShaderMaterial_7agi7")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w3o6u"]
+radius = 1.14777
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ies3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy2fk"]
+albedo_texture = ExtResource("3_8gofh")
+uv1_scale = Vector3(1, 6.8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cmcjb"]
+material = SubResource("StandardMaterial3D_xy2fk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_556r4"]
+albedo_texture = ExtResource("3_8gofh")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7agi7"]
+material = SubResource("StandardMaterial3D_556r4")
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_1ainy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0b4ue")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(9.11746, 0, 0, 0, -3.49683, 0, 0, 0, 9.52369, 15.0734, 1.908, 16.75)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
-shape = SubResource("BoxShape3D_vonw3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4"]
-mesh = SubResource("BoxMesh_oi3di")
-surface_material_override/0 = SubResource("StandardMaterial3D_0b4ue")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.74973, 0.353692, 0.559291, 0, -0.845178, 0.534485, -0.661744, 0.400719, 0.633655, 103.058, 66.3276, 82.56)
@@ -203,7 +194,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.5, 5, -39)
 shape = SubResource("BoxShape3D_ppgk2")
 
 [node name="KeypadTrigger" type="Node3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -73, 4.04403, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -121.431, 4.04403, 0)
 script = ExtResource("4_ppgk2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="KeypadTrigger"]
@@ -220,35 +211,42 @@ shape = SubResource("SphereShape3D_b121j")
 transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 87.6009, 0, -83.6729)
 
 [node name="computer" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
-transform = Transform3D(-0.356402, 0, -1.45704, 0, 1.5, 0, 1.45704, 0, -0.356402, -48.4859, 4.78879, -16.0795)
+transform = Transform3D(-0.356402, 0, -1.45704, 0, 1.5, 0, 1.45704, 0, -0.356402, -48.2469, 4.78879, -16.2148)
 script = ExtResource("6_2r41h")
-target_door = NodePath("../../Map/Door1")
-clue_text = "Diddy"
+target_door = NodePath("../../Door2")
+computer_name = "Computer 1"
+clue_text = "Computer 2 is telling the truth. I may or may not be the key to the next room."
 is_correct = true
 
-[node name="Area3D" type="Area3D" parent="ComputerPuzzle/computer"]
+[node name="Detect" type="Area3D" parent="ComputerPuzzle/computer"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/computer/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/computer/Detect"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0.664473, -1.09143, 0.487984)
 shape = SubResource("SphereShape3D_5k0ak")
 
 [node name="computer2" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
 transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -57.3299, 4.77825, -6.72479)
 script = ExtResource("6_2r41h")
+target_door = NodePath("../../Door2")
+computer_name = "Computer 2"
+clue_text = "Computer 3 is lying. I do not have the key to the next room."
 
-[node name="Area3D" type="Area3D" parent="ComputerPuzzle/computer2"]
+[node name="Detect" type="Area3D" parent="ComputerPuzzle/computer2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/computer2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/computer2/Detect"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0.664473, -1.09143, 0.487984)
 shape = SubResource("SphereShape3D_5k0ak")
 
 [node name="computer3" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
-transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -63.6055, 2.11053, -22.2565)
+transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -101.755, 2.11053, -20.2958)
 script = ExtResource("6_2r41h")
+target_door = NodePath("../../Door2")
+computer_name = "Computer 3"
+clue_text = "Computer 1 does not have the key. I have the key."
 
-[node name="Area3D" type="Area3D" parent="ComputerPuzzle/computer3"]
+[node name="Detect" type="Area3D" parent="ComputerPuzzle/computer3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/computer3/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/computer3/Detect"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0.664473, -1.09143, 0.487984)
 shape = SubResource("SphereShape3D_5k0ak")
 
@@ -998,38 +996,6 @@ shape = SubResource("BoxShape3D_gunhw")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Walls/StaticBody3D17"]
 mesh = SubResource("BoxMesh_8gofh")
 
-[node name="StaticBody3D30" type="StaticBody3D" parent="Map/Walls"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/StaticBody3D30"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Walls/StaticBody3D30"]
-transform = Transform3D(1, -2.55795e-13, 6.39488e-14, 0, 1, 1.48231e-21, -2.55795e-13, -5.42101e-20, 1, 0, -0.00492549, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D32" type="StaticBody3D" parent="Map/Walls"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -59.05)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/StaticBody3D32"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Walls/StaticBody3D32"]
-transform = Transform3D(1, -3.41061e-13, 8.52651e-14, 0, 1, 1.79995e-21, -3.41061e-13, -9.48677e-20, 1, -0.0289917, -0.00492555, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D31" type="StaticBody3D" parent="Map/Walls"]
-transform = Transform3D(1.16824e-06, 8.81999e-14, -1, -9.05975e-07, 3, 0, -6, -4.52987e-07, -1.94707e-07, 11.5, 8.5, -55)
-physics_material_override = SubResource("PhysicsMaterial_82cfe")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/StaticBody3D31"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Walls/StaticBody3D31"]
-mesh = SubResource("BoxMesh_7agi7")
-
 [node name="StaticBody3D9" type="StaticBody3D" parent="Map/Walls"]
 transform = Transform3D(-1.46629e-06, 0, -1, 0, 10, 0, 9, 0, -1.62921e-07, -1.5, 5, -25.5)
 physics_material_override = SubResource("PhysicsMaterial_82cfe")
@@ -1238,143 +1204,8 @@ shape = SubResource("BoxShape3D_pqd0y")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Floor/StaticBody3D9"]
 mesh = SubResource("BoxMesh_5k0ak")
 
-[node name="Door1" type="Node3D" parent="Map"]
-script = ExtResource("23_wu01b")
-
-[node name="StaticBody3D30" type="StaticBody3D" parent="Map/Door1"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door1/StaticBody3D30"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door1/StaticBody3D30"]
-transform = Transform3D(1, -2.55795e-13, 6.39488e-14, 0, 1, 1.48231e-21, -2.55795e-13, -5.42101e-20, 1, 0, -0.00492549, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D32" type="StaticBody3D" parent="Map/Door1"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -59.05)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door1/StaticBody3D32"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door1/StaticBody3D32"]
-transform = Transform3D(1, -3.41061e-13, 8.52651e-14, 0, 1, 1.79995e-21, -3.41061e-13, -9.48677e-20, 1, -0.0289917, -0.00492555, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D31" type="StaticBody3D" parent="Map/Door1"]
-transform = Transform3D(1.16824e-06, 8.81999e-14, -1, -9.05975e-07, 3, 0, -6, -4.52987e-07, -1.94707e-07, 11.5, 8.5, -55)
-physics_material_override = SubResource("PhysicsMaterial_82cfe")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door1/StaticBody3D31"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door1/StaticBody3D31"]
-mesh = SubResource("BoxMesh_7agi7")
-
-[node name="dooropen2" parent="Map/Door1" instance=ExtResource("23_5k0ak")]
-transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-script = ExtResource("23_wu01b")
-
-[node name="Door2" type="Node3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0, 6)
-script = ExtResource("23_wu01b")
-
-[node name="StaticBody3D30" type="StaticBody3D" parent="Map/Door2"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door2/StaticBody3D30"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door2/StaticBody3D30"]
-transform = Transform3D(1, -2.55795e-13, 6.39488e-14, 0, 1, 1.48231e-21, -2.55795e-13, -5.42101e-20, 1, 0, -0.00492549, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D32" type="StaticBody3D" parent="Map/Door2"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -59.05)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door2/StaticBody3D32"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door2/StaticBody3D32"]
-transform = Transform3D(1, -3.41061e-13, 8.52651e-14, 0, 1, 1.79995e-21, -3.41061e-13, -9.48677e-20, 1, -0.0289917, -0.00492555, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D31" type="StaticBody3D" parent="Map/Door2"]
-transform = Transform3D(1.16824e-06, 8.81999e-14, -1, -9.05975e-07, 3, 0, -6, -4.52987e-07, -1.94707e-07, 11.5, 8.5, -55)
-physics_material_override = SubResource("PhysicsMaterial_82cfe")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door2/StaticBody3D31"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door2/StaticBody3D31"]
-mesh = SubResource("BoxMesh_7agi7")
-
-[node name="door" parent="Map/Door2" instance=ExtResource("22_pqd0y")]
-transform = Transform3D(-1.24255e-05, 1.49993e-05, 0.6, 0.000261077, 1.5, -5.99972e-06, -1.5, 0.000261077, -4.9702e-06, 11.5, 2.09245, -55)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/Door2/door"]
-transform = Transform3D(1, 0.000174051, -5.49214e-06, -0.000174051, 1, 6.66731e-06, 2.06042e-05, -2.49952e-05, 1.66667, 0.0383034, -0.0500542, 0.757465)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door2/door/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 3.6664e-12, 0, 1, -0.0432892, 1.03189, -0.595947)
-shape = SubResource("BoxShape3D_wu01b")
-
-[node name="dooropen2" parent="Map/Door2" instance=ExtResource("23_5k0ak")]
-transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-
-[node name="Door3" type="Node3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 16)
-
-[node name="StaticBody3D30" type="StaticBody3D" parent="Map/Door3"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door3/StaticBody3D30"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door3/StaticBody3D30"]
-transform = Transform3D(1, -2.55795e-13, 6.39488e-14, 0, 1, 1.48231e-21, -2.55795e-13, -5.42101e-20, 1, 0, -0.00492549, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D32" type="StaticBody3D" parent="Map/Door3"]
-transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -59.05)
-physics_material_override = SubResource("PhysicsMaterial_3ies3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door3/StaticBody3D32"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door3/StaticBody3D32"]
-transform = Transform3D(1, -3.41061e-13, 8.52651e-14, 0, 1, 1.79995e-21, -3.41061e-13, -9.48677e-20, 1, -0.0289917, -0.00492555, 0)
-mesh = SubResource("BoxMesh_cmcjb")
-
-[node name="StaticBody3D31" type="StaticBody3D" parent="Map/Door3"]
-transform = Transform3D(1.16824e-06, 8.81999e-14, -1, -9.05975e-07, 3, 0, -6, -4.52987e-07, -1.94707e-07, 11.5, 8.5, -55)
-physics_material_override = SubResource("PhysicsMaterial_82cfe")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door3/StaticBody3D31"]
-shape = SubResource("BoxShape3D_gunhw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Door3/StaticBody3D31"]
-mesh = SubResource("BoxMesh_7agi7")
-
-[node name="dooropen2" parent="Map/Door3" instance=ExtResource("23_5k0ak")]
-transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-
-[node name="door" parent="Map/Door3" instance=ExtResource("22_pqd0y")]
-transform = Transform3D(-1.24255e-05, 1.49993e-05, 0.6, 0.000261077, 1.5, -5.99972e-06, -1.5, 0.000261077, -4.9702e-06, 11.5, 2.09245, -55)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/Door3/door"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door3/door/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 3.6664e-12, 0, 1, -0.0432892, 1.03189, -0.595947)
-shape = SubResource("BoxShape3D_wu01b")
-
 [node name="Enemies" type="Node3D" parent="."]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13.5, 0, 0)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_f2txt")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -41, 2, -9.5)
@@ -1433,11 +1264,76 @@ transform = Transform3D(2.98023e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, 2.98023e-08,
 [node name="Enemy9" parent="Enemies2" instance=ExtResource("5_f2txt")]
 transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75, -48.5, 2, -38)
 
+[node name="ButtonPuzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.0433, 1.12455, -17.4306)
+script = ExtResource("25_xy2fk")
+door_to_open = NodePath("../Door3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonPuzzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.82968)
+mesh = SubResource("BoxMesh_kih21")
+
+[node name="Area3D" type="Area3D" parent="ButtonPuzzle"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonPuzzle/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.8025)
+shape = SubResource("SphereShape3D_w3o6u")
+
+[node name="Door2" parent="." instance=ExtResource("23_5k0ak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0, 6)
+
+[node name="Door3" parent="." instance=ExtResource("23_5k0ak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 16)
+
+[node name="Door" type="Node3D" parent="."]
+
+[node name="StaticBody3D30" type="StaticBody3D" parent="Door"]
+transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
+physics_material_override = SubResource("PhysicsMaterial_3ies3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D30"]
+shape = SubResource("BoxShape3D_gunhw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Door/StaticBody3D30"]
+transform = Transform3D(1, -2.55795e-13, 6.39488e-14, 0, 1, 1.48231e-21, -2.55795e-13, -5.42101e-20, 1, 0, -0.00492549, 0)
+mesh = SubResource("BoxMesh_cmcjb")
+
+[node name="StaticBody3D32" type="StaticBody3D" parent="Door"]
+transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -59.05)
+physics_material_override = SubResource("PhysicsMaterial_3ies3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D32"]
+shape = SubResource("BoxShape3D_gunhw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Door/StaticBody3D32"]
+transform = Transform3D(1, -3.41061e-13, 8.52651e-14, 0, 1, 1.79995e-21, -3.41061e-13, -9.48677e-20, 1, -0.0289917, -0.00492555, 0)
+mesh = SubResource("BoxMesh_cmcjb")
+
+[node name="StaticBody3D31" type="StaticBody3D" parent="Door"]
+transform = Transform3D(1.16824e-06, 8.81999e-14, -1, -9.05975e-07, 3, 0, -6, -4.52987e-07, -1.94707e-07, 11.5, 8.5, -55)
+physics_material_override = SubResource("PhysicsMaterial_82cfe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D31"]
+shape = SubResource("BoxShape3D_gunhw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Door/StaticBody3D31"]
+mesh = SubResource("BoxMesh_7agi7")
+
+[node name="dooropen2" parent="Door" instance=ExtResource("24_3ies3")]
+transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
+script = ExtResource("25_cmcjb")
+
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 [connection signal="body_entered" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="ComputerPuzzle/computer/Area3D" to="ComputerPuzzle/computer" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="ComputerPuzzle/computer/Area3D" to="ComputerPuzzle/computer" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="ComputerPuzzle/computer/Detect" to="ComputerPuzzle/computer" method="_on_detect_body_entered"]
+[connection signal="body_exited" from="ComputerPuzzle/computer/Detect" to="ComputerPuzzle/computer" method="_on_detect_body_exited"]
+[connection signal="body_entered" from="ComputerPuzzle/computer2/Detect" to="ComputerPuzzle/computer2" method="_on_detect_body_entered"]
+[connection signal="body_exited" from="ComputerPuzzle/computer2/Detect" to="ComputerPuzzle/computer2" method="_on_detect_body_exited"]
+[connection signal="body_entered" from="ComputerPuzzle/computer3/Detect" to="ComputerPuzzle/computer3" method="_on_detect_body_entered"]
+[connection signal="body_exited" from="ComputerPuzzle/computer3/Detect" to="ComputerPuzzle/computer3" method="_on_detect_body_exited"]
+[connection signal="body_entered" from="ButtonPuzzle/Area3D" to="ButtonPuzzle" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="ButtonPuzzle/Area3D" to="ButtonPuzzle" method="_on_area_3d_body_exited"]
 
 [editable path="Player"]
 [editable path="Player/Pivot/Camera3D/Pistol"]
