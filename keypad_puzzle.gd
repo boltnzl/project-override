@@ -1,5 +1,6 @@
 extends Control
 
+var door_node: Node = null 
 var typed_text : String
 var passcode : String = "5219"
 var timer = Timer.new()
@@ -98,6 +99,9 @@ func _on_enter_pressed() -> void:
 		typed_text = "Correct"
 		label.text = typed_text
 		timer.start(0.5)
+		if door_node and door_node.has_method("open_door"):
+			print("Keypad correct! Opening door:", door_node.name)
+			door_node.call("open_door")
 	else :
 		square.modulate = Color(1,0,0)
 		typed_text = "Incorrect"

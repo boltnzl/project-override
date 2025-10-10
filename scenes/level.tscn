@@ -46,11 +46,11 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [sub_resource type="BoxShape3D" id="BoxShape3D_ppgk2"]
 size = Vector3(8.5, 9.5, 10.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r41h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy2fk"]
 albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_klq6b"]
-material = SubResource("StandardMaterial3D_2r41h")
+material = SubResource("StandardMaterial3D_xy2fk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b121j"]
 radius = 2.11565
@@ -83,12 +83,12 @@ size = Vector3(10.8214, 7.69006, 16.9263)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gunhw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wu01b"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmcjb"]
 albedo_texture = ExtResource("3_8gofh")
 uv1_scale = Vector3(10, 5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8gofh"]
-material = SubResource("StandardMaterial3D_wu01b")
+material = SubResource("StandardMaterial3D_cmcjb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8gofh"]
 
@@ -112,17 +112,17 @@ material = SubResource("StandardMaterial3D_3ies3")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h6wmr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmcjb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7agi7"]
 albedo_texture = ExtResource("3_h6wmr")
 uv1_scale = Vector3(10, 12, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5k0ak"]
-material = SubResource("StandardMaterial3D_cmcjb")
+material = SubResource("StandardMaterial3D_7agi7")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7agi7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmcjb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kih21"]
-material = SubResource("ShaderMaterial_7agi7")
+material = SubResource("ShaderMaterial_cmcjb")
 size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w3o6u"]
@@ -130,19 +130,19 @@ radius = 1.14777
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ies3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy2fk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_556r4"]
 albedo_texture = ExtResource("3_8gofh")
 uv1_scale = Vector3(1, 6.8, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cmcjb"]
-material = SubResource("StandardMaterial3D_xy2fk")
+material = SubResource("StandardMaterial3D_556r4")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_556r4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kih21"]
 albedo_texture = ExtResource("3_8gofh")
 uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7agi7"]
-material = SubResource("StandardMaterial3D_556r4")
+material = SubResource("StandardMaterial3D_kih21")
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_1ainy")
