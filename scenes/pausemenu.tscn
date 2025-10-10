@@ -63,16 +63,16 @@ offset_bottom = 440.0
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="VBoxContainer/Resume"]
-position = Vector2(-53, -92)
+position = Vector2(-53, -34)
 scale = Vector2(2.99545, 2.5)
 polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 0, 50)
 
 [node name="Resume" type="Button" parent="VBoxContainer/Resume"]
 layout_mode = 0
 offset_left = -80.0
-offset_top = -90.0
+offset_top = -32.0
 offset_right = 579.0
-offset_bottom = 29.0
+offset_bottom = 87.0
 focus_mode = 0
 theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 theme_override_fonts/font = ExtResource("2_r33we")
@@ -83,44 +83,20 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_alvrn")
 text = "RESUME"
 script = ExtResource("3_8ljkb")
 
-[node name="Settings" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Polygon2D" type="Polygon2D" parent="VBoxContainer/Settings"]
-position = Vector2(-53, 43)
-scale = Vector2(1.97691, 1.75)
-polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
-
-[node name="Settings" type="Button" parent="VBoxContainer/Settings"]
-layout_mode = 0
-offset_left = -53.0
-offset_top = 36.0
-offset_right = 382.0
-offset_bottom = 136.0
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
-theme_override_fonts/font = ExtResource("2_r33we")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/hover = SubResource("StyleBoxFlat_vpyy4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_eptsf")
-theme_override_styles/normal = SubResource("StyleBoxFlat_alvrn")
-text = "SETTINGS"
-script = ExtResource("3_8ljkb")
-
 [node name="Main Menu" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="VBoxContainer/Main Menu"]
-position = Vector2(-53, 143)
+position = Vector2(-53, 122)
 scale = Vector2(1.97691, 1.75)
 polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
 
 [node name="Main Menu" type="Button" parent="VBoxContainer/Main Menu"]
 layout_mode = 0
 offset_left = -80.0
-offset_top = 136.0
+offset_top = 115.0
 offset_right = 433.0
-offset_bottom = 236.0
+offset_bottom = 215.0
 focus_mode = 0
 theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 theme_override_fonts/font = ExtResource("2_r33we")
@@ -132,5 +108,4 @@ text = "MAIN MENU"
 script = ExtResource("3_8ljkb")
 
 [connection signal="pressed" from="VBoxContainer/Resume/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="VBoxContainer/Settings/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Main Menu/Main Menu" to="." method="_on_main_menu_pressed"]

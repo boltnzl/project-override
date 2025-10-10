@@ -2,6 +2,10 @@ extends CharacterBody3D
 
 class_name Player 
 
+#@onready var obj1 = $Node2D/Level1Objectives
+#@onready var obj2 = $Node2D/Level2Objectives
+#@onready var obj3 = $Node2D/Level3Objectives
+
 const shake_frequency = 1.5
 const shake_amplitude = 0.06
 var sfov = 0.0
@@ -44,6 +48,7 @@ var knockbacktime = 0.0
 
 
 func _ready():
+	#update_objectives()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed = walk_speed
 	current_health = max_health
@@ -56,7 +61,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		pivot.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-
 
 func _physics_process(delta: float) -> void:
 	if knockbacktime > 0:
@@ -192,3 +196,17 @@ func _death():
 	get_tree().root.add_child(game_over_scene)
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	
+#func update_objectives():
+	#obj1.visible = false
+	#obj2.visible = false
+#	obj3.visible = false
+
+	#match GameData.current_level:
+		#1:
+			#obj1.visible = true
+		#2:
+			#obj2.visible = true
+		#3:
+			#obj3.visible = true

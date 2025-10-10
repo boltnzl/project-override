@@ -1,24 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://p6pd6khuldnd"]
+[gd_scene load_steps=4 format=3 uid="uid://dy2sq3jmsu7gt"]
 
-[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="1_bvcxi"]
-[ext_resource type="Script" uid="uid://bfyhsfi3pd1ex" path="res://scenes/objectives.gd" id="1_qldaq"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="1_u3535"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qldaq"]
-font = ExtResource("1_bvcxi")
+font = ExtResource("1_u3535")
 font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_e5roj"]
-font = ExtResource("1_bvcxi")
+font = ExtResource("1_u3535")
 font_size = 100
 
-[node name="Level1Objectives" type="Control"]
+[node name="Level2Objectives" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qldaq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -36,7 +34,7 @@ offset_left = 53.0
 offset_top = 161.0
 offset_right = 690.0
 offset_bottom = 280.0
-text = "CHOOSE THE CORRECT COMPUTER"
+text = "FIND THE BUTTON IN THE STORAGE"
 label_settings = SubResource("LabelSettings_qldaq")
 
 [node name="Control2" type="Control" parent="VBoxContainer"]
@@ -48,7 +46,7 @@ offset_left = 53.0
 offset_top = 248.0
 offset_right = 690.0
 offset_bottom = 367.0
-text = "DEFEAT THE ZOMBIES"
+text = "FIND THE MISSING NOTE"
 label_settings = SubResource("LabelSettings_qldaq")
 
 [node name="Control3" type="Control" parent="VBoxContainer"]
@@ -60,7 +58,7 @@ offset_left = 53.0
 offset_top = 334.0
 offset_right = 690.0
 offset_bottom = 453.0
-text = "FIND THE BUTTON IN THE LIBRARY"
+text = "CRACK THE KEYPAD "
 label_settings = SubResource("LabelSettings_qldaq")
 
 [node name="Label" type="Label" parent="."]

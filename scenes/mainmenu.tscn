@@ -76,45 +76,20 @@ text = "PLAY"
 alignment = 0
 script = ExtResource("4_s5g8n")
 
-[node name="Settings" type="Control" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Settings"]
-position = Vector2(-53, 16)
-scale = Vector2(1.97691, 1.75)
-polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
-
-[node name="Settings" type="Button" parent="HBoxContainer/VBoxContainer/Settings"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 9.0
-offset_right = 449.0
-offset_bottom = 109.0
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
-theme_override_fonts/font = ExtResource("3_3vvtq")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/hover = SubResource("StyleBoxFlat_7yvfd")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dfy5j")
-theme_override_styles/normal = SubResource("StyleBoxFlat_85riq")
-text = "SETTINGS"
-alignment = 0
-script = ExtResource("4_s5g8n")
-
 [node name="Quit" type="Control" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="HBoxContainer/VBoxContainer/Quit"]
-position = Vector2(-53, 69)
+position = Vector2(-53, 13)
 scale = Vector2(1.97691, 1.75)
 polygon = PackedVector2Array(0, 0, 220, 0, 180, 50, 141.744, 50, 109.865, 50, 0, 50)
 
 [node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer/Quit"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 59.0
+offset_top = 3.0
 offset_right = 449.0
-offset_bottom = 159.0
+offset_bottom = 103.0
 focus_mode = 0
 theme_override_colors/font_hover_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 theme_override_fonts/font = ExtResource("3_3vvtq")
@@ -137,5 +112,4 @@ OVERRIDE"
 label_settings = SubResource("LabelSettings_natt5")
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Settings/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit/Quit" to="." method="_on_quit_pressed"]

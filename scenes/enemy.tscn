@@ -30,7 +30,7 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_md0e3"]
-radius = 30.6912
+radius = 57.167
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ra3w"]
 radius = 6.09797

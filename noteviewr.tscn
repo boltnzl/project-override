@@ -1,17 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxbg5qoc1t2pj"]
+[gd_scene load_steps=8 format=3 uid="uid://cxbg5qoc1t2pj"]
 
-[ext_resource type="Script" uid="uid://b2wyg10himn1n" path="res://control.gd" id="1_r28gl"]
+[ext_resource type="Script" uid="uid://byct7vuwoqn8d" path="res://noteviewr.gd" id="1_ny6mn"]
+[ext_resource type="Texture2D" uid="uid://bwd8vp4h8b8eg" path="res://art/paper.png" id="2_k0d5g"]
+[ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="3_rxhj7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2b05"]
+font_size = 150
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5f81u"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h85nk"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krdj3"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.52549)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Control" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_r28gl")
+script = ExtResource("1_ny6mn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 633.0
+offset_top = -93.0
+offset_right = 1349.0
+offset_bottom = 981.0
+texture = ExtResource("2_k0d5g")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 594.0
+offset_top = 376.0
+offset_right = 1359.0
+offset_bottom = 613.0
+rotation = -0.123918
+theme_override_fonts/font = ExtResource("3_rxhj7")
+theme_override_font_sizes/font_size = 200
+label_settings = SubResource("LabelSettings_y2b05")
+horizontal_alignment = 1
+
+[node name="Return" type="Button" parent="."]
+offset_left = 853.0
+offset_top = 922.0
+offset_right = 1316.0
+offset_bottom = 1150.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.137255, 0.137255, 0.137255, 1)
+theme_override_fonts/font = ExtResource("3_rxhj7")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_5f81u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h85nk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_krdj3")
+text = "RETURN"
+
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

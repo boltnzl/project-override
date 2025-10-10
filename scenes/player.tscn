@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqof0v4sx7egd"]
+[gd_scene load_steps=12 format=3 uid="uid://dqof0v4sx7egd"]
 
 [ext_resource type="Script" uid="uid://cu4xfx7evjvhq" path="res://scripts/Player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://ceqyga5x7ar70" path="res://scenes/Pistol.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bppqp3g7v0p0j" path="res://scenes/pausemenu.tscn" id="2_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://cgv35obebjrik" path="res://scenes/healthstamina.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://758s2fow43j3" path="res://scenes/ammo_counter.tscn" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://p6pd6khuldnd" path="res://scenes/objectives.tscn" id="6_smehm"]
+[ext_resource type="PackedScene" uid="uid://dy2sq3jmsu7gt" path="res://scenes/level_2_objectives.tscn" id="7_ur7pv"]
+[ext_resource type="PackedScene" uid="uid://d3psu5ays0mrc" path="res://scenes/level_3_objectives.tscn" id="8_y4r1p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dqkch"]
 
@@ -16,6 +19,13 @@ radius = 0.679296
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.04403, 0)
 script = ExtResource("1_g2els")
+max_health = null
+max_mag = null
+total_ammo = null
+regendelay = null
+regenrate = null
+knockbackforce = null
+knockbackdur = null
 
 [node name="pausemenu" parent="." instance=ExtResource("2_qlg0r")]
 
@@ -42,6 +52,18 @@ shape = SubResource("CapsuleShape3D_tuyoq")
 [node name="Health_Stamina" parent="." instance=ExtResource("3_qhqgy")]
 
 [node name="AmmoCounter" parent="." instance=ExtResource("4_dqkch")]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Level1Objectives" parent="Node2D" instance=ExtResource("6_smehm")]
+visible = false
+scale = Vector2(0.8, 0.8)
+
+[node name="Level2Objectives" parent="Node2D" instance=ExtResource("7_ur7pv")]
+visible = false
+
+[node name="Level3Objectives" parent="Node2D" instance=ExtResource("8_y4r1p")]
+visible = false
 
 [editable path="Pivot/Camera3D/Pistol"]
 [editable path="Health_Stamina"]
