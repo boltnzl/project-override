@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bb6h1bwar0xhp"]
 
-[ext_resource type="Script" uid="uid://ca65t7pw32hgi" path="res://scripts/restart.gd" id="1_q5shd"]
+[ext_resource type="Script" uid="uid://ca65t7pw32hgi" path="res://art/restart.gd" id="1_q5shd"]
 [ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="2_7dg1w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyatw"]

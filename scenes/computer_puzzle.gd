@@ -16,8 +16,6 @@ var door_node: Node = null
 func _ready() -> void:
 	if target_door != null and has_node(target_door):
 		door_node = get_node(target_door)
-	else:
-		print("⚠️ No door assigned for", computer_name)
 
 
 func _process(delta: float) -> void:

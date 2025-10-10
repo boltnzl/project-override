@@ -2,9 +2,10 @@ extends Control
 
 var door_node: Node = null 
 var typed_text : String
-var passcode : String = "5219"
+@export var passcode: String = "1234"
+@export var door_to_open: NodePath  
 var timer = Timer.new()
-@onready var label : RichTextLabel = $VBoxContainer/RichTextLabel
+@onready var label : RichTextLabel = $RichTextLabel
 @onready var square : Sprite2D = $Sprite2D
 @export var return_scene_path: String = "res://scenes/level.tscn"
 
@@ -100,13 +101,14 @@ func _on_enter_pressed() -> void:
 		label.text = typed_text
 		timer.start(0.5)
 		if door_node and door_node.has_method("open_door"):
-			print("Keypad correct! Opening door:", door_node.name)
 			door_node.call("open_door")
 	else :
-		square.modulate = Color(1,0,0)
 		typed_text = "Incorrect"
 		label.text = typed_text
-		timer.start(0.5)
+		var restart_scene = load("res://scenes/restart.tscn")
+		queue_free()
+		get_tree().change_scene_to_packed(restart_scene)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _return_to_game():

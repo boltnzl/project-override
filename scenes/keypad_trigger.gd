@@ -4,6 +4,9 @@ var keypad_instance : Node = null
 @onready var area = $Area3D
 var player_close = false
 @export var door_to_open: NodePath  
+@export var passcode_for_level: String = ""
+
+
 
 
 func _process(delta):
@@ -24,16 +27,9 @@ func _open_keypad():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 	GameData.puzzle_open = true
 	get_tree().paused = true 
-	
 	keypad_instance = preload("res://keypad_puzzle.tscn").instantiate()
 	get_tree().root.add_child(keypad_instance)
-
-	# Assign the door node safely
-	if door_to_open and has_node(door_to_open):
+	keypad_instance.passcode = passcode_for_level
+	if door_to_open != NodePath(""):
 		var door_node = get_node(door_to_open)
-		if "door_node" in keypad_instance:  # Check if property exists
-			keypad_instance.door_node = door_node
-		else:
-			print("⚠️ Keypad scene missing 'door_node' variable")
-	else:
-		print("⚠️ No door assigned for this keypad trigger")
+		keypad_instance.door_node = door_node
