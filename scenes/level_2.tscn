@@ -1696,6 +1696,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2408, 0, -5.20998)
 shape = SubResource("SphereShape3D_k22d5")
 
 [node name="Player" parent="." instance=ExtResource("12_172wr")]
+max_health = 100.0
+max_mag = 25
+total_ammo = 100
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -21, 0, -52.5)

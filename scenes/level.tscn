@@ -163,6 +163,9 @@ visible = false
 navigation_mesh = SubResource("NavigationMesh_1ainy")
 
 [node name="Player" parent="." instance=ExtResource("8_b121j")]
+max_health = 100.0
+max_mag = 25
+total_ammo = 100
 
 [node name="pausemenu" parent="Player" index="0"]
 metadata/_edit_use_anchors_ = true
@@ -712,7 +715,7 @@ transform = Transform3D(1, 1.95578e-08, -1.49012e-08, 7.45058e-09, 1, -7.45058e-
 shape = SubResource("BoxShape3D_5k0ak")
 
 [node name="bookshelf5" parent="Props" instance=ExtResource("8_8c41q")]
-transform = Transform3D(-1.76069, 1.77482, -7.758e-08, 5.13354e-16, -1.09278e-07, -2.5, -1.77482, -1.76069, 7.69624e-08, -82.6826, 3.81843, -22.4461)
+transform = Transform3D(-1.76069, 1.77482, -7.758e-08, 5.13354e-16, -1.09278e-07, -2.5, -1.77482, -1.76069, 7.69624e-08, -79.9553, 3.81843, -22.4461)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Props/bookshelf5"]
 

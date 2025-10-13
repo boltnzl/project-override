@@ -7,8 +7,6 @@ var player_close = false
 @export var passcode_for_level: String = ""
 
 
-
-
 func _process(delta):
 	if player_close and Input.is_action_just_pressed("use"):
 		_open_keypad()
@@ -17,6 +15,7 @@ func _process(delta):
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		player_close = true
+
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.name == "Player":

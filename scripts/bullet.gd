@@ -1,14 +1,15 @@
 extends Node3D
 
 const SPEED = 100.0
-
 @onready var mesh = $MeshInstance3D
 @onready var particles = $GPUParticles3D
 @onready var ray = $RayCast3D
 
+
 func _ready() -> void:
 	particles.one_shot = true
 	particles.emitting = false
+
 
 func _physics_process(delta: float) -> void:
 	var distance = SPEED * delta

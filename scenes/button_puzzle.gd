@@ -6,10 +6,10 @@ extends Node3D
 var player_near: bool = false
 var door_node: Node = null
 
+
 func _ready():
 	if door_to_open and has_node(door_to_open):
 		door_node = get_node(door_to_open)
-
 
 
 func _process(delta: float) -> void:
@@ -18,19 +18,15 @@ func _process(delta: float) -> void:
 
 
 func _press_button():
-	print("Button pressed!")
 	if door_node:
-		print("Door node:", door_node.name)
 		if door_node.has_method("open_door"):
-			print("Calling open_door()")
 			door_node.call("open_door")
-
-	
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		player_near = true
+
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.name == "Player":

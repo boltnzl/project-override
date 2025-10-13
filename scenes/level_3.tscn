@@ -270,10 +270,6 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.55491, 4.04403, -0.475174)
 max_health = 100.0
 max_mag = 25
 total_ammo = 100
-regendelay = 3.0
-regenrate = 10.0
-knockbackforce = 30
-knockbackdur = 0.2
 
 [node name="WinCondition" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62463, 0, -131.5)
@@ -375,7 +371,6 @@ physics_material_override = SubResource("PhysicsMaterial_p6vls")
 shape = SubResource("BoxShape3D_hhfj6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Walls/StaticBody3D7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_wae8j")
 
 [node name="StaticBody3D9" type="StaticBody3D" parent="Map/Walls"]

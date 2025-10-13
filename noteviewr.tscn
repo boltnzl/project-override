@@ -48,6 +48,7 @@ offset_bottom = 981.0
 texture = ExtResource("2_k0d5g")
 
 [node name="Label2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 594.0
 offset_top = 376.0
 offset_right = 1359.0
@@ -59,6 +60,7 @@ label_settings = SubResource("LabelSettings_y2b05")
 horizontal_alignment = 1
 
 [node name="Return" type="Button" parent="."]
+layout_mode = 0
 offset_left = 853.0
 offset_top = 922.0
 offset_right = 1316.0

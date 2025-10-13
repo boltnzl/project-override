@@ -40,6 +40,7 @@ script = ExtResource("1_0fd1j")
 passcode = ""
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.0980392, 0.0980392, 0.0980392, 0.294118)
@@ -110,6 +111,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="4" type="Button" parent="VBoxContainer/HBoxContainer3/Control"]
+layout_mode = 0
 offset_left = -33.0
 offset_top = 226.0
 offset_right = 448.0
@@ -124,6 +126,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_plycb")
 text = "4"
 
 [node name="5" type="Button" parent="VBoxContainer/HBoxContainer3/Control"]
+layout_mode = 0
 offset_left = 1033.0
 offset_top = 226.0
 offset_right = 1514.0
@@ -138,6 +141,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_plycb")
 text = "6"
 
 [node name="6" type="Button" parent="VBoxContainer/HBoxContainer3/Control"]
+layout_mode = 0
 offset_left = 497.0
 offset_top = 226.0
 offset_right = 978.0
@@ -158,6 +162,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="7" type="Button" parent="VBoxContainer/HBoxContainer4/Control"]
+layout_mode = 0
 offset_left = -33.0
 offset_top = 407.0
 offset_right = 448.0
@@ -172,6 +177,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_plycb")
 text = "7"
 
 [node name="8" type="Button" parent="VBoxContainer/HBoxContainer4/Control"]
+layout_mode = 0
 offset_left = 1033.0
 offset_top = 407.0
 offset_right = 1514.0
@@ -186,6 +192,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_plycb")
 text = "9"
 
 [node name="9" type="Button" parent="VBoxContainer/HBoxContainer4/Control"]
+layout_mode = 0
 offset_left = 497.0
 offset_top = 407.0
 offset_right = 978.0
@@ -206,6 +213,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="0" type="Button" parent="VBoxContainer/HBoxContainer2/Control"]
+layout_mode = 0
 offset_left = -33.0
 offset_top = 589.0
 offset_right = 448.0
@@ -220,6 +228,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_plycb")
 text = "0"
 
 [node name="CLEAR" type="Button" parent="VBoxContainer/HBoxContainer2/Control"]
+layout_mode = 0
 offset_left = 1033.0
 offset_top = 589.0
 offset_right = 1514.0
@@ -234,6 +243,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_plycb")
 text = "⌫"
 
 [node name="➡️" type="Button" parent="VBoxContainer/HBoxContainer2/Control"]
+layout_mode = 0
 offset_left = 497.0
 offset_top = 589.0
 offset_right = 978.0

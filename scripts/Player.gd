@@ -6,86 +6,99 @@ class_name Player
 #@onready var obj2 = $Node2D/Level2Objectives
 #@onready var obj3 = $Node2D/Level3Objectives
 
-const shake_frequency = 1.5
-const shake_amplitude = 0.06
-var sfov = 0.0
-var speed 
-const walk_speed = 10.0
-const sprint_speed = 20.0
-const jump_velocity = 10.0
-const sensitivity = 0.003
-var gravity = 20
-const fov = 90.0
-const fov_multi = 1.25
+# Movement variables
+const SHAKE_FREQUENCY = 1.5
+const SHAKE_AMPLITUDE = 0.06
+const WALK_SPEED = 10.0
+const SPRINT_SPEED = 20.0
+const JUMP_VELOCITY = 10.0
+const SENSITIVITY = 0.003
 
-var bullet = load("res://scenes/bullet.tscn")
-var instance
-@onready var pivot: Node3D = $Pivot
+# Movement constants
+var speed 
+var gravity = 20
+var field_of_view = 0.0
+
+# Camera 
+@onready var camera_pivot: Node3D = $Pivot
 @onready var camera: Camera3D = $Pivot/Camera3D
-@onready var stamina : ProgressBar = $"Health_Stamina/Stamina Bar"
+
+# Health Bar 
 @export var max_health: float = 100
+@export var regen_delay = 3.0      
+@export var regen_rate = 10.0 
 var current_health: float
+var in_combat = false
+var time_last_hit = 0.0
 @onready var health_bar = $"Health_Stamina/Health Bar"
-@onready var gun_animation = $Pivot/Camera3D/Pistol/AnimationPlayer
-@onready var gun_barrel = $Pivot/Camera3D/Pistol/RayCast3D
+
+# Stamina Bar
+@onready var stamina : ProgressBar = $"Health_Stamina/Stamina Bar"
+
+# Shooting
 @export var max_mag = 25
 @export var total_ammo = 100  
+var bullet = load("res://scenes/bullet.tscn")
+var instance
 var current_mag = max_mag     
-@onready var magazine_label = $AmmoCounter/Magazine
-@onready var ammo_label = $AmmoCounter/Ammo
 var reload_time = 2.0
 var is_reloading = false 
+@onready var magazine_label = $AmmoCounter/Magazine
+@onready var ammo_label = $AmmoCounter/Ammo
+@onready var gun_animation = $Pivot/Camera3D/Pistol/AnimationPlayer
+@onready var gun_barrel = $Pivot/Camera3D/Pistol/RayCast3D
 
-var incombat = false
-var timelasthit = 0.0
-@export var regendelay = 3.0      
-@export var regenrate = 10.0 
+# Knockback 
+@export var knockback_force = 30
+@export var knockback_duration = 0.2
+var knockback_velocity = Vector3.ZERO
+var knockback_time = 0.0
 
-var knockbackvelocity = Vector3.ZERO
-var knockbacktime = 0.0
-@export var knockbackforce = 30
-@export var knockbackdur = 0.2
-
-
+# Initializies player variables 
 func _ready():
 	#update_objectives()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	speed = walk_speed
+	speed = WALK_SPEED
 	current_health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 
-
+# Handles mouse movement which controls the rotation of the camera
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		pivot.rotate_y(-event.relative.x * sensitivity)
-		camera.rotate_x(-event.relative.y * sensitivity)
+		camera_pivot.rotate_y(-event.relative.x * SENSITIVITY)
+		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
+# Physics and Movement
 func _physics_process(delta: float) -> void:
-	if knockbacktime > 0:
-		velocity = knockbackvelocity
-		knockbacktime -= delta
+	if knockback_time > 0:
+		velocity = knockback_velocity
+		knockback_time -= delta
 	else:
 		if not is_on_floor():
-			velocity.y -= gravity * delta  
+			velocity.y -= gravity * delta 
+	
+	# Allows the player to speed up movement while holding down shift
 	if Input.is_action_pressed("sprint"):
 		if stamina.value > 0:
-			speed = sprint_speed
+			speed = SPRINT_SPEED
 		else:
-			speed = walk_speed
-	else:
-		speed = walk_speed
-
-
+			speed = SPRINT_SPEED
+	
+	# Allows the player to jump when pressing space
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
-
+		velocity.y = JUMP_VELOCITY
+		
+	# Allows the player to reload their gun by pressing R
 	if Input.is_action_just_pressed("reload"):
 		_reload()
 	
-	var input_dir := Input.get_vector("left", "right", "up", "down")
-	var direction := (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Gets input direction via WASD keys
+	var input_direction := Input.get_vector("left", "right", "up", "down")
+	var direction := (camera_pivot.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	
+	# Applies movement to the player
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * speed
@@ -94,43 +107,45 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0.0
 			velocity.z = 0.0
 	else:
+		# Applies mid-air physics to the player
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0) 
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
-	sfov += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(sfov)
 	
+	# Applies the bobbing effect while moving around
+	field_of_view += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(field_of_view)
+	
+	# Allows the player to shoot bullets when pressing left click
 	if Input.is_action_pressed("shoot"):
 		_shoot()
 	  
-	
-	if not incombat:
-		timelasthit += delta
-		if timelasthit >= regendelay and current_health < max_health:
-			current_health = min(current_health + regenrate * delta, max_health)
+	# Regenerates the player's health after a period of time of no damage taken
+	if not in_combat:
+		time_last_hit += delta
+		if time_last_hit >= regen_delay and current_health < max_health:
+			current_health = min(current_health + regen_rate * delta, max_health)
 			_update_health_bar()
 	else:
-		timelasthit += delta
-		if timelasthit >= regendelay:
-			incombat = false
-
-
+		time_last_hit += delta
+		if time_last_hit >= regen_delay:
+			in_combat = false
 	move_and_slide()
 
-
+# Applies bobbing to the player movement
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
-	pos.y = sin(time * shake_frequency)* shake_amplitude
-	pos.x = cos(time * shake_frequency/2) * shake_amplitude
+	pos.y = sin(time * SHAKE_FREQUENCY)* SHAKE_AMPLITUDE
+	pos.x = cos(time * SHAKE_FREQUENCY/2) * SHAKE_AMPLITUDE
 	return pos
 
-
+# Applies knockback to the player when being hit by an enemy
 func apply_knockback(from_position: Vector3) -> void:
-	var dir = (global_position - from_position).normalized()
-	knockbackvelocity = dir * knockbackforce
-	knockbackvelocity.y = 5
-	knockbacktime = knockbackdur
+	var direction = (global_position - from_position).normalized()
+	knockback_velocity = direction * knockback_force
+	knockback_velocity.y = 5
+	knockback_time = knockback_duration
 
-
+# Reloads the gun if magazine isn't full and ammo is available, then updates ammo UI
 func _reload():
 	if is_reloading:
 		return
@@ -148,12 +163,12 @@ func _reload():
 		_update_ammo_ui()
 		is_reloading = false
 
-
+# Updates the player's ammo in the UI
 func _update_ammo_ui():
 	magazine_label.text = str(total_ammo)
 	ammo_label.text = str(current_mag)
 
-
+# Fires a bullet if not reloading and ammo is avaliable, then updates ammo UI
 func _shoot():
 	if is_reloading:
 		return
@@ -170,27 +185,27 @@ func _shoot():
 		current_mag -= 1
 		_update_ammo_ui()
 
-
+# Gives the player ammo and updates ammo UI 
 func add_ammo(amount) -> void:
 	total_ammo += amount
 	_update_ammo_ui()
 
-
+# Decreass health, updates UI, and handles death if health reaches 0 
 func take_damage(amount):
 	current_health -= amount
 	current_health = max(current_health, 0)
 	_update_health_bar()
-	incombat = true
-	timelasthit = 0.0
+	in_combat = true
+	time_last_hit = 0.0
 	if current_health <= 0:
 		_death()
 
-
+# Updates the player's health bar
 func _update_health_bar():
 	if health_bar:
 		health_bar.value = current_health
 
-
+# Handles player's death and loads the restart screen upon death
 func _death():
 	var game_over_scene = load("res://scenes/restart.tscn").instantiate()
 	get_tree().root.add_child(game_over_scene)

@@ -7,16 +7,16 @@ var enemy_health = maxhealth
 var is_chasing = false
 var timelasthit = 0.0
 var incombat = false
-var player: Node3D = null
 const AMMO_PICKUP_SCENE = preload("res://scenes/ammo_drop.tscn")
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var aggro_area: Area3D = $AggroArea
+var player: Player = null
 
 
 func _ready() -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
-		player = players[0]
+		player = players[0] as Player
 
 
 func _physics_process(delta: float) -> void:

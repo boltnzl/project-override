@@ -9,6 +9,7 @@ var timer = Timer.new()
 @onready var square : Sprite2D = $Sprite2D
 @export var return_scene_path: String = "res://scenes/level.tscn"
 
+
 func _ready() -> void:
 	timer.autostart = false
 	timer.one_shot = true

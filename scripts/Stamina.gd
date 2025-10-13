@@ -1,5 +1,6 @@
 extends ProgressBar
 
+
 var regen_delay = 0.5       
 var regen_timer = 0.0
 var min = 20.0             

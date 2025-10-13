@@ -2,16 +2,14 @@ extends Node3D
 
 
 @export var target_door: NodePath
-
 @export var computer_name: String = "Computer"
 @export var clue_text: String = "Clue"
 @export var is_correct: bool = false
-
 var player_close: bool = false
 @onready var area = $Area3D
 var interacted: bool = false
-
 var door_node: Node = null  
+
 
 func _ready() -> void:
 	if target_door != null and has_node(target_door):
@@ -34,6 +32,7 @@ func _open_computer_screen():
 func _on_detect_body_entered(body: Node3D) -> void:
 	if body.name == "Player" and not interacted:
 		player_close = true
+
 
 func _on_detect_body_exited(body: Node3D) -> void:
 	if body.name == "Player":

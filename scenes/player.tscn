@@ -19,13 +19,6 @@ radius = 0.679296
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.04403, 0)
 script = ExtResource("1_g2els")
-max_health = null
-max_mag = null
-total_ammo = null
-regendelay = null
-regenrate = null
-knockbackforce = null
-knockbackdur = null
 
 [node name="pausemenu" parent="." instance=ExtResource("2_qlg0r")]
 
