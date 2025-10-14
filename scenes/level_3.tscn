@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://cjaao0chuc7j7"]
+[gd_scene load_steps=105 format=3 uid="uid://cjaao0chuc7j7"]
 
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="1_70nk6"]
 [ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scripts/win_condition.gd" id="2_h23n6"]
@@ -8,18 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="5_hhfj6"]
 [ext_resource type="PackedScene" uid="uid://8pufnd4b4ikx" path="res://art/locker.glb" id="5_p3r0x"]
 [ext_resource type="PackedScene" uid="uid://bd3vn0u3jtuy5" path="res://art/table.glb" id="6_5xqnf"]
-[ext_resource type="Script" uid="uid://8ld1k3dm3wkr" path="res://scenes/door.gd" id="6_wae8j"]
 [ext_resource type="PackedScene" uid="uid://biiantx5afanr" path="res://scenes/door.tscn" id="7_ha73p"]
 [ext_resource type="PackedScene" uid="uid://d3v8ja21q43pq" path="res://art/bookshelf.glb" id="7_una4e"]
 [ext_resource type="PackedScene" uid="uid://belws8jdj4bbh" path="res://art/cabinet.glb" id="8_5xqnf"]
 [ext_resource type="PackedScene" uid="uid://b4e7dtscmaicw" path="res://art/cardboardboxclosed.glb" id="10_wa6ex"]
 [ext_resource type="PackedScene" uid="uid://dkbp5lchc8o5o" path="res://art/computer.glb" id="11_ema3p"]
 [ext_resource type="PackedScene" uid="uid://wgpy1g6x0f0u" path="res://art/cardboardboxopen.glb" id="11_sx8yt"]
-[ext_resource type="Script" uid="uid://boylrxhnnkhws" path="res://scenes/computer_puzzle.gd" id="12_8uepa"]
+[ext_resource type="Script" path="res://scenes/computer_puzzle.gd" id="12_8uepa"]
 [ext_resource type="PackedScene" uid="uid://dsy7rg6rxs162" path="res://art/chair.glb" id="12_k5r18"]
 [ext_resource type="PackedScene" uid="uid://dyumlylj5oml4" path="res://art/blue_barrel.glb" id="13_bk4f1"]
-[ext_resource type="Script" uid="uid://bdcm4lvlfvd1g" path="res://scenes/keypad_trigger.gd" id="13_q7pjq"]
-[ext_resource type="Script" uid="uid://bkxc7ddmbtqsw" path="res://scenes/button_puzzle.gd" id="14_wa6ex"]
+[ext_resource type="Script" path="res://scenes/keypad_trigger.gd" id="13_q7pjq"]
+[ext_resource type="Script" path="res://scenes/button_puzzle.gd" id="14_wa6ex"]
 [ext_resource type="PackedScene" uid="uid://bulvbnw0qjde0" path="res://art/toxic_barrel.glb" id="14_wu3ic"]
 [ext_resource type="PackedScene" uid="uid://cs0plw2s8ewmp" path="res://art/other_barrel.glb" id="15_vv2vh"]
 [ext_resource type="PackedScene" uid="uid://bww1fnl8aqry6" path="res://art/oilbarrel.glb" id="16_5kn0t"]
@@ -267,9 +266,6 @@ glow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_70nk6")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.55491, 4.04403, -0.475174)
-max_health = 100.0
-max_mag = 25
-total_ammo = 100
 
 [node name="WinCondition" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62463, 0, -131.5)
@@ -1991,7 +1987,6 @@ mesh = SubResource("BoxMesh_5xqnf")
 
 [node name="dooropen2" parent="Door" instance=ExtResource("5_hhfj6")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-script = ExtResource("6_wae8j")
 
 [node name="Door2" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -50.5, 0, -53)
@@ -2030,7 +2025,6 @@ mesh = SubResource("BoxMesh_5xqnf")
 
 [node name="dooropen2" parent="Door2" instance=ExtResource("5_hhfj6")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-script = ExtResource("6_wae8j")
 
 [node name="Door3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.5, 0, -7)
@@ -2069,7 +2063,6 @@ mesh = SubResource("BoxMesh_5xqnf")
 
 [node name="dooropen2" parent="Door3" instance=ExtResource("5_hhfj6")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -7.0557)
-script = ExtResource("6_wae8j")
 
 [node name="Door7" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -16, 0, -129)
@@ -2108,7 +2101,6 @@ mesh = SubResource("BoxMesh_5xqnf")
 
 [node name="dooropen2" parent="Door7" instance=ExtResource("5_hhfj6")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -7.0557)
-script = ExtResource("6_wae8j")
 
 [node name="Door4" parent="." instance=ExtResource("7_ha73p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -16)

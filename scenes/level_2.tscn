@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://bdkprmaslovs6"]
+[gd_scene load_steps=105 format=3 uid="uid://bdkprmaslovs6"]
 
 [ext_resource type="Script" uid="uid://dl2aunm2flagq" path="res://scripts/level_2.gd" id="1_pbc48"]
 [ext_resource type="Texture2D" uid="uid://b3vmknmyfpdj8" path="res://art/tilewalls1.png" id="2_eqxsl"]
@@ -7,17 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://c054ju58drrcb" path="res://art/tilefloor.png" id="3_b4j7a"]
 [ext_resource type="PackedScene" uid="uid://biiantx5afanr" path="res://scenes/door.tscn" id="5_y0kc7"]
 [ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="6_ne2mo"]
-[ext_resource type="Script" uid="uid://8ld1k3dm3wkr" path="res://scenes/door.gd" id="7_6cvei"]
 [ext_resource type="PackedScene" uid="uid://dkbp5lchc8o5o" path="res://art/computer.glb" id="8_hey2k"]
-[ext_resource type="Script" uid="uid://boylrxhnnkhws" path="res://scenes/computer_puzzle.gd" id="9_172wr"]
-[ext_resource type="Script" uid="uid://bkxc7ddmbtqsw" path="res://scenes/button_puzzle.gd" id="10_g2hoc"]
+[ext_resource type="Script" path="res://scenes/computer_puzzle.gd" id="9_172wr"]
+[ext_resource type="Script" path="res://scenes/button_puzzle.gd" id="10_g2hoc"]
 [ext_resource type="PackedScene" uid="uid://dyumlylj5oml4" path="res://art/blue_barrel.glb" id="10_vhnap"]
-[ext_resource type="Script" uid="uid://bdcm4lvlfvd1g" path="res://scenes/keypad_trigger.gd" id="11_fldb1"]
+[ext_resource type="Script" path="res://scenes/keypad_trigger.gd" id="11_fldb1"]
 [ext_resource type="PackedScene" uid="uid://bulvbnw0qjde0" path="res://art/toxic_barrel.glb" id="11_vwfin"]
 [ext_resource type="PackedScene" uid="uid://cs0plw2s8ewmp" path="res://art/other_barrel.glb" id="12_63d2t"]
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="12_172wr"]
 [ext_resource type="PackedScene" uid="uid://d3v8ja21q43pq" path="res://art/bookshelf.glb" id="13_va6c3"]
-[ext_resource type="Script" uid="uid://bxa5ktdaytbk7" path="res://scenes/paper_clue.gd" id="13_vwfin"]
+[ext_resource type="Script" path="res://scenes/paper_clue.gd" id="13_vwfin"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="14_fldb1"]
 [ext_resource type="PackedScene" uid="uid://b4e7dtscmaicw" path="res://art/cardboardboxclosed.glb" id="16_k6a82"]
 [ext_resource type="PackedScene" uid="uid://wgpy1g6x0f0u" path="res://art/cardboardboxopen.glb" id="17_1sb0y"]
@@ -1580,7 +1579,6 @@ mesh = SubResource("BoxMesh_guvtl")
 
 [node name="dooropen2" parent="Door" instance=ExtResource("6_ne2mo")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-script = ExtResource("7_6cvei")
 
 [node name="Door5" type="Node3D" parent="."]
 transform = Transform3D(8.74228e-08, 0, 1, 0, 1, 0, -1, 0, 8.74228e-08, 59.5, 0, -9)
@@ -1619,7 +1617,6 @@ mesh = SubResource("BoxMesh_guvtl")
 
 [node name="dooropen2" parent="Door5" instance=ExtResource("6_ne2mo")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-script = ExtResource("7_6cvei")
 
 [node name="ComputerPuzzle" type="Node3D" parent="."]
 transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, -34.8991, 0, -56.1729)
@@ -1696,9 +1693,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2408, 0, -5.20998)
 shape = SubResource("SphereShape3D_k22d5")
 
 [node name="Player" parent="." instance=ExtResource("12_172wr")]
-max_health = 100.0
-max_mag = 25
-total_ammo = 100
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -21, 0, -52.5)

@@ -43,6 +43,10 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_tuyoq")
 
 [node name="Health_Stamina" parent="." instance=ExtResource("3_qhqgy")]
+script = null
+
+[node name="Health Bar" parent="Health_Stamina" index="2"]
+script = null
 
 [node name="AmmoCounter" parent="." instance=ExtResource("4_dqkch")]
 

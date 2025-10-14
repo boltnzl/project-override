@@ -4,7 +4,7 @@ extends Area3D
 var picked_up = false
 
 
-# When player enters ammo drop area, adds random ammo to the player.
+# When player enters ammo drop area, adds random ammo to the player and in-game model disappears
 func _on_body_entered(body: Node) -> void:
 	if picked_up == true:
 		return

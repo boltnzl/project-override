@@ -1,14 +1,14 @@
-[gd_scene load_steps=65 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=64 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://b3vmknmyfpdj8" path="res://art/tilewalls1.png" id="3_8gofh"]
 [ext_resource type="Texture2D" uid="uid://c054ju58drrcb" path="res://art/tilefloor.png" id="3_h6wmr"]
 [ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scripts/win_condition.gd" id="4_mx8sn"]
-[ext_resource type="Script" uid="uid://bdcm4lvlfvd1g" path="res://scenes/keypad_trigger.gd" id="4_ppgk2"]
+[ext_resource type="Script" path="res://scenes/keypad_trigger.gd" id="4_ppgk2"]
 [ext_resource type="Texture2D" uid="uid://bmalot5wsw85r" path="res://art/ceiling.png" id="4_pqd0y"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="5_f2txt"]
-[ext_resource type="Script" uid="uid://boylrxhnnkhws" path="res://scenes/computer_puzzle.gd" id="6_2r41h"]
-[ext_resource type="Script" uid="uid://2xxllxnq2kx6" path="res://scenes/spawner.gd" id="6_klq6b"]
+[ext_resource type="Script" path="res://scenes/computer_puzzle.gd" id="6_2r41h"]
+[ext_resource type="Script" path="res://scenes/spawner.gd" id="6_klq6b"]
 [ext_resource type="PackedScene" uid="uid://d3v8ja21q43pq" path="res://art/bookshelf.glb" id="8_8c41q"]
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="8_b121j"]
 [ext_resource type="PackedScene" uid="uid://8pufnd4b4ikx" path="res://art/locker.glb" id="9_64w2a"]
@@ -23,8 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://belws8jdj4bbh" path="res://art/cabinet.glb" id="19_xy2fk"]
 [ext_resource type="PackedScene" uid="uid://biiantx5afanr" path="res://scenes/door.tscn" id="23_5k0ak"]
 [ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="24_3ies3"]
-[ext_resource type="Script" uid="uid://8ld1k3dm3wkr" path="res://scenes/door.gd" id="25_cmcjb"]
-[ext_resource type="Script" uid="uid://bkxc7ddmbtqsw" path="res://scenes/button_puzzle.gd" id="25_xy2fk"]
+[ext_resource type="Script" path="res://scenes/button_puzzle.gd" id="25_xy2fk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -163,9 +162,6 @@ visible = false
 navigation_mesh = SubResource("NavigationMesh_1ainy")
 
 [node name="Player" parent="." instance=ExtResource("8_b121j")]
-max_health = 100.0
-max_mag = 25
-total_ammo = 100
 
 [node name="pausemenu" parent="Player" index="0"]
 metadata/_edit_use_anchors_ = true
@@ -1689,7 +1685,6 @@ mesh = SubResource("BoxMesh_7agi7")
 
 [node name="dooropen2" parent="Door" instance=ExtResource("24_3ies3")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
-script = ExtResource("25_cmcjb")
 
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 [connection signal="body_entered" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_entered"]

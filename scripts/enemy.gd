@@ -1,16 +1,23 @@
 extends CharacterBody3D
 
+# Enemy movement
 const SPEED = 10.0
+var player: Player = null
+var is_chasing = false
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var aggro_area: Area3D = $AggroArea
+
+# Enemy health
 @export var maxhealth = 10.0
 @export var damage = 10.0
 var enemy_health = maxhealth
-var is_chasing = false
+
+# Combat 
 var timelasthit = 0.0
 var incombat = false
+
+# Ammo drop
 const AMMO_PICKUP_SCENE = preload("res://scenes/ammo_drop.tscn")
-@onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var aggro_area: Area3D = $AggroArea
-var player: Player = null
 
 
 func _ready() -> void:
@@ -18,7 +25,7 @@ func _ready() -> void:
 	if players.size() > 0:
 		player = players[0] as Player
 
-
+# Checks if the player is in range of the enemy, then starts to follow the player if 
 func _physics_process(delta: float) -> void:
 	if is_chasing and player:
 		var dir = player.global_transform.origin - global_transform.origin
@@ -38,7 +45,8 @@ func _physics_process(delta: float) -> void:
 			anim.play("Idle")
 	move_and_slide()
 
-
+# Checks if the enemy's health is 0, if so, will spawn an ammo drop model on the zombie and then 
+# will despawn
 func hit(amount) -> void:
 	if enemy_health <= 0:
 		return  
@@ -50,27 +58,27 @@ func hit(amount) -> void:
 		pickup.amount = randi_range(5, 15)
 		queue_free()
 
-
+# Spawns ammo onto the ground for the player to pick up
 func _drop_ammo() -> void:
 	var pickup = AMMO_PICKUP_SCENE.instantiate()
 	pickup.global_transform = global_transform
 	pickup.amount = randi_range(5, 15)
 	get_parent().add_child(pickup)
 
-
+# Detects when the player is in range to chase
 func _on_chase_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		is_chasing = true
 		incombat = true
 		timelasthit = 0.0
 
-
+# Detects when the player is out of range to chase
 func _on_chase_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		is_chasing = false
 		incombat = false
 
-
+# Detects when the player is in range to attack
 func _on_attack_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		body.take_damage(damage)

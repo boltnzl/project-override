@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://p6pd6khuldnd"]
+[gd_scene load_steps=4 format=3 uid="uid://p6pd6khuldnd"]
 
 [ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="1_bvcxi"]
-[ext_resource type="Script" uid="uid://bfyhsfi3pd1ex" path="res://scenes/objectives.gd" id="1_qldaq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qldaq"]
 font = ExtResource("1_bvcxi")
@@ -18,7 +17,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qldaq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

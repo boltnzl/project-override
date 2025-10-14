@@ -15,7 +15,6 @@ func _physics_process(delta: float) -> void:
 	var distance = SPEED * delta
 	ray.target_position = Vector3(0, 0, -distance)
 	position += transform.basis * Vector3(0, 0, -SPEED) * delta
-	
 	if ray.is_colliding():
 		mesh.visible = false
 		particles.emitting = true
