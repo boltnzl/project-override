@@ -2,16 +2,16 @@ extends Node3D
 
 @export var door_to_open: NodePath   
 @export var button_mesh: NodePath    
-@onready var area = $Area3D
+@onready var area: Area3D = $Area3D
 var player_near: bool = false
 var door_node: Node = null
 
-
+# Checks if a door node path is assigned and retrieves the door node
 func _ready():
 	if door_to_open and has_node(door_to_open):
 		door_node = get_node(door_to_open)
 
-# Opens the next door if the player is in the area of the button and presses "E"
+# Opens the next door if the player is in the area of the button and presses the E key
 func _process(delta: float) -> void:
 	if player_near and Input.is_action_just_pressed("use"):
 		_press_button()

@@ -1,8 +1,8 @@
 extends Control
 
 # Button variables
-@onready var button = $"."
-@onready var background = $"../Polygon2D"
+@onready var button: Button = $"."
+@onready var background: Polygon2D = $"../Polygon2D"
 
 # Changes the background of the button to transparent and connects hover and exit 
 func _ready():

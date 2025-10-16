@@ -1,8 +1,9 @@
 extends Control
 
-@onready var clue_label = $Panel/Label
-@onready var computer_label = $Panel/Label2
-@onready var accept = $Accept
+
+@onready var clue_label: Label = $Panel/Label
+@onready var computer_label: Label = $Panel/Label2
+@onready var accept: Button = $Accept
 var correct: bool = false
 var computer_node: Node = null
 @export var restart_scene_path: String = "res://scenes/restart_scene.tscn"
@@ -14,9 +15,8 @@ func set_clue(clue_text: String, comp_name: String, is_correct: bool, comp_node:
 	correct = is_correct
 	computer_node = comp_node
 
-# When accept button is pressed, checks if the player has chosen the correct computer. If they 
-
-
+# When accept button is pressed, checks if the player has chosen the correct computer. 
+# If they have, opens the next door. If they haven't, restarts the player
 func _on_accept_pressed() -> void:
 	get_tree().paused = false
 	queue_free()
@@ -29,7 +29,6 @@ func _on_accept_pressed() -> void:
 		var restart_scene = load("res://scenes/restart.tscn")
 		get_tree().change_scene_to_packed(restart_scene)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
 
 # Returns the player back to the game upon pressing the "Return" button
 func _on_return_pressed() -> void:

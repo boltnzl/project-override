@@ -1,12 +1,12 @@
 extends ProgressBar
 
-# Stamina variables
-var regen_delay = 0.5       
-var regen_timer = 0.0
-var minimum_stamina = 20.0             
-var exhausted = false       
-var drain_rate = 0.5
-var regenerate = 0.4
+
+var regen_delay: float = 0.5       
+var regen_timer: float = 0.0
+var minimum_stamina: float = 20.0             
+var exhausted: bool = false       
+var drain_rate: float = 0.5
+var regen_rate: float = 0.4
 
 # Sets the stamina bar to max upon the start
 func _ready():
@@ -26,6 +26,6 @@ func _process(delta):
 		if regen_timer < regen_delay:
 			regen_timer += delta
 		elif value < max_value:
-			value += regenerate 
+			value += regen_rate 
 			if exhausted and value >= minimum_stamina:
 				exhausted = false

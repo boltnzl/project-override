@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://bdkprmaslovs6"]
+[gd_scene load_steps=104 format=3 uid="uid://bdkprmaslovs6"]
 
 [ext_resource type="Script" uid="uid://dl2aunm2flagq" path="res://scripts/level_2.gd" id="1_pbc48"]
 [ext_resource type="Texture2D" uid="uid://b3vmknmyfpdj8" path="res://art/tilewalls1.png" id="2_eqxsl"]
@@ -8,21 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://biiantx5afanr" path="res://scenes/door.tscn" id="5_y0kc7"]
 [ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="6_ne2mo"]
 [ext_resource type="PackedScene" uid="uid://dkbp5lchc8o5o" path="res://art/computer.glb" id="8_hey2k"]
-[ext_resource type="Script" path="res://scenes/computer_puzzle.gd" id="9_172wr"]
-[ext_resource type="Script" path="res://scenes/button_puzzle.gd" id="10_g2hoc"]
 [ext_resource type="PackedScene" uid="uid://dyumlylj5oml4" path="res://art/blue_barrel.glb" id="10_vhnap"]
-[ext_resource type="Script" path="res://scenes/keypad_trigger.gd" id="11_fldb1"]
 [ext_resource type="PackedScene" uid="uid://bulvbnw0qjde0" path="res://art/toxic_barrel.glb" id="11_vwfin"]
 [ext_resource type="PackedScene" uid="uid://cs0plw2s8ewmp" path="res://art/other_barrel.glb" id="12_63d2t"]
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="12_172wr"]
 [ext_resource type="PackedScene" uid="uid://d3v8ja21q43pq" path="res://art/bookshelf.glb" id="13_va6c3"]
-[ext_resource type="Script" path="res://scenes/paper_clue.gd" id="13_vwfin"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="14_fldb1"]
 [ext_resource type="PackedScene" uid="uid://b4e7dtscmaicw" path="res://art/cardboardboxclosed.glb" id="16_k6a82"]
 [ext_resource type="PackedScene" uid="uid://wgpy1g6x0f0u" path="res://art/cardboardboxopen.glb" id="17_1sb0y"]
 [ext_resource type="PackedScene" uid="uid://dsy7rg6rxs162" path="res://art/chair.glb" id="18_vhnap"]
+[ext_resource type="Script" uid="uid://boylrxhnnkhws" path="res://scripts/computer_puzzle.gd" id="18_vwfin"]
+[ext_resource type="Script" uid="uid://bkxc7ddmbtqsw" path="res://scripts/button_puzzle.gd" id="19_63d2t"]
 [ext_resource type="PackedScene" uid="uid://bd3vn0u3jtuy5" path="res://art/table.glb" id="19_vwfin"]
 [ext_resource type="PackedScene" uid="uid://8pufnd4b4ikx" path="res://art/locker.glb" id="20_63d2t"]
+[ext_resource type="Script" uid="uid://bxa5ktdaytbk7" path="res://scripts/paper_clue.gd" id="23_pc3at"]
 [ext_resource type="PackedScene" uid="uid://bww1fnl8aqry6" path="res://art/oilbarrel.glb" id="23_va6c3"]
 [ext_resource type="PackedScene" uid="uid://ddcpovljf5ps3" path="res://art/green_barrel.glb" id="26_pc3at"]
 
@@ -212,14 +211,13 @@ material = SubResource("StandardMaterial3D_556r4")
 [sub_resource type="SphereShape3D" id="SphereShape3D_guvtl"]
 radius = 3.3795
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7agi7"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_wdtqu"]
-material = SubResource("ShaderMaterial_7agi7")
-size = Vector3(0.2, 0.2, 0.2)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_7qsfm"]
 radius = 1.14777
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgibu"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_73m23"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73m23"]
 albedo_color = Color(0.344076, 0.344076, 0.344076, 1)
@@ -1526,7 +1524,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0252075, 0.111176, -0.0672
 shape = SubResource("BoxShape3D_srjk8")
 
 [node name="WinCondition" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.8754, 0, -128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8754, 0, 15)
 script = ExtResource("2_jm1iu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WinCondition"]
@@ -1623,11 +1621,7 @@ transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 
 
 [node name="computer" parent="ComputerPuzzle" instance=ExtResource("8_hey2k")]
 transform = Transform3D(-0.356402, 0, -1.45704, 0, 1.5, 0, 1.45704, 0, -0.356402, -48.2469, 4.78879, -16.2148)
-script = ExtResource("9_172wr")
-target_door = NodePath("../../Door3")
-computer_name = "Computer 3"
-clue_text = "Computer 2 is telling the truth. I may or may not be the key to the next room."
-is_correct = true
+script = ExtResource("18_vwfin")
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer"]
 
@@ -1637,10 +1631,7 @@ shape = SubResource("SphereShape3D_guvtl")
 
 [node name="computer2" parent="ComputerPuzzle" instance=ExtResource("8_hey2k")]
 transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -57.3299, 4.77825, -6.72479)
-script = ExtResource("9_172wr")
-target_door = NodePath("../../Door3")
-computer_name = "Computer 2"
-clue_text = "Computer 3 is lying. I do have the key to the next room."
+script = ExtResource("18_vwfin")
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer2"]
 
@@ -1650,10 +1641,7 @@ shape = SubResource("SphereShape3D_guvtl")
 
 [node name="computer3" parent="ComputerPuzzle" instance=ExtResource("8_hey2k")]
 transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -85.0986, 2.11053, -15.988)
-script = ExtResource("9_172wr")
-target_door = NodePath("../../Door3")
-computer_name = "Computer 1"
-clue_text = "Computer 3 has the key. I am telling the truth"
+script = ExtResource("18_vwfin")
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer3"]
 
@@ -1662,13 +1650,8 @@ transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0.664473
 shape = SubResource("SphereShape3D_guvtl")
 
 [node name="ButtonPuzzle" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5433, 0.12455, -88.9306)
-script = ExtResource("10_g2hoc")
-door_to_open = NodePath("../Door2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonPuzzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.82968)
-mesh = SubResource("BoxMesh_wdtqu")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5433, 0.12455, -92.6306)
+script = ExtResource("19_63d2t")
 
 [node name="Area3D" type="Area3D" parent="ButtonPuzzle"]
 
@@ -1676,11 +1659,13 @@ mesh = SubResource("BoxMesh_wdtqu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.8025)
 shape = SubResource("SphereShape3D_7qsfm")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ButtonPuzzle"]
+transform = Transform3D(0.2, 0, 0, 0, -0.2, -1.74846e-08, 0, 1.74846e-08, -0.2, 0, 0, 2.72405)
+material_override = SubResource("StandardMaterial3D_bgibu")
+mesh = SubResource("TorusMesh_73m23")
+
 [node name="KeypadTrigger" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, -39.431, 2.54403, -122)
-script = ExtResource("11_fldb1")
-door_to_open = NodePath("../Door4")
-passcode_for_level = "2531"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="KeypadTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, -2.11363, 0.441314, -5.48369)
@@ -1698,9 +1683,6 @@ shape = SubResource("SphereShape3D_k22d5")
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -21, 0, -52.5)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("14_fldb1")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -41, 2, -9.5)
-
-[node name="Enemy10" parent="Enemies" instance=ExtResource("14_fldb1")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -41, 2, -9.5)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("14_fldb1")]
@@ -1759,6 +1741,7 @@ transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75,
 
 [node name="Enemies3" type="Node3D" parent="."]
 transform = Transform3D(0.35, 0, 0.606218, 0, 0.7, 0, -0.606218, 0, 0.35, -58, 0, -35.5)
+visible = false
 
 [node name="Enemy" parent="Enemies3" instance=ExtResource("14_fldb1")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -41, 2, -9.5)
@@ -1871,8 +1854,7 @@ shape = SubResource("BoxShape3D_pc3at")
 [node name="Note" type="StaticBody3D" parent="."]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -9, 2.47051, -116.28)
 physics_material_override = SubResource("PhysicsMaterial_va6c3")
-script = ExtResource("13_vwfin")
-clue_text = "2531"
+script = ExtResource("23_pc3at")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Note"]
 transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 4, 0, 0.66729, 0)

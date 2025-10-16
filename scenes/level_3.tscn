@@ -1,6 +1,7 @@
-[gd_scene load_steps=105 format=3 uid="uid://cjaao0chuc7j7"]
+[gd_scene load_steps=106 format=3 uid="uid://cjaao0chuc7j7"]
 
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="1_70nk6"]
+[ext_resource type="Script" uid="uid://c1w6g3vkw2gab" path="res://scripts/level_3.gd" id="1_bk4f1"]
 [ext_resource type="Script" uid="uid://dvolydp225yem" path="res://scripts/win_condition.gd" id="2_h23n6"]
 [ext_resource type="Texture2D" uid="uid://b3vmknmyfpdj8" path="res://art/tilewalls1.png" id="3_1pn4d"]
 [ext_resource type="Texture2D" uid="uid://bmalot5wsw85r" path="res://art/ceiling.png" id="3_una4e"]
@@ -14,15 +15,15 @@
 [ext_resource type="PackedScene" uid="uid://b4e7dtscmaicw" path="res://art/cardboardboxclosed.glb" id="10_wa6ex"]
 [ext_resource type="PackedScene" uid="uid://dkbp5lchc8o5o" path="res://art/computer.glb" id="11_ema3p"]
 [ext_resource type="PackedScene" uid="uid://wgpy1g6x0f0u" path="res://art/cardboardboxopen.glb" id="11_sx8yt"]
-[ext_resource type="Script" path="res://scenes/computer_puzzle.gd" id="12_8uepa"]
 [ext_resource type="PackedScene" uid="uid://dsy7rg6rxs162" path="res://art/chair.glb" id="12_k5r18"]
 [ext_resource type="PackedScene" uid="uid://dyumlylj5oml4" path="res://art/blue_barrel.glb" id="13_bk4f1"]
-[ext_resource type="Script" path="res://scenes/keypad_trigger.gd" id="13_q7pjq"]
-[ext_resource type="Script" path="res://scenes/button_puzzle.gd" id="14_wa6ex"]
 [ext_resource type="PackedScene" uid="uid://bulvbnw0qjde0" path="res://art/toxic_barrel.glb" id="14_wu3ic"]
 [ext_resource type="PackedScene" uid="uid://cs0plw2s8ewmp" path="res://art/other_barrel.glb" id="15_vv2vh"]
 [ext_resource type="PackedScene" uid="uid://bww1fnl8aqry6" path="res://art/oilbarrel.glb" id="16_5kn0t"]
 [ext_resource type="PackedScene" uid="uid://dm0g5mvsicmvs" path="res://scenes/enemy.tscn" id="17_ema3p"]
+[ext_resource type="Script" uid="uid://boylrxhnnkhws" path="res://scripts/computer_puzzle.gd" id="20_w5nkq"]
+[ext_resource type="Script" uid="uid://bdcm4lvlfvd1g" path="res://scripts/keypad_trigger.gd" id="21_bk4f1"]
+[ext_resource type="Script" uid="uid://bkxc7ddmbtqsw" path="res://scripts/button_puzzle.gd" id="22_wu3ic"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p6vls"]
 size = Vector3(8.5, 6.5, 10)
@@ -263,6 +264,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="level_3" type="Node3D"]
+script = ExtResource("1_bk4f1")
 
 [node name="Player" parent="." instance=ExtResource("1_70nk6")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.55491, 4.04403, -0.475174)
@@ -333,6 +335,7 @@ transform = Transform3D(40, 0, 0, 0, 0.1, 0, 0, 0, 40, -7, 20, -122)
 shape = SubResource("BoxShape3D_wu3ic")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Ceilling/StaticBody3D2"]
+visible = false
 mesh = SubResource("BoxMesh_5kn0t")
 
 [node name="Other" type="Node3D" parent="Map"]
@@ -2119,10 +2122,7 @@ transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 
 
 [node name="computer" parent="ComputerPuzzle" instance=ExtResource("11_ema3p")]
 transform = Transform3D(1.2823, 0, 0.778268, 0, 1.5, 0, -0.778268, 0, 1.2823, -71.5267, 5.31449, -25.3119)
-script = ExtResource("12_8uepa")
-target_door = NodePath("../../Door8")
-computer_name = "Computer 1"
-clue_text = "I am the one with the key."
+script = ExtResource("20_w5nkq")
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer"]
 
@@ -2132,10 +2132,7 @@ shape = SubResource("SphereShape3D_wu3ic")
 
 [node name="computer2" parent="ComputerPuzzle" instance=ExtResource("11_ema3p")]
 transform = Transform3D(-0.388228, 0, 1.44889, 0, 1.5, 0, -1.44889, 0, -0.388228, -68.827, 2.27825, 2.90939)
-script = ExtResource("12_8uepa")
-target_door = NodePath("../../Door8")
-computer_name = "Computer 3"
-clue_text = "Computer 2 is telling the truth and 1 is not."
+script = ExtResource("20_w5nkq")
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer2"]
 
@@ -2144,12 +2141,8 @@ transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0.664473
 shape = SubResource("SphereShape3D_wu3ic")
 
 [node name="computer3" parent="ComputerPuzzle" instance=ExtResource("11_ema3p")]
-transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -52.873, 5.11053, -7.11337)
-script = ExtResource("12_8uepa")
-target_door = NodePath("../../Door8")
-computer_name = "Computer 2"
-clue_text = "Computer 1 is lying. I have the key"
-is_correct = true
+transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -52.9516, 5.02431, -7.24121)
+script = ExtResource("20_w5nkq")
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer3"]
 
@@ -2159,9 +2152,9 @@ shape = SubResource("SphereShape3D_wu3ic")
 
 [node name="KeypadTrigger" type="Node3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.069, 2.04403, -40.5)
-script = ExtResource("13_q7pjq")
+script = ExtResource("21_bk4f1")
 door_to_open = NodePath("../Door4")
-passcode_for_level = "4129"
+passcode_for_level = "1234"
 
 [node name="Area3D" type="Area3D" parent="KeypadTrigger"]
 
@@ -2175,8 +2168,7 @@ mesh = SubResource("BoxMesh_sx8yt")
 
 [node name="ButtonPuzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102.543, 1.12455, -17.4306)
-script = ExtResource("14_wa6ex")
-door_to_open = NodePath("../Door5")
+script = ExtResource("22_wu3ic")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonPuzzle"]
 transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, -13.0151)
@@ -2184,7 +2176,7 @@ material_override = SubResource("StandardMaterial3D_jnlnj")
 mesh = SubResource("TorusMesh_nhai6")
 
 [node name="Area3D" type="Area3D" parent="ButtonPuzzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.695038, 0.405728, -13.8616)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.695038, 2.29459, -13.8616)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonPuzzle/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.8025)
@@ -2192,17 +2184,16 @@ shape = SubResource("SphereShape3D_1rxxv")
 
 [node name="ButtonPuzzle2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52225, 13.3778, -107.311)
-script = ExtResource("14_wa6ex")
-door_to_open = NodePath("../Door6")
+script = ExtResource("22_wu3ic")
 
 [node name="Area3D" type="Area3D" parent="ButtonPuzzle2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonPuzzle2/Area3D"]
-transform = Transform3D(1.31537, 0, 0, 0, 0.854226, 0, 0, 0, 1, 0, -0.515355, 2.8025)
+transform = Transform3D(1.31537, 0, 0, 0, 0.854226, 0, 0, 0, 1, 0.0177193, 1.48039, 1.99753)
 shape = SubResource("SphereShape3D_1rxxv")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="ButtonPuzzle2"]
-transform = Transform3D(0.2, 0, 0, 0, -0.2, -1.74846e-08, 0, 1.74846e-08, -0.2, 0, -0.172463, 1.82968)
+transform = Transform3D(0.2, 0, 0, 0, -0.2, -1.74846e-08, 0, 1.74846e-08, -0.2, -1.80322, -0.0304317, 1.60345)
 material_override = SubResource("StandardMaterial3D_jnlnj")
 mesh = SubResource("TorusMesh_nhai6")
 

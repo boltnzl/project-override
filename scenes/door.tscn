@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://biiantx5afanr"]
 
-[ext_resource type="Script" uid="uid://8ld1k3dm3wkr" path="res://scenes/door.gd" id="1_la1wf"]
+[ext_resource type="Script" uid="uid://8ld1k3dm3wkr" path="res://scripts/door.gd" id="1_la1wf"]
 [ext_resource type="Texture2D" uid="uid://b3vmknmyfpdj8" path="res://art/tilewalls1.png" id="2_18pbm"]
 [ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="3_q5w8r"]
 [ext_resource type="PackedScene" uid="uid://c81juvbsvv77e" path="res://art/door.glb" id="4_t58dd"]

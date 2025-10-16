@@ -1,11 +1,5 @@
 extends Node3D
 
-@onready var target = $Player
-
-
-func _process(delta: float) -> void:
-	get_tree().call_group("enemy", "target_position" , target.global_transform.origin)
-
-
+# Sets the current level to 1 upon entering level
 func _ready():
 	GameData.current_level = 1

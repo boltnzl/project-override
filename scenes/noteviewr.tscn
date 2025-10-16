@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxbg5qoc1t2pj"]
 
-[ext_resource type="Script" uid="uid://byct7vuwoqn8d" path="res://noteviewr.gd" id="1_ny6mn"]
+[ext_resource type="Script" uid="uid://byct7vuwoqn8d" path="res://scripts/noteviewr.gd" id="1_ny6mn"]
 [ext_resource type="Texture2D" uid="uid://bwd8vp4h8b8eg" path="res://art/paper.png" id="2_k0d5g"]
 [ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="3_rxhj7"]
 

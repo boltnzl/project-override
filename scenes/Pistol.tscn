@@ -1,56 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceqyga5x7ar70"]
+[gd_scene load_steps=6 format=3 uid="uid://ceqyga5x7ar70"]
 
-[ext_resource type="PackedScene" uid="uid://7muc1ra7b3v2" path="res://art/untitled.glb" id="1_1e1q2"]
+[ext_resource type="PackedScene" uid="uid://bqf86i83j342b" path="res://art/gun.glb" id="1_0eiuv"]
 
-[sub_resource type="Animation" id="Animation_n8kc8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cube:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1e1q2"]
+[sub_resource type="Animation" id="Animation_0eiuv"]
 resource_name = "shoot"
 length = 0.1
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Cube:position")
+tracks/0/path = NodePath("gun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.5), Vector3(0, 0, 0)]
+"values": [Vector3(0.00715791, -0.28, -2.56921), Vector3(0.00715791, -0.28, -2.91075), Vector3(0.007, -0.28, -2.569)]
+}
+
+[sub_resource type="Animation" id="Animation_gdekx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00715791, -0.28, -2.56921)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gmdh3"]
+resource_name = "reload"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.66, 1.33, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.00715791, -0.28, -2.56921), Vector3(-0.502734, -0.0116896, -2.56921), Vector3(-0.502734, -0.540837, -2.56921), Vector3(0.00715791, -0.28, -2.56921)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.66, 1.33, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(-0.227843, -1.25605, -0.0734053), Vector3(-0.227843, -1.25605, -0.0734053), Vector3(0, -1.5708, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_awtjx"]
 _data = {
-&"RESET": SubResource("Animation_n8kc8"),
-&"shoot": SubResource("Animation_1e1q2")
+&"RESET": SubResource("Animation_gdekx"),
+&"reload": SubResource("Animation_gmdh3"),
+&"shoot": SubResource("Animation_0eiuv")
 }
 
-[node name="Pistol" instance=ExtResource("1_1e1q2")]
+[node name="Node3D" type="Node3D"]
 
-[node name="Cube" parent="." index="0"]
-transform = Transform3D(-1.31134e-08, 0, -0.246, 0, 0.674, 0, 0.3, 0, -1.0753e-08, 0, 0, 0)
+[node name="gun" parent="." instance=ExtResource("1_0eiuv")]
+transform = Transform3D(-1.74846e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.74846e-08, 0.00715791, -0.28, -2.56921)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_awtjx")
 }
 
-[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0081538, 0.462453, -1.6649)
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(0.748906, 0, 0.0404938, 0, 0.75, 0, -0.0404938, 0, 0.748906, 0.0712789, 0.462453, -3.3549)
 target_position = Vector3(0, 0, -1)
 collide_with_areas = true

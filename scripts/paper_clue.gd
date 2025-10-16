@@ -1,14 +1,14 @@
 extends Node3D
 
 @export var clue_text: String = ""
-var player_close = false
+var player_close: bool = false
 
-# Opens the note if the player is near the model and is pressing "E"
+# Opens the note if the player is near the model and is pressing  the E key
 func _process(delta):
 	if player_close and Input.is_action_just_pressed("use"):
 		open_clue()
 
-# Shows the note on the screen when called
+# Shows the note on the screen when called and pauses the game
 func open_clue():
 	var clue_ui = preload("res://scenes/noteviewr.tscn").instantiate()
 	clue_ui.set_clue(clue_text) 

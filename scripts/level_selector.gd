@@ -1,15 +1,19 @@
 extends Control
 
-# Detects which levels the player has unlocked and locks levels that have not be unlocked
-func _ready() -> void:
+# Update level buttons based on unlocked level
+func update_level_buttons() -> void:
 	if GameData.unlockedlevel >= 2:
 		$"HBoxContainer/Level2/Level 2".disabled = false
 	else:
 		$"HBoxContainer/Level2/Level 2".disabled = true
+		
 	if GameData.unlockedlevel >= 3:
 		$"HBoxContainer/Level3/Level 3".disabled = false
 	else:
 		$"HBoxContainer/Level3/Level 3".disabled = true
+
+func _ready() -> void:
+	update_level_buttons()
 
 # Switches the player to level 1 upon clicking the "1" button
 func _on_level_1_pressed() -> void:
@@ -26,3 +30,8 @@ func _on_level_3_pressed() -> void:
 # Returns the player back to the main menu upon clicking the "RETURN" button
 func _on_return_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")
+
+# Resets saved data and update buttons immediately
+func _on_reset_pressed() -> void:
+	GameData.reset_data()
+	update_level_buttons()

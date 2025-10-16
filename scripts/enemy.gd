@@ -1,31 +1,30 @@
 extends CharacterBody3D
 
-# Enemy movement
-const SPEED = 10.0
-var player: Player = null
-var is_chasing = false
+
+const SPEED: float = 10.0
+const AMMO_PICKUP_SCENE: PackedScene = preload("res://scenes/ammo_drop.tscn")
+
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var aggro_area: Area3D = $AggroArea
 
-# Enemy health
-@export var maxhealth = 10.0
-@export var damage = 10.0
-var enemy_health = maxhealth
+var player: Player = null
+var is_chasing: bool = false
 
-# Combat 
-var timelasthit = 0.0
-var incombat = false
+@export var maxhealth: float = 10.0
+@export var damage: float = 50.0
+var enemy_health: float = maxhealth
 
-# Ammo drop
-const AMMO_PICKUP_SCENE = preload("res://scenes/ammo_drop.tscn")
+var timelasthit: float = 0.0
+var incombat: bool = false
 
 
+# Stores the player node from the player group
 func _ready() -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0] as Player
 
-# Checks if the player is in range of the enemy, then starts to follow the player if 
+# Handles enemy movement and animation while chasing the player
 func _physics_process(delta: float) -> void:
 	if is_chasing and player:
 		var dir = player.global_transform.origin - global_transform.origin

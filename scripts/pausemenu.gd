@@ -1,14 +1,14 @@
 extends Control
 
-@onready var health_stamina_ui = $"../Health_Stamina"
-@onready var ammo_ui = $"../AmmoCounter"
+@onready var health_stamina_ui: Node = $"../Health_Stamina"
+@onready var ammo_ui: Node = $"../AmmoCounter"
 
 # Hides pause menu upon start
 func _ready():
 	visible = false
 
-# Displays pause menu if not already visible and unlocks mouse. If visible, hides pause menu and 
-# locks mouse
+# Displays pause menu if not already visible. If visible, hides pause menu and locks mouse
+# If not visible, displays the pause menu and unlocks mouse
 func toggle_pause():
 	if visible:
 		get_tree().paused = false
@@ -27,7 +27,7 @@ func toggle_pause():
 		if ammo_ui:
 			ammo_ui.visible = false
 
-# Toggles the pause menu if the player presses Esc and isn't in a puzzle
+# Toggles the pause menu if the player presses the Escape key and isn't in a puzzle
 func _input(event):
 	if event.is_action_pressed("escape") and not GameData.puzzle_open:
 		toggle_pause()

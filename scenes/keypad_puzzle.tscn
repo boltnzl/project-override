@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://iiodftto8kkr"]
 
-[ext_resource type="Script" uid="uid://bt6nyh7ynu8xt" path="res://keypad_puzzle.gd" id="1_0fd1j"]
+[ext_resource type="Script" uid="uid://bt6nyh7ynu8xt" path="res://scripts/keypad_puzzle.gd" id="1_0fd1j"]
 [ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="2_qstvv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxpyd"]

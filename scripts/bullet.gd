@@ -1,16 +1,17 @@
 extends Node3D
 
-const SPEED = 100.0
-@onready var mesh = $MeshInstance3D
-@onready var particles = $GPUParticles3D
-@onready var ray = $RayCast3D
 
+const SPEED: float = 200.0
+@onready var mesh: MeshInstance3D = $MeshInstance3D
+@onready var particles: GPUParticles3D = $GPUParticles3D
+@onready var ray: RayCast3D = $RayCast3D
 
+# Sets up particles settings when projectile has spawned
 func _ready() -> void:
 	particles.one_shot = true
 	particles.emitting = false
 
-
+# Handles projectile movement, collisions, and despawning of the bullet
 func _physics_process(delta: float) -> void:
 	var distance = SPEED * delta
 	ray.target_position = Vector3(0, 0, -distance)

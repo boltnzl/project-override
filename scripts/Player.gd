@@ -2,59 +2,55 @@ extends CharacterBody3D
 
 class_name Player 
 
-#@onready var obj1 = $Node2D/Level1Objectives
-#@onready var obj2 = $Node2D/Level2Objectives
-#@onready var obj3 = $Node2D/Level3Objectives
 
-# Movement variables
-const SHAKE_FREQUENCY = 1.5
-const SHAKE_AMPLITUDE = 0.06
-const WALK_SPEED = 10.0
-const SPRINT_SPEED = 20.0
-const JUMP_VELOCITY = 10.0
-const SENSITIVITY = 0.003
+const SHAKE_FREQUENCY: float = 1.5
+const SHAKE_AMPLITUDE: float = 0.06
+const WALK_SPEED: float = 10.0
+const SPRINT_SPEED: float = 20.0
+const JUMP_VELOCITY: float = 10.0
+const SENSITIVITY: float = 0.003
 
-# Movement constants
-var speed 
-var gravity = 20
-var field_of_view = 0.0
 
-# Camera 
+var speed: float
+var gravity: float = 20.0
+var field_of_view: float = 0.0
+
+
 @onready var camera_pivot: Node3D = $Pivot
 @onready var camera: Camera3D = $Pivot/Camera3D
 
-# Health Bar 
-@export var max_health: float = 100
-@export var regen_delay = 3.0      
-@export var regen_rate = 10.0 
-var current_health: float
-var in_combat = false
-var time_last_hit = 0.0
-@onready var health_bar = $"Health_Stamina/Health Bar"
 
-# Stamina Bar
-@onready var stamina : ProgressBar = $"Health_Stamina/Stamina Bar"
+@export var max_health: float = 100.0
+@export var regen_delay: float = 3.0
+@export var regen_rate: float = 10.0
+var current_health: float = 0.0
+var in_combat: bool = false
+var time_last_hit: float = 0.0
+@onready var health_bar: ProgressBar = $"Health_Stamina/Health Bar"
 
-# Shooting
-@export var max_mag = 25
-@export var total_ammo = 100  
-var bullet = load("res://scenes/bullet.tscn")
-var instance
-var current_mag = max_mag     
-var reload_time = 2.0
-var is_reloading = false 
-@onready var magazine_label = $AmmoCounter/Magazine
-@onready var ammo_label = $AmmoCounter/Ammo
-@onready var gun_animation = $Pivot/Camera3D/Pistol/AnimationPlayer
-@onready var gun_barrel = $Pivot/Camera3D/Pistol/RayCast3D
 
-# Knockback 
-@export var knockback_force = 30
-@export var knockback_duration = 0.2
-var knockback_velocity = Vector3.ZERO
-var knockback_time = 0.0
+@onready var stamina: ProgressBar = $"Health_Stamina/Stamina Bar"
 
-# Initializies player variables 
+
+@export var max_mag: int = 25
+@export var total_ammo: int = 100
+var bullet: PackedScene = load("res://scenes/bullet.tscn")
+var instance: Node3D
+var current_mag: int = max_mag
+var reload_time: float = 2.0
+var is_reloading: bool = false
+@onready var magazine_label: Label = $AmmoCounter/Magazine
+@onready var ammo_label: Label = $AmmoCounter/Ammo
+@onready var gun_animation: AnimationPlayer = $Pivot/Camera3D/Pistol/AnimationPlayer
+@onready var gun_barrel: RayCast3D = $Pivot/Camera3D/Pistol/RayCast3D
+
+
+@export var knockback_force: float = 30.0
+@export var knockback_duration: float = 0.2
+var knockback_velocity: Vector3 = Vector3.ZERO
+var knockback_time: float = 0.0
+
+# Initializies player variables and loads saved ammo
 func _ready():
 	#update_objectives()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -62,6 +58,7 @@ func _ready():
 	current_health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
+	load_ammo()
 
 # Handles mouse movement which controls the rotation of the camera
 func _unhandled_input(event: InputEvent) -> void:
@@ -84,12 +81,10 @@ func _physics_process(delta: float) -> void:
 		if stamina.value > 0:
 			speed = SPRINT_SPEED
 		else:
-			speed = SPRINT_SPEED
-	
+			speed = WALK_SPEED
 	# Allows the player to jump when pressing space
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
 	# Allows the player to reload their gun by pressing R
 	if Input.is_action_just_pressed("reload"):
 		_reload()
@@ -153,6 +148,7 @@ func _reload():
 		return
 	if total_ammo <= 0:
 		return 
+	gun_animation.play("reload")
 	is_reloading = true
 	await get_tree().create_timer(reload_time).timeout
 	var ammo_needed = max_mag - current_mag
@@ -184,6 +180,7 @@ func _shoot():
 		get_parent().add_child(instance)
 		current_mag -= 1
 		_update_ammo_ui()
+		save_ammo()
 
 # Gives the player ammo and updates ammo UI 
 func add_ammo(amount) -> void:
@@ -207,21 +204,21 @@ func _update_health_bar():
 
 # Handles player's death and loads the restart screen upon death
 func _death():
+	GameData.current_mag = GameData.max_mag
+	GameData.total_ammo = 100
 	var game_over_scene = load("res://scenes/restart.tscn").instantiate()
 	get_tree().root.add_child(game_over_scene)
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	
-#func update_objectives():
-	#obj1.visible = false
-	#obj2.visible = false
-#	obj3.visible = false
 
-	#match GameData.current_level:
-		#1:
-			#obj1.visible = true
-		#2:
-			#obj2.visible = true
-		#3:
-			#obj3.visible = true
+# Saves current magazine and total ammo to save file 
+func save_ammo():
+	GameData.current_mag = current_mag
+	GameData.total_ammo = total_ammo
+	GameData.save_data()
+
+# Load current magazine and total ammo to saved values and updates ammo UI
+func load_ammo():
+	current_mag = GameData.current_mag
+	total_ammo = GameData.total_ammo
+	_update_ammo_ui()

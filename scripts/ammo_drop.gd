@@ -1,8 +1,7 @@
 extends Area3D
 
-@export var amount = 10   
-var picked_up = false
-
+@export var amount: int = 10   
+var picked_up: bool = false
 
 # When player enters ammo drop area, adds random ammo to the player and in-game model disappears
 func _on_body_entered(body: Node) -> void:

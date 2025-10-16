@@ -187,9 +187,9 @@ text = "LEVELS"
 
 [node name="Return" type="Button" parent="."]
 layout_mode = 0
-offset_left = 829.0
+offset_left = 579.0
 offset_top = 922.0
-offset_right = 1292.0
+offset_right = 1077.0
 offset_bottom = 1150.0
 scale = Vector2(0.5, 0.5)
 focus_mode = 0
@@ -201,7 +201,24 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_2ec5i")
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lm0q")
 text = "RETURN"
 
+[node name="Reset" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1062.0
+offset_top = 922.0
+offset_right = 1718.0
+offset_bottom = 1150.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.137255, 0.137255, 0.137255, 1)
+theme_override_fonts/font = ExtResource("2_gkmvm")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/hover = SubResource("StyleBoxFlat_gkmvm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2ec5i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5lm0q")
+text = "RESET DATA"
+
 [connection signal="pressed" from="HBoxContainer/Level1/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="HBoxContainer/Level2/Level 2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="HBoxContainer/Level3/Level 3" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
