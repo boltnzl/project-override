@@ -10,8 +10,8 @@ const AMMO_PICKUP_SCENE: PackedScene = preload("res://scenes/ammo_drop.tscn")
 var player: Player = null
 var is_chasing: bool = false
 
-@export var maxhealth: float = 10.0
 @export var damage: float = 50.0
+@export var maxhealth: float = 10.0
 var enemy_health: float = maxhealth
 
 var timelasthit: float = 0.0
@@ -47,9 +47,8 @@ func _physics_process(delta: float) -> void:
 # Checks if the enemy's health is 0, if so, will spawn an ammo drop model on the zombie and then 
 # will despawn
 func hit(amount) -> void:
-	if enemy_health <= 0:
-		return  
 	enemy_health -= amount
+	print(enemy_health)
 	if enemy_health <= 0:
 		var pickup = AMMO_PICKUP_SCENE.instantiate()
 		get_tree().current_scene.add_child(pickup)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://cjaao0chuc7j7"]
+[gd_scene load_steps=104 format=3 uid="uid://cjaao0chuc7j7"]
 
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="1_70nk6"]
 [ext_resource type="Script" uid="uid://c1w6g3vkw2gab" path="res://scripts/level_3.gd" id="1_bk4f1"]
@@ -250,18 +250,15 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_1rxxv"]
 radius = 7.088
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0vrl8"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_1ke33"]
-sky_material = SubResource("ProceduralSkyMaterial_0vrl8")
-
-[sub_resource type="Environment" id="Environment_mnu1b"]
-background_mode = 2
-sky = SubResource("Sky_1ke33")
-tonemap_mode = 2
-glow_enabled = true
+[sub_resource type="Environment" id="Environment_bk4f1"]
+ambient_light_source = 2
+ambient_light_color = Color(0.184314, 0.207843, 0.25098, 1)
+ambient_light_energy = 0.2
+tonemap_mode = 3
+tonemap_exposure = 0.8
+tonemap_white = 1.1
+fog_enabled = true
+fog_density = 0.03
 
 [node name="level_3" type="Node3D"]
 script = ExtResource("1_bk4f1")
@@ -283,12 +280,12 @@ shape = SubResource("BoxShape3D_p6vls")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Ceilling"]
 transform = Transform3D(175.387, 0, 0, 0, 0.1, 0, 0, 0, 130.724, -27.9825, 10, -31.5405)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ceilling/StaticBody3D"]
 shape = SubResource("BoxShape3D_8uepa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Ceilling/StaticBody3D"]
-visible = false
 mesh = SubResource("BoxMesh_q7pjq")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="Map/Ceilling"]
@@ -335,7 +332,6 @@ transform = Transform3D(40, 0, 0, 0, 0.1, 0, 0, 0, 40, -7, 20, -122)
 shape = SubResource("BoxShape3D_wu3ic")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Ceilling/StaticBody3D2"]
-visible = false
 mesh = SubResource("BoxMesh_5kn0t")
 
 [node name="Other" type="Node3D" parent="Map"]
@@ -2287,8 +2283,12 @@ transform = Transform3D(2.98023e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, 2.98023e-08,
 [node name="Enemy9" parent="Enemies3" instance=ExtResource("17_ema3p")]
 transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75, -48.5, 2, -38)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_mnu1b")
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bk4f1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment2"]
+transform = Transform3D(0.466506, -0.482963, 0.741025, 0.12941, 0.866025, 0.482963, -0.875, -0.12941, 0.466506, 92, 44.5, 28)
+light_energy = 0.2
 
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 [connection signal="body_entered" from="ComputerPuzzle/computer/Detect" to="ComputerPuzzle/computer" method="_on_detect_body_entered"]

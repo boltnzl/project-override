@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bj387j66to5uj"]
+[gd_scene load_steps=60 format=3 uid="uid://bj387j66to5uj"]
 
 [ext_resource type="Script" uid="uid://dqh6opl1sauow" path="res://scripts/mainlevel.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://b3vmknmyfpdj8" path="res://art/tilewalls1.png" id="3_8gofh"]
@@ -22,19 +22,6 @@
 [ext_resource type="Script" uid="uid://bkxc7ddmbtqsw" path="res://scripts/button_puzzle.gd" id="20_pqd0y"]
 [ext_resource type="PackedScene" uid="uid://biiantx5afanr" path="res://scenes/door.tscn" id="23_5k0ak"]
 [ext_resource type="PackedScene" uid="uid://b4oxdexsxdm50" path="res://art/dooropen.glb" id="24_3ies3"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vonw3"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_3ies3"]
-sky_material = SubResource("ProceduralSkyMaterial_vonw3")
-
-[sub_resource type="Environment" id="Environment_0b4ue"]
-background_mode = 2
-sky = SubResource("Sky_3ies3")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ainy"]
 vertices = PackedVector3Array(-64.754, 0.487295, -63.729, -64.754, 0.487295, 63.771, 64.746, 0.487295, 63.771, 64.746, 0.487295, -63.729)
@@ -143,16 +130,18 @@ uv1_scale = Vector3(3, 2, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_7agi7"]
 material = SubResource("StandardMaterial3D_kih21")
 
+[sub_resource type="Environment" id="Environment_pqd0y"]
+ambient_light_source = 2
+ambient_light_color = Color(0.184314, 0.207843, 0.25098, 1)
+ambient_light_energy = 0.2
+tonemap_mode = 3
+tonemap_exposure = 0.8
+tonemap_white = 1.1
+fog_enabled = true
+fog_density = 0.03
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_1ainy")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0b4ue")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.74973, 0.353692, 0.559291, 0, -0.845178, 0.534485, -0.661744, 0.400719, 0.633655, 103.058, 66.3276, 82.56)
-shadow_enabled = true
-shadow_opacity = 0.5
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 8.12844, 0, 0, 0, 1, 0, -3.8147e-06, 0)
@@ -160,6 +149,7 @@ visible = false
 navigation_mesh = SubResource("NavigationMesh_1ainy")
 
 [node name="Player" parent="." instance=ExtResource("8_b121j")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 3.5, 4.04403, -11.5)
 
 [node name="pausemenu" parent="Player" index="0"]
 metadata/_edit_use_anchors_ = true
@@ -186,6 +176,7 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_use_anchors_ = true
 
 [node name="WinCondition" type="Area3D" parent="."]
+visible = false
 script = ExtResource("4_mx8sn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WinCondition"]
@@ -197,16 +188,18 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -121.431, 4.04403, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="KeypadTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11363, 0.441314, -5.48369)
+visible = false
 mesh = SubResource("BoxMesh_klq6b")
 
 [node name="Area3D" type="Area3D" parent="KeypadTrigger"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeypadTrigger/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2408, 0, -5.20998)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2408, 0.125, -5.20998)
 shape = SubResource("SphereShape3D_b121j")
 
 [node name="ComputerPuzzle" type="Node3D" parent="."]
 transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 87.6009, 0, -83.6729)
+visible = false
 
 [node name="computer" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
 transform = Transform3D(-0.356402, 0, -1.45704, 0, 1.5, 0, 1.45704, 0, -0.356402, -48.2469, 4.78879, -16.2148)
@@ -239,36 +232,6 @@ script = ExtResource("5_h6wmr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerPuzzle/computer3/Detect"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0.664473, -1.09143, 0.487984)
 shape = SubResource("SphereShape3D_5k0ak")
-
-[node name="Spawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9539, 0, 0)
-
-[node name="Marker3D" type="Marker3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.6876, 0, -14.8913)
-
-[node name="Marker3D2" type="Marker3D" parent="Spawner"]
-transform = Transform3D(0.588435, 0, 0.808545, 0, 1, 0, -0.808545, 0, 0.588435, -5.84984, 0, -12.119)
-
-[node name="Marker3D8" type="Marker3D" parent="Spawner"]
-transform = Transform3D(0.268079, 0, 0.963397, 0, 1, 0, -0.963397, 0, 0.268079, -12.0804, 0, -27.3349)
-
-[node name="Marker3D9" type="Marker3D" parent="Spawner"]
-transform = Transform3D(0.767288, 0, 0.641302, 0, 1, 0, -0.641302, 0, 0.767288, 0, 0, -26.4632)
-
-[node name="Marker3D7" type="Marker3D" parent="Spawner"]
-transform = Transform3D(0.522126, 0, 0.852868, 0, 1, 0, -0.852868, 0, 0.522126, -9.05032, 0, -18.1922)
-
-[node name="Marker3D6" type="Marker3D" parent="Spawner"]
-transform = Transform3D(0.755648, 0, 0.654978, 0, 1, 0, -0.654978, 0, 0.755648, 0, 0, -22.7263)
-
-[node name="Marker3D5" type="Marker3D" parent="Spawner"]
-transform = Transform3D(0.778605, 0, 0.627515, 0, 1, 0, -0.627515, 0, 0.778605, 0, 0, -8.18314)
-
-[node name="Marker3D4" type="Marker3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.6876, 0, -14.8913)
-
-[node name="Marker3D3" type="Marker3D" parent="Spawner"]
-transform = Transform3D(0.161656, 0, -0.986847, 0, 1, 0, 0.986847, 0, 0.161656, 0, 0, 0)
 
 [node name="Props" type="Node3D" parent="."]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 4.5)
@@ -1376,7 +1339,6 @@ mesh = SubResource("BoxMesh_8gofh")
 transform = Transform3D(40, 0, 0, 0, 0.1, 0, 0, 0, 40, 32, 10, -48)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ceilling/StaticBody3D"]
-visible = false
 shape = SubResource("BoxShape3D_8gofh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Ceilling/StaticBody3D"]
@@ -1530,6 +1492,7 @@ mesh = SubResource("BoxMesh_5k0ak")
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -13.5, 0, 0)
+visible = false
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_f2txt")]
 transform = Transform3D(-3.27835e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.27835e-08, -76.7143, 2, -47.3571)
@@ -1560,6 +1523,7 @@ transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75,
 
 [node name="Enemies2" type="Node3D" parent="."]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 86.5, 0, -26)
+visible = false
 
 [node name="Enemy" parent="Enemies2" instance=ExtResource("5_f2txt")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -41, 2, -5.5)
@@ -1593,6 +1557,7 @@ transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75,
 
 [node name="ButtonPuzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.5433, 1.12455, -9.4306)
+visible = false
 script = ExtResource("20_pqd0y")
 
 [node name="Area3D" type="Area3D" parent="ButtonPuzzle"]
@@ -1609,14 +1574,18 @@ mesh = SubResource("TorusMesh_gur6y")
 
 [node name="Door2" parent="." instance=ExtResource("23_5k0ak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0, 6)
+visible = false
 
 [node name="Door3" parent="." instance=ExtResource("23_5k0ak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 16)
+visible = false
 
 [node name="Door" type="Node3D" parent="."]
+visible = false
 
 [node name="StaticBody3D30" type="StaticBody3D" parent="Door"]
 transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)
+visible = false
 physics_material_override = SubResource("PhysicsMaterial_3ies3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D30"]
@@ -1649,6 +1618,13 @@ mesh = SubResource("BoxMesh_7agi7")
 
 [node name="dooropen2" parent="Door" instance=ExtResource("24_3ies3")]
 transform = Transform3D(-6.55671e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -4.37114e-08, 11.9996, 2, -55.0557)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pqd0y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.466506, -0.482963, 0.741025, 0.12941, 0.866025, 0.482963, -0.875, -0.12941, 0.466506, 92, 44.5, 28)
+light_energy = 0.2
 
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 [connection signal="body_entered" from="KeypadTrigger/Area3D" to="KeypadTrigger" method="_on_area_3d_body_entered"]
