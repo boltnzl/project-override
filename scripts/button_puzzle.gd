@@ -1,7 +1,6 @@
 extends Node3D
 
 @export var door_to_open: NodePath   
-@export var button_mesh: NodePath    
 @onready var area: Area3D = $Area3D
 var player_near: bool = false
 var door_node: Node = null

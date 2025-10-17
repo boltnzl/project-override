@@ -18,6 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if player_close and Input.is_action_just_pressed("use"):
 		_open_computer_screen()
+		GameData.puzzle_open = true
 
 # Pauses the game and loads the computer screen UI onto the screen
 func _open_computer_screen():

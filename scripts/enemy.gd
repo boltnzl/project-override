@@ -10,7 +10,7 @@ const AMMO_PICKUP_SCENE: PackedScene = preload("res://scenes/ammo_drop.tscn")
 var player: Player = null
 var is_chasing: bool = false
 
-@export var damage: float = 50.0
+@export var damage: float = 20.0
 @export var maxhealth: float = 10.0
 var enemy_health: float = maxhealth
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://cjaao0chuc7j7"]
+[gd_scene load_steps=103 format=3 uid="uid://cjaao0chuc7j7"]
 
 [ext_resource type="PackedScene" uid="uid://dqof0v4sx7egd" path="res://scenes/player.tscn" id="1_70nk6"]
 [ext_resource type="Script" uid="uid://c1w6g3vkw2gab" path="res://scripts/level_3.gd" id="1_bk4f1"]
@@ -250,16 +250,6 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_1rxxv"]
 radius = 7.088
 
-[sub_resource type="Environment" id="Environment_bk4f1"]
-ambient_light_source = 2
-ambient_light_color = Color(0.184314, 0.207843, 0.25098, 1)
-ambient_light_energy = 0.2
-tonemap_mode = 3
-tonemap_exposure = 0.8
-tonemap_white = 1.1
-fog_enabled = true
-fog_density = 0.03
-
 [node name="level_3" type="Node3D"]
 script = ExtResource("1_bk4f1")
 
@@ -280,7 +270,6 @@ shape = SubResource("BoxShape3D_p6vls")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Ceilling"]
 transform = Transform3D(175.387, 0, 0, 0, 0.1, 0, 0, 0, 130.724, -27.9825, 10, -31.5405)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ceilling/StaticBody3D"]
 shape = SubResource("BoxShape3D_8uepa")
@@ -2119,6 +2108,8 @@ transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 
 [node name="computer" parent="ComputerPuzzle" instance=ExtResource("11_ema3p")]
 transform = Transform3D(1.2823, 0, 0.778268, 0, 1.5, 0, -0.778268, 0, 1.2823, -71.5267, 5.31449, -25.3119)
 script = ExtResource("20_w5nkq")
+computer_name = "Computer 3"
+clue_text = "Computer 1 is the one with the key. Computer 2 is lying"
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer"]
 
@@ -2129,6 +2120,8 @@ shape = SubResource("SphereShape3D_wu3ic")
 [node name="computer2" parent="ComputerPuzzle" instance=ExtResource("11_ema3p")]
 transform = Transform3D(-0.388228, 0, 1.44889, 0, 1.5, 0, -1.44889, 0, -0.388228, -68.827, 2.27825, 2.90939)
 script = ExtResource("20_w5nkq")
+computer_name = "Computer 2"
+clue_text = "I have the key to the next room. "
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer2"]
 
@@ -2137,8 +2130,12 @@ transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0.664473
 shape = SubResource("SphereShape3D_wu3ic")
 
 [node name="computer3" parent="ComputerPuzzle" instance=ExtResource("11_ema3p")]
-transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -52.9516, 5.02431, -7.24121)
+transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -52.9516, 5.21734, -7.24121)
 script = ExtResource("20_w5nkq")
+target_door = NodePath("../../Door8")
+computer_name = "Computer 1"
+clue_text = "Computer 3 is telling the truth. "
+is_correct = true
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer3"]
 
@@ -2165,6 +2162,7 @@ mesh = SubResource("BoxMesh_sx8yt")
 [node name="ButtonPuzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102.543, 1.12455, -17.4306)
 script = ExtResource("22_wu3ic")
+door_to_open = NodePath("../Door5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonPuzzle"]
 transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, -13.0151)
@@ -2181,6 +2179,7 @@ shape = SubResource("SphereShape3D_1rxxv")
 [node name="ButtonPuzzle2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52225, 13.3778, -107.311)
 script = ExtResource("22_wu3ic")
+door_to_open = NodePath("../Door6")
 
 [node name="Area3D" type="Area3D" parent="ButtonPuzzle2"]
 
@@ -2282,13 +2281,6 @@ transform = Transform3D(2.98023e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, 2.98023e-08,
 
 [node name="Enemy9" parent="Enemies3" instance=ExtResource("17_ema3p")]
 transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75, -48.5, 2, -38)
-
-[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_bk4f1")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment2"]
-transform = Transform3D(0.466506, -0.482963, 0.741025, 0.12941, 0.866025, 0.482963, -0.875, -0.12941, 0.466506, 92, 44.5, 28)
-light_energy = 0.2
 
 [connection signal="body_entered" from="WinCondition" to="WinCondition" method="_on_body_entered"]
 [connection signal="body_entered" from="ComputerPuzzle/computer/Detect" to="ComputerPuzzle/computer" method="_on_detect_body_entered"]

@@ -23,7 +23,7 @@ var field_of_view: float = 0.0
 @export var max_health: float = 100.0
 @export var regen_delay: float = 3.0
 @export var regen_rate: float = 10.0
-var current_health: float = 0.0
+var current_health: float = 10.0
 var in_combat: bool = false
 var time_last_hit: float = 0.0
 @onready var health_bar: ProgressBar = $"Health_Stamina/Health Bar"
@@ -77,11 +77,12 @@ func _physics_process(delta: float) -> void:
 			velocity.y -= gravity * delta 
 	
 	# Allows the player to speed up movement while holding down shift
-	if Input.is_action_pressed("sprint"):
-		if stamina.value > 0:
-			speed = SPRINT_SPEED
-		else:
-			speed = WALK_SPEED
+	if Input.is_action_pressed("sprint") and stamina.value > 0:
+		speed = SPRINT_SPEED
+		
+# Optional: If sprint is released, reset to walk
+	if Input.is_action_just_released("sprint"):
+		speed = WALK_SPEED
 	# Allows the player to jump when pressing space
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY

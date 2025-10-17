@@ -35,3 +35,15 @@ func _on_return_pressed() -> void:
 	get_tree().paused = false
 	queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+# Checks if the player has pressed the Escape key and makes them return to the game
+func _process(delta):
+	if Input.is_action_just_pressed("escape"):
+		GameData.puzzle_open = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+		_return_to_game()
+
+# Returns the player back to the game upon pressing escape key
+func _return_to_game():
+	get_tree().paused = false
+	queue_free()
