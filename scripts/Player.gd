@@ -79,8 +79,6 @@ func _physics_process(delta: float) -> void:
 	# Allows the player to speed up movement while holding down shift
 	if Input.is_action_pressed("sprint") and stamina.value > 0:
 		speed = SPRINT_SPEED
-		
-# Optional: If sprint is released, reset to walk
 	if Input.is_action_just_released("sprint"):
 		speed = WALK_SPEED
 	# Allows the player to jump when pressing space

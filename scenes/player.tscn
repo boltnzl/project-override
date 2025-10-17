@@ -36,6 +36,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00566483, 0, 0.00775456)
 [node name="Pistol" parent="Pivot/Camera3D" instance=ExtResource("2_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81435, -1.05742, -0.0928922)
 
+[node name="gun" parent="Pivot/Camera3D/Pistol" index="0"]
+transform = Transform3D(-1.448e-06, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.448e-06, 0.00715791, -0.28, -2.56921)
+
 [node name="AttackArea" type="Area3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
