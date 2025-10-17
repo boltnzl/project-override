@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var clue_label: Label = $Panel/Label
+@onready var clue_label: RichTextLabel = $Panel/RichTextLabel
 @onready var computer_label: Label = $Panel/Label2
 @onready var accept: Button = $Accept
 var correct: bool = false

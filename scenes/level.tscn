@@ -199,12 +199,13 @@ shape = SubResource("SphereShape3D_b121j")
 
 [node name="ComputerPuzzle" type="Node3D" parent="."]
 transform = Transform3D(0.642279, 0, 0.766471, 0, 1, 0, -0.766471, 0, 0.642279, 87.6009, 0, -83.6729)
-visible = false
 
 [node name="computer" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
 transform = Transform3D(-0.356402, 0, -1.45704, 0, 1.5, 0, 1.45704, 0, -0.356402, -48.2469, 4.78879, -16.2148)
 script = ExtResource("5_h6wmr")
 target_door = NodePath("../../Door2")
+computer_name = "Computer 1"
+clue_text = "This computer contains the next key to the nexxt level. The other computers are lying"
 is_correct = true
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer"]
@@ -216,6 +217,7 @@ shape = SubResource("SphereShape3D_5k0ak")
 [node name="computer2" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
 transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -57.3299, 4.77825, -6.72479)
 script = ExtResource("5_h6wmr")
+clue_text = "Clue2"
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer2"]
 
@@ -226,6 +228,7 @@ shape = SubResource("SphereShape3D_5k0ak")
 [node name="computer3" parent="ComputerPuzzle" instance=ExtResource("11_wc255")]
 transform = Transform3D(1.5, 0, -1.78814e-07, 0, 1.5, 0, 1.78814e-07, 0, 1.5, -79.9817, 2.11053, -17.6664)
 script = ExtResource("5_h6wmr")
+clue_text = "Clue3"
 
 [node name="Detect" type="Area3D" parent="ComputerPuzzle/computer3"]
 
@@ -1521,40 +1524,6 @@ transform = Transform3D(2.98023e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, 2.98023e-08,
 [node name="Enemy9" parent="Enemies" instance=ExtResource("5_f2txt")]
 transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75, -48.5, 2, -38)
 
-[node name="Enemies2" type="Node3D" parent="."]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 86.5, 0, -26)
-visible = false
-
-[node name="Enemy" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -41, 2, -5.5)
-
-[node name="Enemy2" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -54, 2, -16)
-
-[node name="Enemy3" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(-0.194114, 0, -0.724444, 0, 0.75, 0, 0.724444, 0, -0.194114, -54, 2, -21)
-
-[node name="Enemy4" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(0.75, 0, -2.98023e-08, 0, 0.75, 0, 2.98023e-08, 0, 0.75, -66, 2, -21)
-
-[node name="Enemy5" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(0.375, 0, -0.649519, 0, 0.75, 0, 0.649519, 0, 0.375, -66, 2, -36)
-
-[node name="Enemy6" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(-0.53033, 0, 0.53033, 0, 0.75, 0, -0.53033, 0, -0.53033, -66, 2, -27.5)
-
-[node name="Enemy10" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(-0.53033, 0, 0.53033, 0, 0.75, 0, -0.53033, 0, -0.53033, -66, 2, -27.5)
-
-[node name="Enemy7" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(-0.53033, 0, 0.53033, 0, 0.75, 0, -0.53033, 0, -0.53033, -54, 2, -37)
-
-[node name="Enemy8" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(2.98023e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, 2.98023e-08, -54, 2, -30)
-
-[node name="Enemy9" parent="Enemies2" instance=ExtResource("5_f2txt")]
-transform = Transform3D(0.75, 0, 6.25859e-08, 0, 0.75, 0, -6.25859e-08, 0, 0.75, -48.5, 2, -38)
-
 [node name="ButtonPuzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.5433, 1.12455, -9.4306)
 visible = false
@@ -1574,14 +1543,11 @@ mesh = SubResource("TorusMesh_gur6y")
 
 [node name="Door2" parent="." instance=ExtResource("23_5k0ak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0, 6)
-visible = false
 
 [node name="Door3" parent="." instance=ExtResource("23_5k0ak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 16)
-visible = false
 
 [node name="Door" type="Node3D" parent="."]
-visible = false
 
 [node name="StaticBody3D30" type="StaticBody3D" parent="Door"]
 transform = Transform3D(3.89414e-07, 1.70218e-13, -1, -1.74846e-07, 10, 0, -2, -8.74228e-07, -1.94707e-07, 11.5, 5, -51)

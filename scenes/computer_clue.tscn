@@ -3,13 +3,21 @@
 [ext_resource type="Script" uid="uid://bw4mkwvgbxmbf" path="res://scripts/computer_screen.gd" id="1_4c054"]
 [ext_resource type="FontFile" uid="uid://ddhdg7bigjv3h" path="res://fonts/Rubik-Bold.ttf" id="1_do807"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4c054"]
-font = ExtResource("1_do807")
-font_size = 50
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q13h3"]
+bg_color = Color(0.2, 0.2, 0.2, 0.819608)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.154876, 0.154876, 0.154876, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdh3p"]
 font = ExtResource("1_do807")
-font_size = 150
+font_size = 200
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c054"]
 bg_color = Color(1, 1, 1, 1)
@@ -49,35 +57,36 @@ offset_left = 321.0
 offset_top = 146.0
 offset_right = 1630.0
 offset_bottom = 877.0
-
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.143
-anchor_bottom = 0.271
-offset_left = 36.0
-offset_top = 279.0
-offset_right = 1094.81
-offset_bottom = 269.899
-label_settings = SubResource("LabelSettings_4c054")
-horizontal_alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_q13h3")
 
 [node name="Label2" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.143
 anchor_bottom = 0.271
-offset_left = 201.0
-offset_top = 20.0
-offset_right = 2186.81
-offset_bottom = 10.899
+offset_left = 32.0
+offset_top = -2.0
+offset_right = 1086.81
+offset_bottom = 36.899
 label_settings = SubResource("LabelSettings_hdh3p")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 270.0
+offset_right = 1205.0
+offset_bottom = 569.0
+theme_override_fonts/normal_font = ExtResource("1_do807")
+theme_override_font_sizes/normal_font_size = 60
+fit_content = true
+scroll_active = false
 
 [node name="Accept" type="Button" parent="."]
 layout_mode = 0
-offset_left = 537.0
+offset_left = 389.0
 offset_top = 719.0
-offset_right = 1000.0
+offset_right = 852.0
 offset_bottom = 947.0
 scale = Vector2(0.5, 0.5)
 focus_mode = 0
@@ -91,9 +100,9 @@ text = "ACCEPT"
 
 [node name="Return" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1240.0
+offset_left = 1349.0
 offset_top = 719.0
-offset_right = 1703.0
+offset_right = 1812.0
 offset_bottom = 947.0
 scale = Vector2(0.5, 0.5)
 focus_mode = 0
