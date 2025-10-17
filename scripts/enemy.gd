@@ -17,7 +17,6 @@ var enemy_health: float = maxhealth
 var timelasthit: float = 0.0
 var incombat: bool = false
 
-
 # Stores the player node from the player group
 func _ready() -> void:
 	var players = get_tree().get_nodes_in_group("player")
